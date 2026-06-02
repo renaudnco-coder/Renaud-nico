@@ -154,6 +154,7 @@
   <div class="nav-links">
     <a href="#works" data-fr="Œuvres" data-en="Work">Œuvres</a>
     <a href="#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
+    <a href="#video" data-fr="Vidéos" data-en="Videos">Vidéos</a>
     <a href="#about" data-fr="À propos" data-en="About">À propos</a>
     <a href="#contact" class="btn" style="padding:10px 22px;font-size:14px" data-fr="Travaillons ensemble →" data-en="Let's work together →">Travaillons ensemble →</a>
     <div class="lang"><button id="fr" class="on" onclick="setLang('fr')">FR</button><button id="en" onclick="setLang('en')">EN</button></div>
@@ -209,6 +210,25 @@
   </div>
 </section>
 
+<!-- VIDÉOS -->
+<section id="video">
+  <div class="section-head reveal">
+    <span class="eyebrow" data-fr="En images" data-en="On screen">En images</span>
+    <h2 data-fr="Vidéos" data-en="Videos">Vidéos</h2>
+    <p data-fr="Une création originale, et une reprise à ma façon." data-en="An original creation, and a cover my way.">Une création originale, et une reprise à ma façon.</p>
+  </div>
+  <div class="video-grid">
+    <div class="vid reveal">
+      <div class="vid-frame"><iframe src="https://www.youtube.com/embed/U9AFBi2bOnE" title="Création originale — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="vid-cap"><span class="vtag" data-fr="Création originale" data-en="Original creation">Création originale</span></div>
+    </div>
+    <div class="vid reveal">
+      <div class="vid-frame"><iframe src="https://www.youtube.com/embed/b0J1dGOX4QU" title="Reprise — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+      <div class="vid-cap"><span class="vtag" data-fr="Reprise" data-en="Cover">Reprise</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
 <section id="about">
   <div class="about-wrap">
@@ -238,6 +258,13 @@
 </section>
 
 <style>
+  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1180px;margin:0 auto}
+  .vid-frame{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line);transition:border-color .4s ease,transform .4s ease}
+  .vid-frame:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+  .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid-cap{margin-top:16px;text-align:center}
+  .vid-cap .vtag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);border:1px solid var(--line);padding:6px 14px;border-radius:50px}
+  @media(max-width:860px){.video-grid{grid-template-columns:1fr;gap:20px}}
   .t-dur{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
   .track.playing{background:var(--navy-card);border-color:var(--line)}
   .track.playing .play{background:var(--white);border-color:var(--white)}
