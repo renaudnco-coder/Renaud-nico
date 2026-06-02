@@ -11,3 +11,7 @@
 node_modules/
 dist/
 .vercel/
+
+# Fichiers audio studio (trop lourds pour le web)
+*.wav
+*.flac
