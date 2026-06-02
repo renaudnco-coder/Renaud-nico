@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Renaud Nico — Composer for film</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#04060E;          /* fond quasi noir, légère teinte bleue */
+    --navy-2:#070A14;
+    --navy-card:#0B0F1C;
+    --blue:#5E8CF0;          /* accent bleu, moins saturé */
+    --blue-glow:#7AA2F5;
+    --white:#FFFFFF;
+    --text:#EEF1FA;
+    --muted:#7E869F;
+    --line:rgba(170,185,230,.14);
+    --line-strong:rgba(255,255,255,.30);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--text);font-family:'Outfit',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--white);color:var(--navy)}
+  .display{font-family:'Bebas Neue',sans-serif;font-weight:400;line-height:.92;letter-spacing:.5px}
+
+  /* grain + vignette cinématique */
+  body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:99;background:radial-gradient(ellipse at center,transparent 52%,rgba(0,0,0,.6) 100%)}
+  .grain{position:fixed;inset:0;z-index:98;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:20px 44px;transition:background .4s ease,padding .4s ease,border-color .4s ease;border-bottom:1px solid transparent}
+  nav.scrolled{background:rgba(4,6,14,.82);backdrop-filter:blur(14px);padding:14px 44px;border-bottom:1px solid var(--line)}
+  .status{display:flex;align-items:center;gap:9px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+  .status .dot{width:7px;height:7px;border-radius:50%;background:#5BD6A0;box-shadow:0 0 10px #5BD6A0;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;letter-spacing:.5px;position:relative;transition:color .3s ease}
+  .nav-links a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--white);transition:width .35s cubic-bezier(.2,.7,.2,1)}
+  .nav-links a:not(.btn):hover{color:var(--white)}
+  .nav-links a:not(.btn):hover::after{width:100%}
+  .lang{display:flex;border:1px solid var(--line);border-radius:50px;padding:3px;margin-left:4px}
+  .lang button{background:none;border:none;color:var(--muted);cursor:pointer;padding:5px 11px;border-radius:50px;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:1px;transition:.3s}
+  .lang button.on{background:var(--white);color:var(--navy);font-weight:600}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;letter-spacing:.4px;padding:15px 32px;border-radius:50px;text-decoration:none;color:var(--white);border:1.5px solid var(--line-strong);background:transparent;position:relative;overflow:hidden;z-index:1;transition:color .4s ease,box-shadow .4s ease,transform .25s ease,border-color .4s ease}
+  .btn::before{content:'';position:absolute;inset:0;background:var(--white);border-radius:50px;transform:translateY(101%);transition:transform .45s cubic-bezier(.2,.7,.2,1);z-index:-1}
+  .btn:hover{color:var(--navy);transform:translateY(-2px);border-color:var(--white)}
+  .btn:hover::before{transform:translateY(0)}
+  .btn .arrow{transition:transform .35s ease}.btn:hover .arrow{transform:translateX(5px)}
+  /* primaire blanc, contraste fort */
+  .btn-solid{background:var(--white);color:var(--navy);border-color:var(--white);box-shadow:0 8px 30px -12px rgba(255,255,255,.5)}
+  .btn-solid::before{background:var(--blue)}
+  .btn-solid:hover{color:var(--navy)}
+  .btn-ghost{color:var(--text)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;background:radial-gradient(circle at 50% 36%,rgba(94,140,240,.10),transparent 48%)}
+  .hero::before{content:'';position:absolute;left:0;right:0;bottom:0;height:36vh;pointer-events:none;opacity:.35;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;transform:perspective(420px) rotateX(60deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000,transparent)}
+  .eyebrow{font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--white);margin-bottom:28px;font-weight:600;opacity:.9}
+  .hero .display{font-size:clamp(62px,13vw,170px);position:relative;color:var(--white)}
+  .hero .rule{width:54px;height:1px;background:var(--line-strong);margin:22px auto 18px}
+  .hero .sub{font-size:clamp(14px,1.5vw,18px);letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:42px;font-weight:500}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2}
+  .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;animation:bob 2s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+
+  .ph{background:linear-gradient(135deg,#0a1020,#10182e);border:1px solid var(--line);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#525c78;font-size:14px;letter-spacing:1px;text-align:center}
+  .ph::after{content:'';position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.07) 50%,transparent 60%);transform:translateX(-100%);transition:transform .8s ease}
+  .ph:hover::after{transform:translateX(100%)}
+
+  /* SECTIONS */
+  section{padding:130px 44px;position:relative}
+  .alt{background:var(--navy-2)}
+  .section-head{text-align:center;margin-bottom:64px}
+  .section-head .eyebrow{display:block;color:var(--blue)}
+  .section-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,120px);letter-spacing:1px;color:var(--white)}
+  .section-head p{color:var(--muted);max-width:520px;margin:14px auto 0;font-size:16px}
+
+  /* WORKS */
+  .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:1180px;margin:0 auto}
+  .card{position:relative;aspect-ratio:16/9;border-radius:8px;overflow:hidden;cursor:pointer;border:1px solid var(--line)}
+  .card .ph{width:100%;height:100%;font-size:15px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .card:hover .ph{transform:scale(1.06)}
+  .card .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,6,14,.94),rgba(4,6,14,.05) 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:background .4s ease}
+  .card .veil .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:8px;opacity:0;transform:translateY(10px);transition:.4s ease}
+  .card .veil h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;color:var(--white)}
+  .card .veil .meta{color:var(--muted);font-size:14px;opacity:0;transform:translateY(10px);transition:.4s ease .05s}
+  .card:hover .veil .tag,.card:hover .veil .meta{opacity:1;transform:translateY(0)}
+  .card::before{content:'';position:absolute;inset:0;border:1.5px solid var(--white);border-radius:8px;opacity:0;transition:opacity .4s ease;z-index:2;pointer-events:none}
+  .card:hover::before{opacity:.7}
+
+  /* LISTEN */
+  .listen-wrap{max-width:820px;margin:0 auto}
+  .track{display:flex;align-items:center;gap:22px;padding:22px 24px;border-radius:10px;cursor:pointer;transition:background .35s ease,transform .35s ease;border:1px solid transparent}
+  .track:hover{background:var(--navy-card);transform:translateX(8px);border-color:var(--line)}
+  .play{width:50px;height:50px;border-radius:50%;border:1.5px solid var(--line-strong);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .35s ease,border-color .35s}
+  .play svg{fill:var(--white);transition:fill .35s ease;margin-left:2px}
+  .track:hover .play{background:var(--white);border-color:var(--white)}
+  .track:hover .play svg{fill:var(--navy)}
+  .track-info{flex:1}.track-info h3{font-weight:600;font-size:18px;color:var(--text)}.track-info span{font-size:13px;color:var(--muted)}
+  .wave{display:flex;align-items:center;gap:3px;height:24px}
+  .wave i{width:3px;background:var(--white);border-radius:2px;opacity:.3;transition:opacity .3s}
+  .track:hover .wave i{opacity:.9;animation:eq .9s ease-in-out infinite}
+  .track:hover .wave i:nth-child(2){animation-delay:.15s}.track:hover .wave i:nth-child(3){animation-delay:.3s}.track:hover .wave i:nth-child(4){animation-delay:.1s}.track:hover .wave i:nth-child(5){animation-delay:.25s}
+  @keyframes eq{0%,100%{height:6px}50%{height:22px}}
+
+  /* ABOUT */
+  .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1180px;margin:0 auto}
+  .about-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,84px);margin-bottom:24px;letter-spacing:1px;color:var(--white)}
+  .about-text p{color:var(--muted);font-size:18px;margin-bottom:20px;max-width:520px}
+  .about-text .hl{color:var(--white)}
+  .about-photo{aspect-ratio:3/4}
+  .badges{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
+  .badge{font-size:13px;letter-spacing:1px;padding:8px 16px;border:1px solid var(--line);border-radius:50px;color:var(--text);transition:border-color .3s,color .3s}
+  .badge:hover{border-color:var(--white);color:var(--white)}
+
+  /* CONTACT */
+  .contact{text-align:center;padding:150px 44px;background:radial-gradient(circle at 50% 0%,rgba(94,140,240,.10),transparent 50%),var(--navy)}
+  .contact h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,10vw,160px);letter-spacing:1px;margin:16px 0;color:var(--white)}
+  .contact p{color:var(--muted);font-size:18px;max-width:480px;margin:0 auto 40px}
+  .contact-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .contact-links{margin-top:46px;display:flex;gap:28px;justify-content:center;font-size:14px;letter-spacing:1px}
+  .contact-links a{color:var(--muted);text-decoration:none;transition:color .3s}.contact-links a:hover{color:var(--white)}
+  footer{text-align:center;padding:30px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);letter-spacing:1px}
+
+  .reveal{opacity:0;transform:translateY(42px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    nav{padding:16px 18px}.nav-links{gap:14px}.nav-links a:not(.btn){display:none}.status{display:none}
+    section{padding:90px 20px}
+    .works-grid{grid-template-columns:1fr}
+    .about-wrap{grid-template-columns:1fr;gap:36px}.about-photo{aspect-ratio:4/3}
+  }
+  @media(max-width:560px){
+    .hero{padding:110px 18px 70px}.hero .display{font-size:clamp(44px,15vw,72px)}
+    .eyebrow{letter-spacing:3px}.hero .sub{font-size:12px;letter-spacing:2.5px}
+    .hero-actions{flex-direction:column;width:100%;max-width:300px}.hero-actions .btn{justify-content:center;width:100%}
+    .section-head h2{font-size:clamp(44px,15vw,68px)}
+    .contact-actions{flex-direction:column;align-items:center}.contact-links{gap:18px;flex-wrap:wrap}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav id="nav">
+  <div class="status"><span class="dot"></span><span data-fr="Disponible pour vos projets" data-en="Available for projects">Disponible pour vos projets</span></div>
+  <div class="nav-links">
+    <a href="#works" data-fr="Œuvres" data-en="Work">Œuvres</a>
+    <a href="#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
+    <a href="#about" data-fr="À propos" data-en="About">À propos</a>
+    <a href="#contact" class="btn" style="padding:10px 22px;font-size:14px" data-fr="Travaillons ensemble →" data-en="Let's work together →">Travaillons ensemble →</a>
+    <div class="lang"><button id="fr" class="on" onclick="setLang('fr')">FR</button><button id="en" onclick="setLang('en')">EN</button></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="eyebrow" data-fr="Compositeur · Musique de films" data-en="Composer · Film music">Compositeur · Musique de films</div>
+  <h1 class="display">RENAUD NICO</h1>
+  <div class="rule"></div>
+  <p class="sub" data-fr="Compositeur · Chanteur · Auteur" data-en="Composer · Singer · Songwriter">Compositeur · Chanteur · Auteur</p>
+  <div class="hero-actions">
+    <a href="#listen" class="btn btn-solid" data-fr="▶ Écouter la demo" data-en="▶ Listen to the demo">▶ Écouter la demo</a>
+    <a href="#works" class="btn" data-fr="Voir mes œuvres" data-en="See my work">Voir mes œuvres <span class="arrow">→</span></a>
+  </div>
+  <div class="scroll-hint" data-fr="défiler ↓" data-en="scroll ↓">défiler ↓</div>
+</header>
+
+<!-- WORKS -->
+<section id="works">
+  <div class="section-head reveal">
+    <span class="eyebrow" data-fr="Sélection" data-en="Selected">Sélection</span>
+    <h2 data-fr="Œuvres" data-en="Work">Œuvres</h2>
+    <p data-fr="Des images, des histoires, des émotions — mises en musique." data-en="Images, stories, emotions — set to music.">Des images, des histoires, des émotions — mises en musique.</p>
+  </div>
+  <div class="works-grid">
+    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Long-métrage" data-en="Feature film">Long-métrage</span><h3 data-fr="Titre du film" data-en="Film title">Titre du film</h3><div class="meta">Réalisateur · 2025</div></div></div>
+    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Court-métrage" data-en="Short film">Court-métrage</span><h3 data-fr="Titre du court" data-en="Short title">Titre du court</h3><div class="meta">Réalisateur · 2024</div></div></div>
+    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Court-métrage" data-en="Short film">Court-métrage</span><h3 data-fr="Titre du court" data-en="Short title">Titre du court</h3><div class="meta">Réalisateur · 2024</div></div></div>
+    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Chanson" data-en="Song">Chanson</span><h3 data-fr="Titre chanson" data-en="Song title">Titre chanson</h3><div class="meta" data-fr="Auteur-compositeur · 2023" data-en="Singer-songwriter · 2023">Auteur-compositeur · 2023</div></div></div>
+  </div>
+</section>
+
+<!-- LISTEN -->
+<section id="listen" class="alt">
+  <div class="section-head reveal">
+    <span class="eyebrow" data-fr="Demo reel" data-en="Demo reel">Demo reel</span>
+    <h2 data-fr="Écouter" data-en="Listen">Écouter</h2>
+    <p data-fr="Quelques extraits — orchestre, piano, et ce petit grain synthé qui me suit." data-en="A few excerpts — orchestra, piano, and that synth grain that follows me.">Quelques extraits — orchestre, piano, et ce petit grain synthé qui me suit.</p>
+  </div>
+  <div class="listen-wrap reveal">
+    <div class="track"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3 data-fr="Thème principal — Suite orchestrale" data-en="Main theme — Orchestral suite">Thème principal — Suite orchestrale</h3><span>02:14</span></div><div class="wave"><i style="height:10px"></i><i style="height:18px"></i><i style="height:8px"></i><i style="height:20px"></i><i style="height:12px"></i></div></div>
+    <div class="track"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3 data-fr="Nuit électrique — Synthwave" data-en="Electric night — Synthwave">Nuit électrique — Synthwave</h3><span>01:48</span></div><div class="wave"><i style="height:14px"></i><i style="height:8px"></i><i style="height:20px"></i><i style="height:10px"></i><i style="height:16px"></i></div></div>
+    <div class="track"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3 data-fr="Générique de fin — Chanson originale" data-en="End credits — Original song">Générique de fin — Chanson originale</h3><span>03:05</span></div><div class="wave"><i style="height:8px"></i><i style="height:16px"></i><i style="height:12px"></i><i style="height:20px"></i><i style="height:9px"></i></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="about-text reveal">
+      <span class="eyebrow" style="color:var(--blue);font-size:13px;letter-spacing:5px;text-transform:uppercase;display:block;margin-bottom:18px;font-weight:600" data-fr="À propos" data-en="About">À propos</span>
+      <h2 data-fr="Deux casquettes,<br>une seule obsession." data-en="Two hats,<br>one obsession.">Deux casquettes,<br>une seule obsession.</h2>
+      <p data-fr="Formé au <span class='hl'>Conservatoire de Paris</span>, je compose pour l'image avec une règle d'or : servir l'émotion, jamais la couvrir." data-en="Trained at the <span class='hl'>Paris Conservatory</span>, I compose for the screen with one rule: serve the emotion, never cover it.">Formé au <span class="hl">Conservatoire de Paris</span>, je compose pour l'image avec une règle d'or : servir l'émotion, jamais la couvrir.</p>
+      <p data-fr="Compositeur de films <span class='hl'>et</span> auteur-compositeur-interprète, je mélange orchestre, chanson et textures synthé pour donner à chaque projet une voix qu'on n'oublie pas." data-en="Film composer <span class='hl'>and</span> singer-songwriter, I blend orchestra, song and synth textures to give every project an unforgettable voice.">Compositeur de films <span class="hl">et</span> auteur-compositeur-interprète, je mélange orchestre, chanson et textures synthé pour donner à chaque projet une voix qu'on n'oublie pas.</p>
+      <div class="badges"><span class="badge" data-fr="Orchestre" data-en="Orchestra">Orchestre</span><span class="badge" data-fr="Chanson" data-en="Song">Chanson</span><span class="badge">Synthwave</span><span class="badge">Sound design</span></div>
+    </div>
+    <div class="ph about-photo reveal" data-fr="Espace photo (shooting néo-vintage)" data-en="Photo space (neo-vintage shoot)">Espace photo<br>(shooting néo-vintage)</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="reveal">
+    <span class="eyebrow" data-fr="Un projet en tête ?" data-en="A project in mind?">Un projet en tête ?</span>
+    <h2 data-fr="Donnons une voix<br>à vos images." data-en="Let's give a voice<br>to your images.">Donnons une voix<br>à vos images.</h2>
+    <p data-fr="Parlez-moi de votre film, votre série, votre univers. Je traduis vos images en émotion." data-en="Tell me about your film, your series, your world. I turn images into emotion.">Parlez-moi de votre film, votre série, votre univers. Je traduis vos images en émotion.</p>
+    <div class="contact-actions">
+      <a href="#" class="btn btn-solid" data-fr="Travaillons ensemble →" data-en="Let's work together →">Travaillons ensemble →</a>
+      <a href="#" class="btn" data-fr="Me soutenir" data-en="Support me">Me soutenir</a>
+    </div>
+    <div class="contact-links"><a href="#">Email</a><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">Spotify</a></div>
+  </div>
+</section>
+
+<footer>© 2026 Renaud Nico</footer>
+
+<script>
+  function setLang(l){
+    document.documentElement.lang=l;
+    document.getElementById('fr').classList.toggle('on',l==='fr');
+    document.getElementById('en').classList.toggle('on',l==='en');
+    document.querySelectorAll('[data-fr]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v!==null)el.innerHTML=v});
+  }
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+  const obs=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%2*100)+'ms';obs.observe(el)});
+</script>
+</body>
+</html>
