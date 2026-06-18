@@ -3,22 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Renaud Nico — Composer for film</title>
+<title>Renaud Nico — Compositeur de musique à l'image</title>
+<meta name="description" content="Renaud Nico — compositeur de musique à l'image. Long-métrage, théâtre, marques. Référence : Anne Olga de Pass. FR / US.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#04060E;          /* fond quasi noir, légère teinte bleue */
+    --navy:#04060E;
     --navy-2:#070A14;
     --navy-card:#0B0F1C;
-    --blue:#5E8CF0;          /* accent bleu, moins saturé */
+    --blue:#5E8CF0;
     --blue-glow:#7AA2F5;
     --white:#FFFFFF;
     --text:#EEF1FA;
     --muted:#7E869F;
     --line:rgba(170,185,230,.14);
     --line-strong:rgba(255,255,255,.30);
+    --gold:#D8B26E;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -51,7 +53,6 @@
   .btn:hover{color:var(--navy);transform:translateY(-2px);border-color:var(--white)}
   .btn:hover::before{transform:translateY(0)}
   .btn .arrow{transition:transform .35s ease}.btn:hover .arrow{transform:translateX(5px)}
-  /* primaire blanc, contraste fort */
   .btn-solid{background:var(--white);color:var(--navy);border-color:var(--white);box-shadow:0 8px 30px -12px rgba(255,255,255,.5)}
   .btn-solid::before{background:var(--blue)}
   .btn-solid:hover{color:var(--navy)}
@@ -63,7 +64,10 @@
   .eyebrow{font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--white);margin-bottom:28px;font-weight:600;opacity:.9}
   .hero .display{font-size:clamp(62px,13vw,170px);position:relative;color:var(--white)}
   .hero .rule{width:54px;height:1px;background:var(--line-strong);margin:22px auto 18px}
-  .hero .sub{font-size:clamp(14px,1.5vw,18px);letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:42px;font-weight:500}
+  .hero .sub{font-size:clamp(14px,1.5vw,18px);letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:32px;font-weight:500}
+  .hero-stats{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin:0 auto 36px;max-width:880px;padding:18px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .hero-stats .stat{font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .hero-stats .stat strong{color:var(--white);font-weight:600;display:block;font-size:13px;letter-spacing:3px;margin-bottom:2px}
   .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2}
   .scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;animation:bob 2s ease-in-out infinite}
   @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
@@ -78,7 +82,18 @@
   .section-head{text-align:center;margin-bottom:64px}
   .section-head .eyebrow{display:block;color:var(--blue)}
   .section-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,8vw,120px);letter-spacing:1px;color:var(--white)}
-  .section-head p{color:var(--muted);max-width:520px;margin:14px auto 0;font-size:16px}
+  .section-head p{color:var(--muted);max-width:560px;margin:14px auto 0;font-size:16px}
+
+  /* REFERENCE BAND — Anne Olga de Pass */
+  .ref-band{padding:80px 44px;background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:center}
+  .ref-wrap{max-width:920px;margin:0 auto}
+  .ref-tag{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:18px}
+  .ref-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,58px);letter-spacing:2px;color:var(--white);margin-bottom:14px}
+  .ref-role{font-size:14px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:26px}
+  .ref-quote{font-size:18px;color:var(--text);font-style:italic;line-height:1.6;max-width:680px;margin:0 auto 28px;font-weight:300}
+  .ref-links{display:inline-flex;gap:20px;flex-wrap:wrap;justify-content:center}
+  .ref-link{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(216,178,110,.3);padding-bottom:2px;transition:color .3s ease,border-color .3s ease}
+  .ref-link:hover{color:var(--white);border-color:var(--white)}
 
   /* WORKS */
   .works-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:1180px;margin:0 auto}
@@ -86,10 +101,9 @@
   .card .ph{width:100%;height:100%;font-size:15px;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
   .card:hover .ph{transform:scale(1.06)}
   .card .veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,6,14,.94),rgba(4,6,14,.05) 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px;transition:background .4s ease}
-  .card .veil .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--white);margin-bottom:8px;opacity:0;transform:translateY(10px);transition:.4s ease}
-  .card .veil h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;color:var(--white)}
-  .card .veil .meta{color:var(--muted);font-size:14px;opacity:0;transform:translateY(10px);transition:.4s ease .05s}
-  .card:hover .veil .tag,.card:hover .veil .meta{opacity:1;transform:translateY(0)}
+  .card .veil .tag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+  .card .veil h3{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;color:var(--white);margin-bottom:6px}
+  .card .veil .meta{color:var(--muted);font-size:14px}
   .card::before{content:'';position:absolute;inset:0;border:1.5px solid var(--white);border-radius:8px;opacity:0;transition:opacity .4s ease;z-index:2;pointer-events:none}
   .card:hover::before{opacity:.7}
 
@@ -108,12 +122,49 @@
   .track:hover .wave i:nth-child(2){animation-delay:.15s}.track:hover .wave i:nth-child(3){animation-delay:.3s}.track:hover .wave i:nth-child(4){animation-delay:.1s}.track:hover .wave i:nth-child(5){animation-delay:.25s}
   @keyframes eq{0%,100%{height:6px}50%{height:22px}}
 
+  /* TRUSTED BY — LOGO WALL */
+  .trusted{padding:110px 44px;background:var(--navy-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .trusted-head{text-align:center;margin-bottom:54px}
+  .trusted-head .eyebrow{color:var(--blue);display:block;margin-bottom:14px}
+  .trusted-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,82px);letter-spacing:1px;color:var(--white)}
+  .logos-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;max-width:1180px;margin:0 auto;align-items:center}
+  .logo-cell{aspect-ratio:1/1;background:rgba(255,255,255,.97);border-radius:14px;display:flex;align-items:center;justify-content:center;padding:18px;transition:transform .4s ease,box-shadow .4s ease;position:relative}
+  .logo-cell:hover{transform:translateY(-4px);box-shadow:0 12px 30px -10px rgba(94,140,240,.35)}
+  .logo-cell img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+  .logo-cell .logo-label{position:absolute;bottom:-26px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);opacity:0;transition:opacity .3s ease}
+  .logo-cell:hover .logo-label{opacity:1}
+  .logo-cell.upcoming{background:rgba(255,255,255,.06);border:1px dashed rgba(255,255,255,.18)}
+  .logo-cell.upcoming .badge-soon{font-family:'Outfit',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
+
+  /* INTERNATIONAL — LIVE MARQUEE */
+  .intl{padding:110px 0;overflow:hidden;text-align:center;background:var(--navy)}
+  .intl-head{margin-bottom:50px;padding:0 44px}
+  .intl-head .eyebrow{color:var(--blue);display:block;margin-bottom:14px}
+  .intl-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,82px);letter-spacing:1px;color:var(--white)}
+  .intl-head p{color:var(--muted);max-width:560px;margin:14px auto 0;font-size:16px}
+  .marquee{display:flex;gap:64px;animation:scroll 30s linear infinite;width:max-content;padding:30px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .marquee-city{font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:3px;color:var(--white);white-space:nowrap;display:flex;align-items:center;gap:64px}
+  .marquee-city::after{content:'·';color:var(--gold);font-size:48px}
+  @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+  /* STUDIO & RÉSEAU */
+  .studio{padding:130px 44px;background:var(--navy-2)}
+  .studio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1180px;margin:54px auto 0}
+  .studio-card{padding:38px 32px;border:1px solid var(--line);border-radius:14px;background:var(--navy-card);transition:border-color .4s ease,transform .4s ease}
+  .studio-card:hover{border-color:var(--line-strong);transform:translateY(-4px)}
+  .studio-icon{width:48px;height:48px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:22px;color:var(--gold);font-size:22px}
+  .studio-card h3{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--white);margin-bottom:14px}
+  .studio-card p{color:var(--muted);font-size:15px;line-height:1.65;margin-bottom:18px}
+  .studio-tags{display:flex;gap:8px;flex-wrap:wrap}
+  .studio-tags span{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 12px;border:1px solid var(--line);border-radius:50px;color:var(--text)}
+
   /* ABOUT */
   .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1180px;margin:0 auto}
   .about-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,6vw,84px);margin-bottom:24px;letter-spacing:1px;color:var(--white)}
   .about-text p{color:var(--muted);font-size:18px;margin-bottom:20px;max-width:520px}
   .about-text .hl{color:var(--white)}
-  .about-photo{aspect-ratio:3/4}
+  .about-photo{aspect-ratio:3/4;background-image:url('assets/images/portrait.jpg');background-size:cover;background-position:center;border-radius:8px;border:1px solid var(--line);position:relative;overflow:hidden}
+  .about-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(4,6,14,.4),transparent 50%);pointer-events:none}
   .badges{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap}
   .badge{font-size:13px;letter-spacing:1px;padding:8px 16px;border:1px solid var(--line);border-radius:50px;color:var(--text);transition:border-color .3s,color .3s}
   .badge:hover{border-color:var(--white);color:var(--white)}
@@ -121,7 +172,7 @@
   /* CONTACT */
   .contact{text-align:center;padding:150px 44px;background:radial-gradient(circle at 50% 0%,rgba(94,140,240,.10),transparent 50%),var(--navy)}
   .contact h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,10vw,160px);letter-spacing:1px;margin:16px 0;color:var(--white)}
-  .contact p{color:var(--muted);font-size:18px;max-width:480px;margin:0 auto 40px}
+  .contact p{color:var(--muted);font-size:18px;max-width:520px;margin:0 auto 40px}
   .contact-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
   .contact-links{margin-top:46px;display:flex;gap:28px;justify-content:center;font-size:14px;letter-spacing:1px}
   .contact-links a{color:var(--muted);text-decoration:none;transition:color .3s}.contact-links a:hover{color:var(--white)}
@@ -130,11 +181,41 @@
   .reveal{opacity:0;transform:translateY(42px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
 
+  /* VIDEO */
+  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1180px;margin:0 auto}
+  .vid-frame{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line);transition:border-color .4s ease,transform .4s ease}
+  .vid-frame:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+  .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid-cap{margin-top:16px;text-align:center}
+  .vid-cap .vtag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);border:1px solid var(--line);padding:6px 14px;border-radius:50px}
+
+  .t-dur{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
+  .track.playing{background:var(--navy-card);border-color:var(--line)}
+  .track.playing .play{background:var(--white);border-color:var(--white)}
+  .track.playing .play svg{fill:var(--navy)}
+  .track.playing .wave i{opacity:.9;animation:eq .9s ease-in-out infinite}
+  .track.playing .wave i:nth-child(2){animation-delay:.15s}
+  .track.playing .wave i:nth-child(3){animation-delay:.3s}
+  .track.playing .wave i:nth-child(4){animation-delay:.1s}
+  .track.playing .wave i:nth-child(5){animation-delay:.25s}
+
+  /* WORKS — image-based cards */
+  .card.has-img .ph{background-size:cover;background-position:center;background-repeat:no-repeat}
+
+  @media(max-width:1100px){
+    .logos-grid{grid-template-columns:repeat(3,1fr)}
+    .studio-grid{grid-template-columns:1fr;gap:18px}
+  }
   @media(max-width:860px){
     nav{padding:16px 18px}.nav-links{gap:14px}.nav-links a:not(.btn){display:none}.status{display:none}
     section{padding:90px 20px}
     .works-grid{grid-template-columns:1fr}
     .about-wrap{grid-template-columns:1fr;gap:36px}.about-photo{aspect-ratio:4/3}
+    .video-grid{grid-template-columns:1fr;gap:20px}
+    .ref-band{padding:60px 20px}
+    .trusted{padding:80px 20px}
+    .studio{padding:90px 20px}
+    .hero-stats{gap:18px;padding:14px 18px}
   }
   @media(max-width:560px){
     .hero{padding:110px 18px 70px}.hero .display{font-size:clamp(44px,15vw,72px)}
@@ -142,6 +223,7 @@
     .hero-actions{flex-direction:column;width:100%;max-width:300px}.hero-actions .btn{justify-content:center;width:100%}
     .section-head h2{font-size:clamp(44px,15vw,68px)}
     .contact-actions{flex-direction:column;align-items:center}.contact-links{gap:18px;flex-wrap:wrap}
+    .logos-grid{grid-template-columns:repeat(2,1fr);gap:14px}
   }
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
 </style>
@@ -150,11 +232,12 @@
 <div class="grain"></div>
 
 <nav id="nav">
-  <div class="status"><span class="dot"></span><span data-fr="Disponible pour vos projets" data-en="Available for projects">Disponible pour vos projets</span></div>
+  <div class="status"><span class="dot"></span><span data-fr="Festival Sœurs Jumelles · Rochefort · 23 juin" data-en="Sœurs Jumelles Festival · Rochefort · June 23">Festival Sœurs Jumelles · Rochefort · 23 juin</span></div>
   <div class="nav-links">
     <a href="#works" data-fr="Œuvres" data-en="Work">Œuvres</a>
     <a href="#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
-    <a href="#video" data-fr="Vidéos" data-en="Videos">Vidéos</a>
+    <a href="#trusted" data-fr="Références" data-en="Trusted by">Références</a>
+    <a href="methode.html" data-fr="Méthode" data-en="Method">Méthode</a>
     <a href="#about" data-fr="À propos" data-en="About">À propos</a>
     <a href="#contact" class="btn" style="padding:10px 22px;font-size:14px" data-fr="Travaillons ensemble →" data-en="Let's work together →">Travaillons ensemble →</a>
     <div class="lang"><button id="fr" class="on" onclick="setLang('fr')">FR</button><button id="en" onclick="setLang('en')">EN</button></div>
@@ -163,16 +246,38 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="eyebrow" data-fr="Compositeur · Musique de films" data-en="Composer · Film music">Compositeur · Musique de films</div>
+  <div class="eyebrow" data-fr="Compositeur · Musique à l'image · FR / US" data-en="Composer · Music for screen · FR / US">Compositeur · Musique à l'image · FR / US</div>
   <h1 class="display">RENAUD NICO</h1>
   <div class="rule"></div>
-  <p class="sub" data-fr="Compositeur · Chanteur · Auteur" data-en="Composer · Singer · Songwriter">Compositeur · Chanteur · Auteur</p>
+  <p class="sub" data-fr="Long-métrage · Théâtre · Marques · Live" data-en="Feature film · Theatre · Brands · Live">Long-métrage · Théâtre · Marques · Live</p>
+
+  <div class="hero-stats">
+    <div class="stat"><strong>1h15</strong><span data-fr="Long-métrage" data-en="Feature film">Long-métrage</span></div>
+    <div class="stat"><strong>FR / US</strong><span data-fr="Productions" data-en="Productions">Productions</span></div>
+    <div class="stat"><strong>6+</strong><span data-fr="Marques" data-en="Brands">Marques</span></div>
+    <div class="stat"><strong>10</strong><span data-fr="Œuvres originales" data-en="Original works">Œuvres originales</span></div>
+  </div>
+
   <div class="hero-actions">
-    <a href="#listen" class="btn btn-solid" data-fr="▶ Écouter la demo" data-en="▶ Listen to the demo">▶ Écouter la demo</a>
-    <a href="#works" class="btn" data-fr="Voir mes œuvres" data-en="See my work">Voir mes œuvres <span class="arrow">→</span></a>
+    <a href="#listen" class="btn btn-solid" data-fr="▶ Écouter" data-en="▶ Listen">▶ Écouter</a>
+    <a href="methode.html" class="btn" data-fr="Travailler ensemble" data-en="Work with me">Travailler ensemble <span class="arrow">→</span></a>
   </div>
   <div class="scroll-hint" data-fr="défiler ↓" data-en="scroll ↓">défiler ↓</div>
 </header>
+
+<!-- REFERENCE BAND — Anne Olga de Pass -->
+<section class="ref-band reveal">
+  <div class="ref-wrap">
+    <div class="ref-tag" data-fr="Référence professionnelle" data-en="Professional reference">Référence professionnelle</div>
+    <div class="ref-name">Anne Olga de Pass</div>
+    <div class="ref-role" data-fr="Compositrice · Sélection Cannes" data-en="Composer · Cannes Selection">Compositrice · Sélection Cannes</div>
+    <p class="ref-quote" data-fr="« Une oreille rare, une écriture juste, une exigence sincère. Renaud comprend l'image avant d'écrire la musique. »" data-en="« A rare ear, precise writing, sincere demands. Renaud understands the image before writing the music. »">« Une oreille rare, une écriture juste, une exigence sincère. Renaud comprend l'image avant d'écrire la musique. »</p>
+    <div class="ref-links">
+      <a class="ref-link" href="https://anneolgadepass.com/" target="_blank" rel="noopener">anneolgadepass.com ↗</a>
+      <a class="ref-link" href="https://www.festival-cannes.com/p/anne-olga-de-pass/" target="_blank" rel="noopener" data-fr="Festival de Cannes ↗" data-en="Cannes Film Festival ↗">Festival de Cannes ↗</a>
+    </div>
+  </div>
+</section>
 
 <!-- WORKS -->
 <section id="works">
@@ -182,10 +287,38 @@
     <p data-fr="Des images, des histoires, des émotions — mises en musique." data-en="Images, stories, emotions — set to music.">Des images, des histoires, des émotions — mises en musique.</p>
   </div>
   <div class="works-grid">
-    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Long-métrage" data-en="Feature film">Long-métrage</span><h3 data-fr="Titre du film" data-en="Film title">Titre du film</h3><div class="meta">Réalisateur · 2025</div></div></div>
-    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Court-métrage" data-en="Short film">Court-métrage</span><h3 data-fr="Titre du court" data-en="Short title">Titre du court</h3><div class="meta">Réalisateur · 2024</div></div></div>
-    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Court-métrage" data-en="Short film">Court-métrage</span><h3 data-fr="Titre du court" data-en="Short title">Titre du court</h3><div class="meta">Réalisateur · 2024</div></div></div>
-    <div class="card reveal"><div class="ph" data-fr="Visuel cinéma" data-en="Film visual">Visuel cinéma</div><div class="veil"><span class="tag" data-fr="Chanson" data-en="Song">Chanson</span><h3 data-fr="Titre chanson" data-en="Song title">Titre chanson</h3><div class="meta" data-fr="Auteur-compositeur · 2023" data-en="Singer-songwriter · 2023">Auteur-compositeur · 2023</div></div></div>
+    <div class="card reveal">
+      <div class="ph">Woodstock Express</div>
+      <div class="veil">
+        <span class="tag" data-fr="Long-métrage · Post-production" data-en="Feature film · Post-production">Long-métrage · Post-production</span>
+        <h3>Woodstock Express</h3>
+        <div class="meta" data-fr="Réal. Coline Pagoda · 1h15 · 2026" data-en="Dir. Coline Pagoda · 1h15 · 2026">Réal. Coline Pagoda · 1h15 · 2026</div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <div class="ph">On the High Road</div>
+      <div class="veil">
+        <span class="tag" data-fr="Théâtre · États-Unis" data-en="Theatre · USA">Théâtre · États-Unis</span>
+        <h3>On the High Road</h3>
+        <div class="meta" data-fr="A. Tchekhov · Oyster Bay, Long Island · 300 spectateurs" data-en="A. Chekhov · Oyster Bay, Long Island · 300 attendees">A. Tchekhov · Oyster Bay, Long Island · 300 spectateurs</div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <div class="ph">Naro · BBQ Fest · Salon du Bon</div>
+      <div class="veil">
+        <span class="tag" data-fr="Marques · Événementiel" data-en="Brands · Events">Marques · Événementiel</span>
+        <h3 data-fr="Musique de marque" data-en="Brand music">Musique de marque</h3>
+        <div class="meta">Naro · BBQ Expo · BBQ Fest · Salon du Bon</div>
+      </div>
+    </div>
+    <div class="card reveal">
+      <div class="ph" data-fr="Chansons originales" data-en="Original songs">Chansons originales</div>
+      <div class="veil">
+        <span class="tag" data-fr="Auteur-compositeur" data-en="Singer-songwriter">Auteur-compositeur</span>
+        <h3 data-fr="Catalogue original" data-en="Original catalogue">Catalogue original</h3>
+        <div class="meta" data-fr="10 titres · piano, voix, orchestre, synth" data-en="10 tracks · piano, voice, orchestra, synth">10 titres · piano, voix, orchestre, synth</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -197,16 +330,16 @@
     <p data-fr="Quelques extraits — orchestre, piano, et ce petit grain synthé qui me suit." data-en="A few excerpts — orchestra, piano, and that synth grain that follows me.">Quelques extraits — orchestre, piano, et ce petit grain synthé qui me suit.</p>
   </div>
   <div class="listen-wrap reveal">
+    <div class="track" data-src="assets/audio/woodstock-express.mp3"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Woodstock Express</h3><span data-fr="Bande originale · Long-métrage" data-en="Original score · Feature film">Bande originale · Long-métrage</span></div><div class="wave"><i style="height:11px"></i><i style="height:18px"></i><i style="height:8px"></i><i style="height:16px"></i><i style="height:12px"></i></div><div class="t-dur">5:23</div></div>
     <div class="track" data-src="assets/audio/lenvol.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>L'envol</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:10px"></i><i style="height:18px"></i><i style="height:8px"></i><i style="height:20px"></i><i style="height:12px"></i></div><div class="t-dur">4:37</div></div>
     <div class="track" data-src="assets/audio/the-wind-calls.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>The Wind Calls</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:14px"></i><i style="height:8px"></i><i style="height:20px"></i><i style="height:10px"></i><i style="height:16px"></i></div><div class="t-dur">2:53</div></div>
     <div class="track" data-src="assets/audio/flying-sailor.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Flying Sailor</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:8px"></i><i style="height:16px"></i><i style="height:12px"></i><i style="height:20px"></i><i style="height:9px"></i></div><div class="t-dur">2:54</div></div>
     <div class="track" data-src="assets/audio/sans-crier-gare.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Sans crier gare</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:12px"></i><i style="height:8px"></i><i style="height:18px"></i><i style="height:11px"></i><i style="height:16px"></i></div><div class="t-dur">3:01</div></div>
     <div class="track" data-src="assets/audio/ma-nouvelle-maison.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Ma nouvelle maison</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:9px"></i><i style="height:17px"></i><i style="height:10px"></i><i style="height:20px"></i><i style="height:13px"></i></div><div class="t-dur">2:15</div></div>
     <div class="track" data-src="assets/audio/jy-arriverai-pas.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>J'y arriverai pas</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:16px"></i><i style="height:9px"></i><i style="height:19px"></i><i style="height:10px"></i><i style="height:14px"></i></div><div class="t-dur">2:48</div></div>
-    <div class="track" data-src="assets/audio/woodstock-express.mp3"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Woodstock Express</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:11px"></i><i style="height:18px"></i><i style="height:8px"></i><i style="height:16px"></i><i style="height:12px"></i></div><div class="t-dur">5:23</div></div>
     <div class="track" data-src="assets/audio/arts-et-metiers.mp3"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Arts et métiers</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:13px"></i><i style="height:8px"></i><i style="height:20px"></i><i style="height:11px"></i><i style="height:15px"></i></div><div class="t-dur">2:16</div></div>
     <div class="track" data-src="assets/audio/bastille.mp3"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Bastille</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:10px"></i><i style="height:16px"></i><i style="height:9px"></i><i style="height:19px"></i><i style="height:12px"></i></div><div class="t-dur">2:01</div></div>
-    <div class="track" data-src="assets/audio/hymne-piment-dor.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Hymne Piment d'or</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="wave"><i style="height:14px"></i><i style="height:9px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:16px"></i></div><div class="t-dur">2:01</div></div>
+    <div class="track" data-src="assets/audio/hymne-piment-dor.m4a"><div class="play"><svg width="15" height="15" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Hymne Piment d'or</h3><span data-fr="Musique de marque" data-en="Brand music">Musique de marque</span></div><div class="wave"><i style="height:14px"></i><i style="height:9px"></i><i style="height:18px"></i><i style="height:10px"></i><i style="height:16px"></i></div><div class="t-dur">2:01</div></div>
   </div>
 </section>
 
@@ -229,17 +362,85 @@
   </div>
 </section>
 
+<!-- TRUSTED BY — LOGO WALL -->
+<section id="trusted" class="trusted">
+  <div class="trusted-head reveal">
+    <span class="eyebrow" data-fr="Ils m'ont fait confiance" data-en="Trusted by">Ils m'ont fait confiance</span>
+    <h2 data-fr="Références" data-en="Credits">Références</h2>
+  </div>
+  <div class="logos-grid reveal">
+    <div class="logo-cell"><img src="assets/images/logos/naro.jpg" alt="Naro" loading="lazy"><span class="logo-label">Naro</span></div>
+    <div class="logo-cell"><img src="assets/images/logos/bbq-expo.jpg" alt="Barbecue Expo" loading="lazy"><span class="logo-label">BBQ Expo</span></div>
+    <div class="logo-cell"><img src="assets/images/logos/bbq-fest.jpg" alt="Barbecue Fest" loading="lazy"><span class="logo-label">BBQ Fest</span></div>
+    <div class="logo-cell"><img src="assets/images/logos/salon-du-bon.jpg" alt="Salon du Bon" loading="lazy"><span class="logo-label">Salon du Bon</span></div>
+    <div class="logo-cell upcoming"><img src="assets/images/logos/ateliers-gobelins.jpg" alt="Ateliers Gobelins" loading="lazy"><span class="logo-label" data-fr="En cours" data-en="In progress">En cours</span></div>
+    <div class="logo-cell upcoming"><img src="assets/images/logos/atelier-de-sevres.jpg" alt="Atelier de Sèvres" loading="lazy"><span class="logo-label" data-fr="En cours" data-en="In progress">En cours</span></div>
+  </div>
+</section>
+
+<!-- INTERNATIONAL — LIVE MARQUEE -->
+<section class="intl">
+  <div class="intl-head reveal">
+    <span class="eyebrow" data-fr="Sur scène" data-en="On stage">Sur scène</span>
+    <h2 data-fr="Live international" data-en="International live">Live international</h2>
+    <p data-fr="Des salles, des publics, des langues différentes — et la même obsession : faire passer l'émotion." data-en="Different venues, audiences, languages — and the same obsession: deliver the emotion.">Des salles, des publics, des langues différentes — et la même obsession : faire passer l'émotion.</p>
+  </div>
+  <div class="marquee">
+    <div class="marquee-city">PARIS<span></span></div>
+    <div class="marquee-city">NEW YORK<span></span></div>
+    <div class="marquee-city">MOSCOU<span></span></div>
+    <div class="marquee-city">KIEV<span></span></div>
+    <div class="marquee-city">LONDRES<span></span></div>
+    <div class="marquee-city">ITALIE<span></span></div>
+    <div class="marquee-city">PARIS<span></span></div>
+    <div class="marquee-city">NEW YORK<span></span></div>
+    <div class="marquee-city">MOSCOU<span></span></div>
+    <div class="marquee-city">KIEV<span></span></div>
+    <div class="marquee-city">LONDRES<span></span></div>
+    <div class="marquee-city">ITALIE<span></span></div>
+  </div>
+</section>
+
+<!-- STUDIO & RÉSEAU -->
+<section class="studio">
+  <div class="section-head reveal">
+    <span class="eyebrow" data-fr="Studio & Réseau" data-en="Studio & Network">Studio & Réseau</span>
+    <h2 data-fr="Au-delà du clavier" data-en="Beyond the keyboard">Au-delà du clavier</h2>
+    <p data-fr="Un studio, un pianiste, et un carnet d'adresses de musiciens prêts à servir vos images." data-en="A studio, a pianist, and a network of musicians ready to serve your images.">Un studio, un pianiste, et un carnet d'adresses de musiciens prêts à servir vos images.</p>
+  </div>
+  <div class="studio-grid">
+    <div class="studio-card reveal">
+      <div class="studio-icon">♪</div>
+      <h3 data-fr="Pianiste compositeur" data-en="Pianist composer">Pianiste compositeur</h3>
+      <p data-fr="Le piano est mon premier langage. Tout part de là : la mélodie, l'harmonie, la respiration d'une scène." data-en="Piano is my first language. Everything starts there: melody, harmony, the breath of a scene.">Le piano est mon premier langage. Tout part de là : la mélodie, l'harmonie, la respiration d'une scène.</p>
+      <div class="studio-tags"><span>Piano</span><span>Voix</span><span>Harmonica</span></div>
+    </div>
+    <div class="studio-card reveal">
+      <div class="studio-icon">⚙</div>
+      <h3 data-fr="Production audio" data-en="Audio production">Production audio</h3>
+      <p data-fr="Mixage et production menés de bout en bout. Maîtrise des outils standards de l'industrie pour livrer une bande propre, prête au mastering." data-en="Mixing and production end to end. Industry-standard tools to deliver clean stems, ready for mastering.">Mixage et production menés de bout en bout. Maîtrise des outils standards de l'industrie pour livrer une bande propre, prête au mastering.</p>
+      <div class="studio-tags"><span>Ableton Live</span><span>VST orchestraux</span><span>Sound design</span></div>
+    </div>
+    <div class="studio-card reveal">
+      <div class="studio-icon">⌖</div>
+      <h3 data-fr="Réseau de musiciens" data-en="Musicians network">Réseau de musiciens</h3>
+      <p data-fr="Quand le projet l'appelle, je convoque le bon instrument et le bon humain. Un réseau soudé, mobilisable rapidement." data-en="When the project calls for it, I bring the right instrument and the right human. A tight network, quickly available.">Quand le projet l'appelle, je convoque le bon instrument et le bon humain. Un réseau soudé, mobilisable rapidement.</p>
+      <div class="studio-tags"><span data-fr="Guitare" data-en="Guitar">Guitare</span><span data-fr="Violon" data-en="Violin">Violon</span><span data-fr="Claviers" data-en="Keys">Claviers</span><span data-fr="Percussions" data-en="Percussion">Percussions</span></div>
+    </div>
+  </div>
+</section>
+
 <!-- ABOUT -->
-<section id="about">
+<section id="about" class="alt">
   <div class="about-wrap">
     <div class="about-text reveal">
       <span class="eyebrow" style="color:var(--blue);font-size:13px;letter-spacing:5px;text-transform:uppercase;display:block;margin-bottom:18px;font-weight:600" data-fr="À propos" data-en="About">À propos</span>
-      <h2 data-fr="Deux casquettes,<br>une seule obsession." data-en="Two hats,<br>one obsession.">Deux casquettes,<br>une seule obsession.</h2>
-      <p data-fr="Formé au <span class='hl'>Conservatoire de Paris</span>, je compose pour l'image avec une règle d'or : servir l'émotion, jamais la couvrir." data-en="Trained at the <span class='hl'>Paris Conservatory</span>, I compose for the screen with one rule: serve the emotion, never cover it.">Formé au <span class="hl">Conservatoire de Paris</span>, je compose pour l'image avec une règle d'or : servir l'émotion, jamais la couvrir.</p>
-      <p data-fr="Compositeur de films <span class='hl'>et</span> auteur-compositeur-interprète, je mélange orchestre, chanson et textures synthé pour donner à chaque projet une voix qu'on n'oublie pas." data-en="Film composer <span class='hl'>and</span> singer-songwriter, I blend orchestra, song and synth textures to give every project an unforgettable voice.">Compositeur de films <span class="hl">et</span> auteur-compositeur-interprète, je mélange orchestre, chanson et textures synthé pour donner à chaque projet une voix qu'on n'oublie pas.</p>
-      <div class="badges"><span class="badge" data-fr="Orchestre" data-en="Orchestra">Orchestre</span><span class="badge" data-fr="Chanson" data-en="Song">Chanson</span><span class="badge">Synthwave</span><span class="badge">Sound design</span></div>
+      <h2 data-fr="Servir le film,<br>jamais le couvrir." data-en="Serve the film,<br>never cover it.">Servir le film,<br>jamais le couvrir.</h2>
+      <p data-fr="Compositeur formé entre la France et les États-Unis, accompagné par <span class='hl'>Anne Olga de Pass</span>, je compose pour l'image avec une règle d'or : la musique met en valeur, elle n'étouffe pas." data-en="Composer trained between France and the United States, mentored by <span class='hl'>Anne Olga de Pass</span>, I compose for the screen with one rule: music elevates, it never smothers.">Compositeur formé entre la France et les États-Unis, accompagné par <span class="hl">Anne Olga de Pass</span>, je compose pour l'image avec une règle d'or : la musique met en valeur, elle n'étouffe pas.</p>
+      <p data-fr="Du <span class='hl'>long-métrage</span> à la <span class='hl'>pièce de théâtre</span>, des <span class='hl'>marques</span> à la <span class='hl'>scène internationale</span>, j'ai appris une chose : la musique de film, c'est d'abord une conversation avec celles et ceux qui font le projet." data-en="From <span class='hl'>feature film</span> to <span class='hl'>theatre</span>, from <span class='hl'>brands</span> to <span class='hl'>international stages</span>, I learned one thing: film music is first a conversation with those who make the project.">Du <span class="hl">long-métrage</span> à la <span class="hl">pièce de théâtre</span>, des <span class="hl">marques</span> à la <span class="hl">scène internationale</span>, j'ai appris une chose : la musique de film, c'est d'abord une conversation avec celles et ceux qui font le projet.</p>
+      <div class="badges"><span class="badge">Piano</span><span class="badge" data-fr="Orchestre" data-en="Orchestra">Orchestre</span><span class="badge">Ableton</span><span class="badge" data-fr="Chanson" data-en="Song">Chanson</span><span class="badge">Sound design</span></div>
     </div>
-    <div class="ph about-photo reveal" data-fr="Espace photo (shooting néo-vintage)" data-en="Photo space (neo-vintage shoot)">Espace photo<br>(shooting néo-vintage)</div>
+    <div class="about-photo reveal" aria-label="Renaud Nico"></div>
   </div>
 </section>
 
@@ -248,35 +449,19 @@
   <div class="reveal">
     <span class="eyebrow" data-fr="Un projet en tête ?" data-en="A project in mind?">Un projet en tête ?</span>
     <h2 data-fr="Donnons une voix<br>à vos images." data-en="Let's give a voice<br>to your images.">Donnons une voix<br>à vos images.</h2>
-    <p data-fr="Parlez-moi de votre film, votre série, votre univers. Je traduis vos images en émotion." data-en="Tell me about your film, your series, your world. I turn images into emotion.">Parlez-moi de votre film, votre série, votre univers. Je traduis vos images en émotion.</p>
+    <p data-fr="Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite, je tiens les délais, je livre du sur-mesure." data-en="Feature, short, series, theatre, brand, event — tell me about your project. I respond fast, I meet deadlines, I deliver custom work.">Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite, je tiens les délais, je livre du sur-mesure.</p>
     <div class="contact-actions">
-      <a href="#" class="btn btn-solid" data-fr="Travaillons ensemble →" data-en="Let's work together →">Travaillons ensemble →</a>
-      <a href="#" class="btn" data-fr="Me soutenir" data-en="Support me">Me soutenir</a>
+      <a href="mailto:renaudnco@gmail.com?subject=Projet%20musical" class="btn btn-solid" data-fr="Écrivez-moi →" data-en="Email me →">Écrivez-moi →</a>
+      <a href="methode.html" class="btn" data-fr="Voir ma méthode" data-en="See my method">Voir ma méthode</a>
     </div>
-    <div class="contact-links"><a href="#">Email</a><a href="#">Instagram</a><a href="#">WhatsApp</a><a href="#">Spotify</a></div>
+    <div class="contact-links">
+      <a href="mailto:renaudnco@gmail.com">renaudnco@gmail.com</a>
+      <a href="https://soeursjumelles.com/" target="_blank" rel="noopener">Festival Sœurs Jumelles</a>
+    </div>
   </div>
 </section>
 
-<style>
-  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px;max-width:1180px;margin:0 auto}
-  .vid-frame{position:relative;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--line);transition:border-color .4s ease,transform .4s ease}
-  .vid-frame:hover{border-color:var(--line-strong);transform:translateY(-3px)}
-  .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .vid-cap{margin-top:16px;text-align:center}
-  .vid-cap .vtag{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);border:1px solid var(--line);padding:6px 14px;border-radius:50px}
-  @media(max-width:860px){.video-grid{grid-template-columns:1fr;gap:20px}}
-  .t-dur{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:42px;text-align:right}
-  .track.playing{background:var(--navy-card);border-color:var(--line)}
-  .track.playing .play{background:var(--white);border-color:var(--white)}
-  .track.playing .play svg{fill:var(--navy)}
-  .track.playing .wave i{opacity:.9;animation:eq .9s ease-in-out infinite}
-  .track.playing .wave i:nth-child(2){animation-delay:.15s}
-  .track.playing .wave i:nth-child(3){animation-delay:.3s}
-  .track.playing .wave i:nth-child(4){animation-delay:.1s}
-  .track.playing .wave i:nth-child(5){animation-delay:.25s}
-</style>
-
-<footer>© 2026 Renaud Nico</footer>
+<footer>© 2026 Renaud Nico — <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></footer>
 
 <script>
   function setLang(l){

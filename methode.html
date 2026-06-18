@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Méthode — Renaud Nico, compositeur</title>
+<meta name="description" content="Ma méthode de travail : cahier des charges, calendrier précis, résultat sur mesure. Comment composer pour votre projet — film, théâtre, marque.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#04060E;
+    --navy-2:#070A14;
+    --navy-card:#0B0F1C;
+    --blue:#5E8CF0;
+    --white:#FFFFFF;
+    --text:#EEF1FA;
+    --muted:#7E869F;
+    --line:rgba(170,185,230,.14);
+    --line-strong:rgba(255,255,255,.30);
+    --gold:#D8B26E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--navy);color:var(--text);font-family:'Outfit',sans-serif;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--white);color:var(--navy)}
+  .display{font-family:'Bebas Neue',sans-serif;font-weight:400;line-height:.92;letter-spacing:.5px}
+
+  body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:99;background:radial-gradient(ellipse at center,transparent 52%,rgba(0,0,0,.6) 100%)}
+  .grain{position:fixed;inset:0;z-index:98;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;padding:20px 44px;transition:background .4s ease,padding .4s ease,border-color .4s ease;border-bottom:1px solid transparent}
+  nav.scrolled{background:rgba(4,6,14,.82);backdrop-filter:blur(14px);padding:14px 44px;border-bottom:1px solid var(--line)}
+  .logo-link{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;color:var(--white);text-decoration:none}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{text-decoration:none;color:var(--muted);font-size:14px;font-weight:500;letter-spacing:.5px;position:relative;transition:color .3s ease}
+  .nav-links a:not(.btn)::after{content:'';position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--white);transition:width .35s cubic-bezier(.2,.7,.2,1)}
+  .nav-links a:not(.btn):hover{color:var(--white)}
+  .nav-links a:not(.btn):hover::after{width:100%}
+  .lang{display:flex;border:1px solid var(--line);border-radius:50px;padding:3px;margin-left:4px}
+  .lang button{background:none;border:none;color:var(--muted);cursor:pointer;padding:5px 11px;border-radius:50px;font-family:'Outfit',sans-serif;font-size:12px;letter-spacing:1px;transition:.3s}
+  .lang button.on{background:var(--white);color:var(--navy);font-weight:600}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;gap:10px;cursor:pointer;font-family:'Outfit',sans-serif;font-size:15px;font-weight:600;letter-spacing:.4px;padding:15px 32px;border-radius:50px;text-decoration:none;color:var(--white);border:1.5px solid var(--line-strong);background:transparent;position:relative;overflow:hidden;z-index:1;transition:color .4s ease,box-shadow .4s ease,transform .25s ease,border-color .4s ease}
+  .btn::before{content:'';position:absolute;inset:0;background:var(--white);border-radius:50px;transform:translateY(101%);transition:transform .45s cubic-bezier(.2,.7,.2,1);z-index:-1}
+  .btn:hover{color:var(--navy);transform:translateY(-2px);border-color:var(--white)}
+  .btn:hover::before{transform:translateY(0)}
+  .btn .arrow{transition:transform .35s ease}.btn:hover .arrow{transform:translateX(5px)}
+  .btn-solid{background:var(--white);color:var(--navy);border-color:var(--white);box-shadow:0 8px 30px -12px rgba(255,255,255,.5)}
+  .btn-solid::before{background:var(--blue)}
+  .btn-solid:hover{color:var(--navy)}
+
+  /* HERO METHODE */
+  .hero-m{min-height:80vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:160px 24px 80px;position:relative;background:radial-gradient(circle at 50% 36%,rgba(94,140,240,.10),transparent 48%)}
+  .hero-m::before{content:'';position:absolute;left:0;right:0;bottom:0;height:36vh;pointer-events:none;opacity:.35;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:64px 64px;transform:perspective(420px) rotateX(60deg);transform-origin:bottom;mask-image:linear-gradient(to top,#000,transparent)}
+  .eyebrow{font-size:13px;letter-spacing:5px;text-transform:uppercase;color:var(--white);margin-bottom:28px;font-weight:600;opacity:.9}
+  .hero-m .display{font-size:clamp(54px,11vw,140px);position:relative;color:var(--white)}
+  .hero-m .rule{width:54px;height:1px;background:var(--line-strong);margin:22px auto 18px}
+  .hero-m .sub{font-size:clamp(15px,1.6vw,19px);color:var(--muted);max-width:620px;margin:0 auto 38px;font-weight:400}
+
+  /* STEPS */
+  .steps{padding:130px 44px;background:var(--navy-2)}
+  .steps-head{text-align:center;margin-bottom:80px}
+  .steps-head .eyebrow{display:block;color:var(--blue)}
+  .steps-head h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,7vw,100px);letter-spacing:1px;color:var(--white)}
+  .steps-head p{color:var(--muted);max-width:600px;margin:14px auto 0;font-size:16px}
+
+  .steps-list{max-width:1080px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+  .step{display:grid;grid-template-columns:140px 1fr;gap:38px;align-items:start;padding:44px;background:var(--navy-card);border:1px solid var(--line);border-radius:14px;transition:border-color .4s ease,transform .4s ease}
+  .step:hover{border-color:var(--line-strong);transform:translateY(-3px)}
+  .step-num{font-family:'Bebas Neue',sans-serif;font-size:120px;line-height:1;color:var(--gold);letter-spacing:-2px}
+  .step-body h3{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:1.5px;color:var(--white);margin-bottom:18px}
+  .step-body .step-lead{color:var(--text);font-size:17px;margin-bottom:22px;font-weight:400}
+  .step-body .step-bullets{list-style:none;display:flex;flex-direction:column;gap:10px}
+  .step-body .step-bullets li{display:flex;align-items:flex-start;gap:14px;color:var(--muted);font-size:15px;line-height:1.6}
+  .step-body .step-bullets li::before{content:'→';color:var(--gold);font-weight:600;flex-shrink:0;margin-top:1px}
+
+  /* PRINCIPLES */
+  .principles{padding:130px 44px;background:var(--navy)}
+  .principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1180px;margin:54px auto 0}
+  .principle{padding:32px 26px;border:1px solid var(--line);border-radius:12px;text-align:center}
+  .principle .p-icon{font-size:28px;color:var(--gold);margin-bottom:14px}
+  .principle h4{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1.5px;color:var(--white);margin-bottom:10px}
+  .principle p{color:var(--muted);font-size:14px;line-height:1.6}
+
+  /* CTA */
+  .cta{text-align:center;padding:150px 44px;background:radial-gradient(circle at 50% 0%,rgba(94,140,240,.10),transparent 50%),var(--navy-2)}
+  .cta h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(48px,8vw,120px);letter-spacing:1px;margin:16px 0;color:var(--white)}
+  .cta p{color:var(--muted);font-size:18px;max-width:520px;margin:0 auto 40px}
+  .cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+  .cta-links{margin-top:46px;display:flex;gap:28px;justify-content:center;font-size:14px;letter-spacing:1px}
+  .cta-links a{color:var(--muted);text-decoration:none;transition:color .3s}.cta-links a:hover{color:var(--white)}
+
+  footer{text-align:center;padding:30px;font-size:12px;color:var(--muted);border-top:1px solid var(--line);letter-spacing:1px}
+
+  .reveal{opacity:0;transform:translateY(42px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:860px){
+    nav{padding:16px 18px}.nav-links{gap:14px}
+    .steps,.principles{padding:90px 20px}
+    .step{grid-template-columns:1fr;gap:18px;padding:30px}
+    .step-num{font-size:80px}
+    .principles-grid{grid-template-columns:1fr;gap:16px}
+  }
+  @media(max-width:560px){
+    .hero-m{padding:130px 18px 60px}
+    .cta-actions{flex-direction:column;align-items:center}.cta-links{gap:16px;flex-wrap:wrap}
+  }
+  @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<nav id="nav">
+  <a href="index.html" class="logo-link">RENAUD NICO</a>
+  <div class="nav-links">
+    <a href="index.html#works" data-fr="Œuvres" data-en="Work">Œuvres</a>
+    <a href="index.html#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
+    <a href="index.html#trusted" data-fr="Références" data-en="Trusted by">Références</a>
+    <a href="index.html#contact" class="btn" style="padding:10px 22px;font-size:14px" data-fr="Me contacter →" data-en="Get in touch →">Me contacter →</a>
+    <div class="lang"><button id="fr" class="on" onclick="setLang('fr')">FR</button><button id="en" onclick="setLang('en')">EN</button></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero-m">
+  <div class="eyebrow" data-fr="Travailler ensemble" data-en="Work together">Travailler ensemble</div>
+  <h1 class="display" data-fr="MA MÉTHODE" data-en="MY METHOD">MA MÉTHODE</h1>
+  <div class="rule"></div>
+  <p class="sub" data-fr="Trois étapes claires, des délais tenus, du sur-mesure. La musique de film est une conversation — voici comment je la mène." data-en="Three clear steps, deadlines met, custom work. Film music is a conversation — here's how I lead it.">Trois étapes claires, des délais tenus, du sur-mesure. La musique de film est une conversation — voici comment je la mène.</p>
+  <a href="#cta" class="btn btn-solid" data-fr="Démarrer un projet →" data-en="Start a project →">Démarrer un projet →</a>
+</header>
+
+<!-- STEPS -->
+<section class="steps">
+  <div class="steps-head reveal">
+    <span class="eyebrow" data-fr="Le processus" data-en="The process">Le processus</span>
+    <h2 data-fr="Du brief à la livraison" data-en="From brief to delivery">Du brief à la livraison</h2>
+    <p data-fr="Trois étapes pour transformer une idée en bande originale qui sert votre projet." data-en="Three steps to turn an idea into a soundtrack that serves your project.">Trois étapes pour transformer une idée en bande originale qui sert votre projet.</p>
+  </div>
+  <div class="steps-list">
+
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h3 data-fr="Cahier des charges & références" data-en="Brief & references">Cahier des charges & références</h3>
+        <p class="step-lead" data-fr="Avant la première note, on parle. Du film, de l'intention, des références qui vous habitent. Je veux comprendre ce que vous entendez quand vous regardez vos images." data-en="Before the first note, we talk. About the film, the intention, the references that inhabit you. I want to understand what you hear when you look at your images.">Avant la première note, on parle. Du film, de l'intention, des références qui vous habitent. Je veux comprendre ce que vous entendez quand vous regardez vos images.</p>
+        <ul class="step-bullets">
+          <li data-fr="Lecture du scénario, du synopsis ou du montage — selon le stade du projet" data-en="Read script, synopsis or cut — depending on project stage">Lecture du scénario, du synopsis ou du montage — selon le stade du projet</li>
+          <li data-fr="Échange de références musicales (films, albums, ambiances)" data-en="Exchange of musical references (films, albums, moods)">Échange de références musicales (films, albums, ambiances)</li>
+          <li data-fr="Identification des moments-clés où la musique parle, et de ceux où elle se tait" data-en="Identify key moments where music speaks, and where it stays silent">Identification des moments-clés où la musique parle, et de ceux où elle se tait</li>
+          <li data-fr="Note d'intention musicale — un document court qui aligne tout le monde" data-en="Musical intent note — a short document that aligns everyone">Note d'intention musicale — un document court qui aligne tout le monde</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h3 data-fr="Calendrier précis & retours" data-en="Precise schedule & feedback">Calendrier précis & retours</h3>
+        <p class="step-lead" data-fr="Un planning posé dès le départ : maquettes, retours, ajustements. Vous savez quoi attendre, et quand. Pas de surprises, pas de stress." data-en="A schedule set from day one: demos, feedback, adjustments. You know what to expect, and when. No surprises, no stress.">Un planning posé dès le départ : maquettes, retours, ajustements. Vous savez quoi attendre, et quand. Pas de surprises, pas de stress.</p>
+        <ul class="step-bullets">
+          <li data-fr="Maquette thématique pour valider la direction musicale" data-en="Thematic demo to validate musical direction">Maquette thématique pour valider la direction musicale</li>
+          <li data-fr="Jalons de retours fixés à l'avance (J+5, J+10, J+15…)" data-en="Feedback milestones set in advance (D+5, D+10, D+15…)">Jalons de retours fixés à l'avance (J+5, J+10, J+15…)</li>
+          <li data-fr="Versions numérotées, exports propres, notes d'évolution" data-en="Numbered versions, clean exports, evolution notes">Versions numérotées, exports propres, notes d'évolution</li>
+          <li data-fr="Disponibilité claire pour les ajustements de dernière minute" data-en="Clear availability for last-minute adjustments">Disponibilité claire pour les ajustements de dernière minute</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h3 data-fr="Résultat sur mesure" data-en="Custom result">Résultat sur mesure</h3>
+        <p class="step-lead" data-fr="Une bande originale qui appartient à votre projet — pas une banque, pas un patchwork. Mixée, exportée propre, prête au mastering ou à la diffusion." data-en="A soundtrack that belongs to your project — not a library, not a patchwork. Mixed, exported clean, ready for mastering or broadcast.">Une bande originale qui appartient à votre projet — pas une banque, pas un patchwork. Mixée, exportée propre, prête au mastering ou à la diffusion.</p>
+        <ul class="step-bullets">
+          <li data-fr="Composition originale, écriture à la main et à l'oreille" data-en="Original composition, written by hand and ear">Composition originale, écriture à la main et à l'oreille</li>
+          <li data-fr="Enregistrement de vrais musiciens si le projet l'appelle (piano, voix, cordes, harmonica, percussions…)" data-en="Real musicians recorded if the project calls for it (piano, voice, strings, harmonica, percussion…)">Enregistrement de vrais musiciens si le projet l'appelle (piano, voix, cordes, harmonica, percussions…)</li>
+          <li data-fr="Production audio complète — Ableton, VST orchestraux, sound design" data-en="Full audio production — Ableton, orchestral VSTs, sound design">Production audio complète — Ableton, VST orchestraux, sound design</li>
+          <li data-fr="Livraison des stems, fichiers prêts pour mixage final ou diffusion" data-en="Delivery of stems, files ready for final mix or broadcast">Livraison des stems, fichiers prêts pour mixage final ou diffusion</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles">
+  <div class="steps-head reveal">
+    <span class="eyebrow" data-fr="Mes engagements" data-en="My commitments">Mes engagements</span>
+    <h2 data-fr="Ce que vous emportez" data-en="What you take home">Ce que vous emportez</h2>
+  </div>
+  <div class="principles-grid">
+    <div class="principle reveal">
+      <div class="p-icon">✦</div>
+      <h4 data-fr="Au service du film" data-en="Serve the film">Au service du film</h4>
+      <p data-fr="La musique met en valeur, elle n'étouffe pas. Mon ego reste à la porte du montage." data-en="Music elevates, it never smothers. My ego stays at the door of the edit room.">La musique met en valeur, elle n'étouffe pas. Mon ego reste à la porte du montage.</p>
+    </div>
+    <div class="principle reveal">
+      <div class="p-icon">⏱</div>
+      <h4 data-fr="Délais tenus" data-en="Deadlines met">Délais tenus</h4>
+      <p data-fr="Un calendrier, c'est un contrat. Je le respecte — production, post-production, diffusion." data-en="A schedule is a contract. I respect it — production, post-production, release.">Un calendrier, c'est un contrat. Je le respecte — production, post-production, diffusion.</p>
+    </div>
+    <div class="principle reveal">
+      <div class="p-icon">✎</div>
+      <h4 data-fr="Sur mesure" data-en="Custom-made">Sur mesure</h4>
+      <p data-fr="Chaque projet a sa palette. Pas de copier-coller, pas de banque sonore — du vrai travail d'écriture." data-en="Each project has its palette. No copy-paste, no sound library — real writing work.">Chaque projet a sa palette. Pas de copier-coller, pas de banque sonore — du vrai travail d'écriture.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta" class="cta">
+  <div class="reveal">
+    <span class="eyebrow" data-fr="Prêt à composer ?" data-en="Ready to compose?">Prêt à composer ?</span>
+    <h2 data-fr="Parlez-moi<br>de votre projet." data-en="Tell me<br>about your project.">Parlez-moi<br>de votre projet.</h2>
+    <p data-fr="Long-métrage, court, série, théâtre, marque, événement — j'écoute, je propose, je livre." data-en="Feature, short, series, theatre, brand, event — I listen, I propose, I deliver.">Long-métrage, court, série, théâtre, marque, événement — j'écoute, je propose, je livre.</p>
+    <div class="cta-actions">
+      <a href="mailto:renaudnco@gmail.com?subject=Projet%20musical" class="btn btn-solid" data-fr="Écrivez-moi →" data-en="Email me →">Écrivez-moi →</a>
+      <a href="index.html#listen" class="btn" data-fr="Écouter la demo" data-en="Listen to the demo">Écouter la demo</a>
+    </div>
+    <div class="cta-links">
+      <a href="mailto:renaudnco@gmail.com">renaudnco@gmail.com</a>
+      <a href="index.html">← <span data-fr="Retour à l'accueil" data-en="Back home">Retour à l'accueil</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Renaud Nico — <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></footer>
+
+<script>
+  function setLang(l){
+    document.documentElement.lang=l;
+    document.getElementById('fr').classList.toggle('on',l==='fr');
+    document.getElementById('en').classList.toggle('on',l==='en');
+    document.querySelectorAll('[data-fr]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v!==null)el.innerHTML=v});
+  }
+  const nav=document.getElementById('nav');
+  addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+  const obs=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%2*100)+'ms';obs.observe(el)});
+</script>
+</body>
+</html>
