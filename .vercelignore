@@ -1,0 +1,9 @@
+# Fichiers studio (trop lourds pour le web — versions m4a/mp3 suffisent)
+*.wav
+*.flac
+
+# macOS
+.DS_Store
+
+# Git
+.git/
