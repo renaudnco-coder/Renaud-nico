@@ -7,244 +7,356 @@
 <meta name="description" content="Renaud Nico — compositeur de musique à l'image. Long-métrage, court-métrage, théâtre, marques.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --cream:#F5EFE3;
-    --paper:#FBF6EB;
-    --paper-2:#F0E8D7;
-    --ink:#1C1A17;
-    --ink-soft:#5A554D;
-    --muted:#8E8780;
-    --gold:#B07B3B;
-    --gold-soft:#D8B27A;
-    --line:rgba(28,26,23,.12);
-    --line-strong:rgba(28,26,23,.28);
-    --accent-soft:rgba(176,123,59,.10);
+    --bg:#F4EFE3;
+    --bg-2:#EDE7D7;
+    --paper:#FBF7EC;
+    --ink:#1A1815;
+    --ink-soft:#5A554C;
+    --muted:#928B7F;
+    --gold:#A66F2E;
+    --gold-soft:#D6B07A;
+    --line:rgba(26,24,21,.10);
+    --line-2:rgba(26,24,21,.18);
+    --shadow-sm:0 4px 16px -8px rgba(26,24,21,.18);
+    --shadow-md:0 18px 50px -22px rgba(26,24,21,.35);
+    --shadow-lg:0 30px 80px -30px rgba(26,24,21,.45);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
-    background:var(--cream);color:var(--ink);
-    font-family:'Inter',sans-serif;font-weight:400;line-height:1.6;
+    background:var(--bg);color:var(--ink);
+    font-family:'Inter',sans-serif;font-weight:400;line-height:1.55;
     overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    font-feature-settings:"ss01","cv11";
     font-size:16px;
   }
   ::selection{background:var(--gold);color:var(--paper)}
-  .serif{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;line-height:1.05}
+  .serif{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.005em;line-height:1}
+  .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
 
   img,iframe{max-width:100%;display:block}
   a{color:inherit}
 
   /* === LAYOUT === */
-  .container{width:100%;max-width:1180px;margin:0 auto;padding:0 20px}
-  section{padding:64px 0}
+  .container{width:100%;max-width:1180px;margin:0 auto;padding:0 22px}
+  .container-narrow{width:100%;max-width:880px;margin:0 auto;padding:0 22px}
+  section{padding:72px 0}
+  @media(min-width:860px){section{padding:100px 0}}
 
-  /* === NAV (mobile-first) === */
+  /* === NAV === */
   nav{
     position:sticky;top:0;z-index:60;
-    background:rgba(245,239,227,.92);backdrop-filter:blur(14px);
+    background:rgba(244,239,227,.85);backdrop-filter:blur(18px) saturate(1.4);
     border-bottom:1px solid var(--line);
   }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 20px}
-  .nav-brand{font-family:'Fraunces',serif;font-size:18px;font-weight:600;letter-spacing:-.01em;text-decoration:none;color:var(--ink)}
-  .nav-brand em{font-style:italic;color:var(--gold);font-weight:400}
-  .nav-right{display:flex;align-items:center;gap:14px}
-  .lang{display:flex;border:1px solid var(--line);border-radius:50px;padding:2px}
-  .lang button{background:none;border:none;color:var(--ink-soft);cursor:pointer;padding:5px 11px;border-radius:50px;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:1.5px;transition:.3s;font-weight:600}
-  .lang button.on{background:var(--ink);color:var(--cream)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
+  .nav-brand{font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;letter-spacing:.005em;text-decoration:none;color:var(--ink)}
+  .nav-brand em{font-style:italic;color:var(--gold)}
+  .nav-right{display:flex;align-items:center;gap:18px}
   .nav-menu{display:none}
   @media(min-width:860px){
     .nav-menu{display:flex;gap:30px;align-items:center}
-    .nav-menu a{text-decoration:none;color:var(--ink-soft);font-size:14px;font-weight:500;transition:color .3s}
+    .nav-menu a{text-decoration:none;color:var(--ink-soft);font-size:14px;font-weight:500;letter-spacing:-.005em;transition:color .25s ease}
     .nav-menu a:hover{color:var(--gold)}
   }
 
+  /* === LANG SLIDER (iOS style toggle) === */
+  .lang-toggle{
+    position:relative;display:inline-flex;align-items:center;
+    width:80px;height:32px;border-radius:50px;
+    background:var(--bg-2);border:1px solid var(--line-2);
+    cursor:pointer;user-select:none;padding:3px;
+    transition:background .3s ease;
+  }
+  .lang-toggle::before{
+    content:'';position:absolute;top:3px;left:3px;
+    width:34px;height:24px;border-radius:50px;
+    background:var(--ink);
+    box-shadow:0 2px 6px rgba(26,24,21,.25);
+    transition:transform .35s cubic-bezier(.5,.1,.3,1.2);
+    z-index:1;
+  }
+  .lang-toggle[data-lang="en"]::before{transform:translateX(40px)}
+  .lang-toggle span{
+    flex:1;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;
+    color:var(--ink-soft);z-index:2;position:relative;transition:color .3s ease;
+  }
+  .lang-toggle[data-lang="fr"] span:first-child{color:#fff}
+  .lang-toggle[data-lang="en"] span:last-child{color:#fff}
+
   /* === BUTTONS === */
   .btn{
-    display:inline-flex;align-items:center;gap:10px;cursor:pointer;
-    font-family:'Inter',sans-serif;font-size:15px;font-weight:600;letter-spacing:.2px;
+    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:15px;font-weight:500;letter-spacing:-.005em;
     padding:14px 26px;border-radius:50px;text-decoration:none;
-    background:var(--ink);color:var(--cream);border:1.5px solid var(--ink);
-    transition:transform .25s ease,background .3s ease,color .3s ease;
+    background:var(--ink);color:var(--paper);border:1px solid var(--ink);
+    transition:transform .2s ease,background .25s ease,color .25s ease;
   }
   .btn:hover{transform:translateY(-2px);background:var(--gold);border-color:var(--gold)}
   .btn-ghost{background:transparent;color:var(--ink)}
-  .btn-ghost:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
-  .arrow{transition:transform .3s ease;display:inline-block}
-  .btn:hover .arrow{transform:translateX(4px)}
+  .btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .arrow{transition:transform .25s ease;display:inline-block}
+  .btn:hover .arrow{transform:translateX(3px)}
 
-  /* === FESTIVAL HERO === */
-  .festival-hero{padding:32px 0 50px;background:linear-gradient(180deg,var(--paper) 0%,var(--cream) 100%);border-bottom:1px solid var(--line)}
-  .festival-tag{
-    display:inline-flex;align-items:center;gap:8px;
-    font-size:11px;letter-spacing:2.5px;text-transform:uppercase;font-weight:600;color:var(--gold);
-    padding:6px 14px;border:1px solid var(--gold);border-radius:50px;
-    background:var(--paper);margin-bottom:18px;
+  /* === HERO === */
+  .hero{padding:38px 0 60px}
+  @media(min-width:860px){.hero{padding:60px 0 90px}}
+  .hero-head{text-align:center;margin-bottom:36px}
+  @media(min-width:860px){.hero-head{margin-bottom:50px}}
+  .hero-meta{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:24px;
   }
-  .festival-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold)}
-  .festival-title{
-    font-family:'Fraunces',serif;font-weight:500;letter-spacing:-.02em;line-height:1.05;
-    font-size:clamp(34px,8vw,64px);color:var(--ink);margin-bottom:14px;
+  .hero-meta::before,.hero-meta::after{
+    content:'';width:20px;height:1px;background:var(--gold);opacity:.5;
   }
-  .festival-title em{font-style:italic;color:var(--gold);font-weight:400}
-  .festival-sub{font-size:15px;color:var(--ink-soft);max-width:560px;margin-bottom:28px}
-  .video-frame{
+  .hero-title{
+    font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:clamp(40px,7vw,82px);line-height:.98;letter-spacing:-.015em;
+    color:var(--ink);max-width:14ch;margin:0 auto;
+  }
+  .hero-title em{font-style:italic;color:var(--gold)}
+  .hero-sub{
+    font-size:15px;color:var(--ink-soft);max-width:520px;
+    margin:22px auto 0;line-height:1.55;
+  }
+  .hero-video{
     position:relative;width:100%;aspect-ratio:16/9;
-    border-radius:14px;overflow:hidden;
-    box-shadow:0 22px 60px -28px rgba(28,26,23,.4);
-    border:1px solid var(--line);background:var(--ink);
+    border-radius:18px;overflow:hidden;
+    box-shadow:var(--shadow-lg);
+    background:var(--ink);
   }
-  .video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .video-caption{margin-top:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-  .video-caption .meta{font-size:13px;color:var(--ink-soft)}
-  .video-caption .credit{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .hero-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 
-  /* === NAME / POSITIONING === */
-  .positioning{padding:80px 0 50px;text-align:left}
-  @media(min-width:860px){.positioning{text-align:center;padding:120px 0 70px}}
-  .position-eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:18px;display:block}
-  .position-name{font-family:'Fraunces',serif;font-size:clamp(52px,14vw,140px);font-weight:300;letter-spacing:-.03em;line-height:.95;color:var(--ink);margin-bottom:20px}
-  .position-name em{font-style:italic;font-weight:300;color:var(--gold)}
-  .position-role{font-size:clamp(16px,2.4vw,20px);color:var(--ink-soft);max-width:680px;margin:0 auto;line-height:1.5}
-  .position-role .hl{color:var(--ink);font-weight:600}
+  /* === POSITIONING (name + role) === */
+  .positioning{padding:70px 0;text-align:center;border-top:1px solid var(--line)}
+  .pos-eyebrow{
+    display:inline-block;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:18px;
+  }
+  .pos-name{
+    font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:clamp(60px,12vw,140px);letter-spacing:-.025em;line-height:.95;
+    color:var(--ink);margin-bottom:22px;
+  }
+  .pos-name em{font-style:italic;color:var(--gold)}
+  .pos-role{
+    font-size:clamp(15px,1.8vw,18px);color:var(--ink-soft);
+    max-width:620px;margin:0 auto;line-height:1.55;
+  }
+  .pos-role .hl{color:var(--ink);font-weight:500}
+
+  /* === SECTION HEAD === */
+  .sec-head{margin-bottom:44px}
+  @media(min-width:860px){.sec-head{margin-bottom:60px;text-align:center}}
+  .sec-eyebrow{
+    display:inline-block;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:14px;
+  }
+  .sec-title{
+    font-family:'Instrument Serif',serif;font-weight:400;
+    font-size:clamp(36px,5.5vw,60px);letter-spacing:-.018em;line-height:1.02;
+    color:var(--ink);
+  }
+  .sec-title em{font-style:italic;color:var(--gold)}
+  .sec-lead{
+    font-size:15px;color:var(--ink-soft);max-width:520px;
+    margin:14px auto 0;line-height:1.55;
+  }
 
   /* === DEMO REEL === */
-  .demo{padding:50px 0 70px}
-  .demo-box{
-    background:var(--paper);border:1px solid var(--line);border-radius:18px;
-    padding:30px 22px;display:flex;flex-direction:column;gap:18px;
+  .demo{padding:0 0 80px}
+  .demo-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:20px;
+    padding:26px 22px;display:flex;flex-direction:column;gap:18px;
+    box-shadow:var(--shadow-sm);
   }
   @media(min-width:720px){
-    .demo-box{flex-direction:row;align-items:center;gap:28px;padding:34px 38px}
+    .demo-card{flex-direction:row;align-items:center;gap:30px;padding:30px 36px}
   }
-  .demo-info{flex:1}
-  .demo-label{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:8px}
-  .demo-title{font-family:'Fraunces',serif;font-size:clamp(24px,4vw,32px);font-weight:500;color:var(--ink);margin-bottom:6px;letter-spacing:-.01em}
-  .demo-sub{font-size:14px;color:var(--ink-soft)}
-  .demo-controls{display:flex;align-items:center;gap:14px;flex-shrink:0}
+  .demo-info{flex:1;min-width:0}
+  .demo-eyebrow{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+  .demo-title{font-family:'Instrument Serif',serif;font-size:clamp(26px,3.4vw,32px);font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-.012em;line-height:1.1}
+  .demo-title em{font-style:italic;color:var(--gold)}
+  .demo-sub{font-size:13px;color:var(--ink-soft)}
+  .demo-controls{display:flex;align-items:center;gap:14px;flex-shrink:0;width:100%}
+  @media(min-width:720px){.demo-controls{width:auto;min-width:300px}}
   .demo-play{
-    width:64px;height:64px;border-radius:50%;background:var(--ink);color:var(--cream);
+    width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--paper);
     border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-    transition:background .3s ease,transform .2s ease;flex-shrink:0;
+    transition:background .25s ease,transform .15s ease;flex-shrink:0;
   }
-  .demo-play:hover{background:var(--gold);transform:scale(1.04)}
+  .demo-play:hover{background:var(--gold);transform:scale(1.05)}
   .demo-play svg{fill:currentColor}
-  .demo-progress{display:flex;flex-direction:column;gap:6px;min-width:140px;flex:1}
-  @media(min-width:720px){.demo-progress{min-width:180px;flex:0 0 220px}}
-  .demo-bar{height:3px;background:var(--line);border-radius:50px;overflow:hidden;position:relative;cursor:pointer}
+  .demo-progress{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+  .demo-bar{height:3px;background:var(--line-2);border-radius:50px;overflow:hidden;position:relative;cursor:pointer}
   .demo-bar-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;border-radius:50px;transition:width .1s linear}
-  .demo-time{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);letter-spacing:1px;font-variant-numeric:tabular-nums}
+  .demo-time{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
 
-  /* === WORKS / CREDITS === */
-  .section-eyebrow{display:block;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
-  .section-title{font-family:'Fraunces',serif;font-size:clamp(34px,6vw,58px);font-weight:500;letter-spacing:-.02em;color:var(--ink);margin-bottom:14px;line-height:1.05}
-  .section-title em{font-style:italic;color:var(--gold);font-weight:400}
-  .section-lead{font-size:16px;color:var(--ink-soft);max-width:560px;margin-bottom:38px}
+  /* === VIDEO GRID (projects) === */
+  .videos{padding:60px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  @media(min-width:860px){.videos{padding:90px 0}}
+  .video-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-top:36px}
+  @media(min-width:720px){.video-grid{grid-template-columns:1fr 1fr;gap:26px}}
+  .vid-item{
+    background:var(--bg);border:1px solid var(--line);border-radius:14px;
+    overflow:hidden;transition:transform .35s ease,box-shadow .35s ease;
+  }
+  .vid-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+  .vid-frame{position:relative;aspect-ratio:16/9;background:var(--ink)}
+  .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid-meta{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .vid-meta .vid-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .vid-meta .vid-title{font-family:'Instrument Serif',serif;font-size:18px;color:var(--ink);letter-spacing:-.01em}
 
-  .works{padding:30px 0 50px}
-  .work-list{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  /* === WORKS / CREDITS (list) === */
+  .works{padding:60px 0}
+  @media(min-width:860px){.works{padding:100px 0}}
+  .work-list{display:flex;flex-direction:column;border-top:1px solid var(--line);margin-top:36px}
   .work-row{
     display:grid;grid-template-columns:1fr;gap:6px;padding:22px 0;
     border-bottom:1px solid var(--line);
     transition:padding-left .35s ease,background .35s ease;
-    text-decoration:none;color:inherit;
   }
   @media(min-width:720px){
-    .work-row{grid-template-columns:140px 1fr 200px auto;gap:24px;align-items:center;padding:24px 16px;border-radius:8px}
+    .work-row{grid-template-columns:140px 1fr 230px 60px;gap:24px;align-items:center;padding:22px 16px;border-radius:10px}
     .work-row:hover{padding-left:24px;background:var(--paper)}
   }
-  .work-cat{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:700}
-  .work-title{font-family:'Fraunces',serif;font-size:clamp(20px,3vw,26px);font-weight:500;letter-spacing:-.01em;color:var(--ink)}
-  .work-title em{font-style:italic;color:var(--gold)}
+  .work-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .work-title{font-family:'Instrument Serif',serif;font-size:clamp(22px,3vw,26px);font-weight:400;letter-spacing:-.01em;color:var(--ink);line-height:1.15}
   .work-meta{font-size:13px;color:var(--ink-soft);line-height:1.5}
-  .work-year{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .work-year{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px;text-align:right}
   @media(max-width:720px){.work-year{display:none}}
 
-  /* === REFERENCES STRIP (small, discreet) === */
-  .refs-strip{padding:30px 0 50px}
-  .refs-strip .refs-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:18px;text-align:center}
-  .logos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  @media(min-width:560px){.logos-grid{grid-template-columns:repeat(6,1fr);gap:14px}}
+  /* === LISTEN === */
+  .listen{padding:80px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  @media(min-width:860px){.listen{padding:110px 0}}
+  .track-list{display:flex;flex-direction:column;gap:2px;margin-top:36px;max-width:780px;margin-left:auto;margin-right:auto}
+  .track{
+    border-radius:14px;
+    transition:background .25s ease;
+    overflow:hidden;
+  }
+  .track:hover{background:var(--bg-2)}
+  .track-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;cursor:pointer}
+  .play-btn{
+    width:42px;height:42px;border-radius:50%;border:1.5px solid var(--ink);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+    transition:background .25s ease,color .25s ease;color:var(--ink);
+    background:transparent;cursor:pointer;
+  }
+  .track:hover .play-btn{background:var(--ink);color:var(--paper)}
+  .play-btn svg{fill:currentColor;margin-left:2px}
+  .track-info h3{font-family:'Instrument Serif',serif;font-size:19px;font-weight:400;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
+  .track-info span{font-size:12px;color:var(--ink-soft);display:block;margin-top:2px}
+  .t-dur{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+
+  /* Expanded controls when playing */
+  .track-controls{
+    max-height:0;overflow:hidden;
+    transition:max-height .35s ease;
+    padding:0 16px;
+  }
+  .track.playing .track-controls{max-height:80px;padding:0 16px 16px}
+  .track.playing{background:var(--bg-2)}
+  .track.playing .play-btn{background:var(--gold);border-color:var(--gold);color:var(--paper)}
+  .ctrl-bar{display:flex;align-items:center;gap:12px}
+  .ctrl-skip{
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);
+    background:transparent;cursor:pointer;color:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;font-weight:700;letter-spacing:0;
+    transition:background .25s ease,color .25s ease,border-color .25s ease;
+    flex-shrink:0;
+  }
+  .ctrl-skip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .ctrl-progress{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
+  .ctrl-bar-track{height:3px;background:var(--line-2);border-radius:50px;cursor:pointer;position:relative;overflow:hidden}
+  .ctrl-bar-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;border-radius:50px;transition:width .1s linear}
+  .ctrl-time{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+
+  /* === REFS STRIP === */
+  .refs{padding:60px 0}
+  .refs-label{
+    text-align:center;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
+    color:var(--muted);font-weight:600;margin-bottom:22px;
+  }
+  .logos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:860px;margin:0 auto}
+  @media(min-width:640px){.logos-grid{grid-template-columns:repeat(6,1fr);gap:14px}}
   .logo-cell{
     aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line);border-radius:12px;
     display:flex;align-items:center;justify-content:center;padding:14px;
     transition:transform .3s ease,box-shadow .3s ease;
   }
-  .logo-cell:hover{transform:translateY(-3px);box-shadow:0 12px 24px -10px rgba(28,26,23,.18)}
-  .logo-cell img{max-width:100%;max-height:100%;object-fit:contain;filter:none}
-
-  /* Anne Olga single line */
-  .reference-line{
+  .logo-cell:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
+  .logo-cell img{max-width:100%;max-height:100%;object-fit:contain}
+  .ref-line{
     text-align:center;font-size:13px;color:var(--ink-soft);
-    padding:30px 0 0;border-top:1px solid var(--line);margin-top:36px;
+    margin-top:30px;padding-top:24px;border-top:1px solid var(--line);
   }
-  .reference-line em{font-style:italic;color:var(--gold);font-weight:500}
-  .reference-line a{color:var(--gold);text-decoration:underline;text-decoration-color:rgba(176,123,59,.4);text-underline-offset:3px;transition:text-decoration-color .3s}
-  .reference-line a:hover{text-decoration-color:var(--gold)}
+  .ref-line em{font-style:italic;color:var(--gold);font-family:'Instrument Serif',serif;font-size:16px}
+  .ref-line a{color:var(--gold);text-decoration:underline;text-decoration-color:rgba(166,111,46,.35);text-underline-offset:3px;transition:text-decoration-color .25s}
+  .ref-line a:hover{text-decoration-color:var(--gold)}
 
-  /* === LISTEN === */
-  .listen{padding:60px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .track-list{display:flex;flex-direction:column;gap:4px;margin-top:30px}
-  .track{
-    display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
-    padding:14px 16px;border-radius:10px;cursor:pointer;
-    transition:background .25s ease;
-  }
-  .track:hover{background:var(--paper-2)}
-  .play{
-    width:42px;height:42px;border-radius:50%;border:1.5px solid var(--ink);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-    transition:background .25s ease,color .25s ease;color:var(--ink);
-  }
-  .track:hover .play{background:var(--ink);color:var(--cream)}
-  .play svg{fill:currentColor;margin-left:2px}
-  .track-info h3{font-family:'Fraunces',serif;font-size:17px;font-weight:500;color:var(--ink);letter-spacing:-.01em}
-  .track-info span{font-size:12px;color:var(--ink-soft);display:block;margin-top:2px}
-  .t-dur{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
-  .track.playing{background:var(--paper-2)}
-  .track.playing .play{background:var(--gold);border-color:var(--gold);color:var(--cream)}
-
-  /* === METHOD (3 quick bullets) === */
-  .method{padding:60px 0}
-  .method-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:30px}
+  /* === METHOD === */
+  .method{padding:80px 0}
+  @media(min-width:860px){.method{padding:110px 0}}
+  .method-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
   @media(min-width:720px){.method-grid{grid-template-columns:repeat(3,1fr);gap:22px}}
-  .method-card{padding:26px 22px;background:var(--paper);border:1px solid var(--line);border-radius:14px;transition:transform .3s ease,border-color .3s ease}
-  .method-card:hover{transform:translateY(-3px);border-color:var(--gold-soft)}
-  .method-num{font-family:'Fraunces',serif;font-size:46px;font-style:italic;font-weight:300;color:var(--gold);line-height:1;margin-bottom:14px}
-  .method-title{font-family:'Fraunces',serif;font-size:20px;font-weight:600;color:var(--ink);margin-bottom:10px;letter-spacing:-.01em}
-  .method-text{font-size:14px;color:var(--ink-soft);line-height:1.55}
+  .method-card{
+    padding:28px 24px;background:var(--paper);border:1px solid var(--line);border-radius:16px;
+    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+  }
+  .method-card:hover{transform:translateY(-3px);border-color:var(--gold-soft);box-shadow:var(--shadow-md)}
+  .method-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:46px;color:var(--gold);line-height:1;margin-bottom:14px}
+  .method-title{font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:10px;letter-spacing:-.01em}
+  .method-text{font-size:14px;color:var(--ink-soft);line-height:1.6}
 
-  /* === ABOUT (short) === */
-  .about{padding:60px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .about-grid{display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
-  @media(min-width:720px){.about-grid{grid-template-columns:240px 1fr;gap:50px}}
+  /* === ABOUT === */
+  .about{padding:80px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  @media(min-width:860px){.about{padding:110px 0}}
+  .about-grid{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
+  @media(min-width:720px){.about-grid{grid-template-columns:260px 1fr;gap:60px}}
   .about-photo{
     width:100%;max-width:280px;aspect-ratio:1/1;border-radius:50%;
     background:url('assets/images/portrait.jpg') center/cover;
-    border:1px solid var(--line);box-shadow:0 18px 36px -18px rgba(28,26,23,.3);
+    border:1px solid var(--line);box-shadow:var(--shadow-md);
     margin:0 auto;
   }
-  @media(min-width:720px){.about-photo{max-width:240px}}
+  @media(min-width:720px){.about-photo{max-width:260px}}
   .about-body p{margin-bottom:16px;color:var(--ink-soft);font-size:16px;line-height:1.65}
-  .about-body p .hl{color:var(--ink);font-weight:600}
+  .about-body p .hl{color:var(--ink);font-weight:500}
 
   /* === CONTACT === */
-  .contact{padding:80px 0;text-align:center}
-  .contact h2{font-family:'Fraunces',serif;font-size:clamp(40px,8vw,72px);font-weight:500;letter-spacing:-.02em;line-height:1.05;margin-bottom:18px;color:var(--ink)}
-  .contact h2 em{font-style:italic;color:var(--gold);font-weight:400}
-  .contact p{color:var(--ink-soft);font-size:16px;max-width:520px;margin:0 auto 32px}
+  .contact{padding:90px 0;text-align:center}
+  @media(min-width:860px){.contact{padding:120px 0}}
+  .contact h2{font-family:'Instrument Serif',serif;font-size:clamp(42px,7vw,76px);font-weight:400;letter-spacing:-.02em;line-height:1.02;margin-bottom:20px;color:var(--ink)}
+  .contact h2 em{font-style:italic;color:var(--gold)}
+  .contact p{color:var(--ink-soft);font-size:16px;max-width:520px;margin:0 auto 34px}
   .contact-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
   .contact-links{margin-top:36px;display:flex;gap:22px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
   .contact-links a{color:var(--ink-soft);text-decoration:none;transition:color .3s}
   .contact-links a:hover{color:var(--gold)}
 
-  footer{padding:24px 0;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--line);letter-spacing:.5px}
+  footer{padding:26px 0;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--line);letter-spacing:.3px}
 
-  /* === REVEAL ANIMATION === */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+  /* === REVEAL === */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
+
+  /* Swipe affordance hint (subtle) */
+  body.swipe-hint::after{
+    content:'← FR · EN →';position:fixed;top:14px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:var(--paper);padding:6px 14px;border-radius:50px;
+    font-size:11px;letter-spacing:2px;z-index:100;opacity:0;
+    animation:swipeHint 3s ease forwards;
+  }
+  @keyframes swipeHint{0%,100%{opacity:0}15%,85%{opacity:.85}}
 </style>
 </head>
 <body>
@@ -255,47 +367,47 @@
     <div class="nav-right">
       <div class="nav-menu">
         <a href="#works" data-fr="Œuvres" data-en="Work">Œuvres</a>
+        <a href="#videos" data-fr="Vidéos" data-en="Videos">Vidéos</a>
         <a href="#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
-        <a href="#method" data-fr="Méthode" data-en="Method">Méthode</a>
         <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
       </div>
-      <div class="lang">
-        <button id="fr" class="on" onclick="setLang('fr')">FR</button>
-        <button id="en" onclick="setLang('en')">EN</button>
+      <div class="lang-toggle" id="langToggle" data-lang="fr" role="switch" aria-checked="false" tabindex="0">
+        <span>FR</span>
+        <span>EN</span>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- ====== FESTIVAL HERO ====== -->
-<section id="top" class="festival-hero">
-  <div class="container">
-    <span class="festival-tag" data-fr="Festival Sœurs Jumelles · Rochefort · 23 juin 2026" data-en="Sœurs Jumelles Festival · Rochefort · June 23, 2026">Festival Sœurs Jumelles · Rochefort · 23 juin 2026</span>
-    <h1 class="festival-title" data-fr="Mon court-métrage<br>du festival." data-en="My festival<br>short film."><span>Mon court-métrage</span><br><em>du festival.</em></h1>
-    <p class="festival-sub" data-fr="Une création originale écrite, composée et mixée pour l'image." data-en="An original creation written, composed and mixed for the screen.">Une création originale écrite, composée et mixée pour l'image.</p>
-    <div class="video-frame reveal">
-      <iframe src="https://www.youtube.com/embed/RDN6T9qsDQQ" title="Court-métrage Festival Sœurs Jumelles — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+<!-- ====== HERO ====== -->
+<section id="top" class="hero">
+  <div class="container-narrow">
+    <div class="hero-head">
+      <div class="hero-meta" data-fr="Rochefort · 23 juin 2026" data-en="Rochefort · June 23, 2026">Rochefort · 23 juin 2026</div>
+      <h1 class="hero-title" data-fr="Mon court-métrage du <em>Festival Sœurs Jumelles</em>." data-en="My short film for the <em>Sœurs Jumelles Festival</em>.">Mon court-métrage du <em>Festival Sœurs Jumelles</em>.</h1>
+      <p class="hero-sub" data-fr="Une création originale écrite, composée et mixée pour l'image." data-en="An original creation written, composed and mixed for the screen.">Une création originale écrite, composée et mixée pour l'image.</p>
     </div>
-    <div class="video-caption">
-      <span class="credit" data-fr="Court-métrage · Création originale" data-en="Short film · Original creation">Court-métrage · Création originale</span>
-      <span class="meta" data-fr="Musique : Renaud Nico" data-en="Music: Renaud Nico">Musique : Renaud Nico</span>
+  </div>
+  <div class="container">
+    <div class="hero-video reveal">
+      <iframe src="https://www.youtube.com/embed/RDN6T9qsDQQ" title="Court-métrage Festival Sœurs Jumelles — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
 
-<!-- ====== NAME / POSITIONING ====== -->
+<!-- ====== POSITIONING ====== -->
 <section class="positioning container">
-  <span class="position-eyebrow" data-fr="Compositeur · Musique à l'image" data-en="Composer · Music for screen">Compositeur · Musique à l'image</span>
-  <h2 class="position-name">Renaud <em>Nico</em></h2>
-  <p class="position-role" data-fr="J'écris la musique de vos <span class='hl'>films</span>, <span class='hl'>séries</span>, <span class='hl'>marques</span> et <span class='hl'>pièces</span>. Une oreille pour l'image, un cahier d'adresses de musiciens, des délais tenus." data-en="I write music for your <span class='hl'>films</span>, <span class='hl'>series</span>, <span class='hl'>brands</span> and <span class='hl'>plays</span>. An ear for the image, a network of musicians, deadlines met.">J'écris la musique de vos <span class="hl">films</span>, <span class="hl">séries</span>, <span class="hl">marques</span> et <span class="hl">pièces</span>. Une oreille pour l'image, un cahier d'adresses de musiciens, des délais tenus.</p>
+  <span class="pos-eyebrow" data-fr="Compositeur · Musique à l'image" data-en="Composer · Music for screen">Compositeur · Musique à l'image</span>
+  <h2 class="pos-name">Renaud <em>Nico</em></h2>
+  <p class="pos-role" data-fr="J'écris la musique de vos <span class='hl'>films</span>, <span class='hl'>séries</span>, <span class='hl'>marques</span> et <span class='hl'>pièces</span>. Une oreille pour l'image, un réseau de musiciens, des délais tenus." data-en="I write music for your <span class='hl'>films</span>, <span class='hl'>series</span>, <span class='hl'>brands</span> and <span class='hl'>plays</span>. An ear for image, a network of musicians, deadlines met.">J'écris la musique de vos <span class="hl">films</span>, <span class="hl">séries</span>, <span class="hl">marques</span> et <span class="hl">pièces</span>. Une oreille pour l'image, un réseau de musiciens, des délais tenus.</p>
 </section>
 
 <!-- ====== DEMO REEL ====== -->
 <section class="demo container">
-  <div class="demo-box reveal">
+  <div class="demo-card reveal">
     <div class="demo-info">
-      <div class="demo-label" data-fr="Bande démo" data-en="Demo reel">Bande démo</div>
-      <div class="demo-title" data-fr="Un aperçu en 2 minutes" data-en="A 2-minute overview">Un aperçu en 2 minutes</div>
+      <div class="demo-eyebrow" data-fr="Bande démo" data-en="Demo reel">Bande démo</div>
+      <div class="demo-title" data-fr="Un aperçu en <em>deux minutes</em>" data-en="A <em>two-minute</em> overview">Un aperçu en <em>deux minutes</em></div>
       <div class="demo-sub" data-fr="Sélection d'extraits — orchestre, piano, voix, synth." data-en="Selected excerpts — orchestra, piano, voice, synth.">Sélection d'extraits — orchestre, piano, voix, synth.</div>
     </div>
     <div class="demo-controls">
@@ -310,23 +422,46 @@
   </div>
 </section>
 
+<!-- ====== VIDEO PROJECTS ====== -->
+<section id="videos" class="videos">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-fr="Mes vidéos" data-en="My videos">Mes vidéos</span>
+      <h2 class="sec-title" data-fr="Quelques <em>projets</em> en images" data-en="Selected <em>projects</em> on screen">Quelques <em>projets</em> en images</h2>
+    </div>
+    <div class="video-grid">
+      <div class="vid-item reveal">
+        <div class="vid-frame"><iframe src="https://www.youtube.com/embed/lodZSW_CFD4" title="Projet — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-meta"><span class="vid-tag" data-fr="Vidéo" data-en="Video">Vidéo</span></div>
+      </div>
+      <div class="vid-item reveal">
+        <div class="vid-frame"><iframe src="https://www.youtube.com/embed/JPmRByW6yaY" title="Projet — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-meta"><span class="vid-tag" data-fr="Vidéo" data-en="Video">Vidéo</span></div>
+      </div>
+      <div class="vid-item reveal">
+        <div class="vid-frame"><iframe src="https://www.youtube.com/embed/U9AFBi2bOnE" title="Création originale — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-meta"><span class="vid-tag" data-fr="Création originale" data-en="Original">Création originale</span></div>
+      </div>
+      <div class="vid-item reveal">
+        <div class="vid-frame"><iframe src="https://www.youtube.com/embed/b0J1dGOX4QU" title="Reprise — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-meta"><span class="vid-tag" data-fr="Reprise" data-en="Cover">Reprise</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ====== WORKS ====== -->
 <section id="works" class="works container">
-  <span class="section-eyebrow" data-fr="Sélection" data-en="Selected work">Sélection</span>
-  <h2 class="section-title" data-fr="Sur quoi j'ai <em>travaillé</em>" data-en="What I've <em>worked on</em>">Sur quoi j'ai <em>travaillé</em></h2>
-  <p class="section-lead" data-fr="Des longs, des courts, du théâtre, des marques. Des scènes en France, aux États-Unis, à Londres, à Moscou." data-en="Features, shorts, theatre, brands. Stages in France, USA, London, Moscow.">Des longs, des courts, du théâtre, des marques. Des scènes en France, aux États-Unis, à Londres, à Moscou.</p>
+  <div class="sec-head">
+    <span class="sec-eyebrow" data-fr="Sélection" data-en="Selected">Sélection</span>
+    <h2 class="sec-title" data-fr="Sur quoi j'ai <em>travaillé</em>" data-en="What I've <em>worked on</em>">Sur quoi j'ai <em>travaillé</em></h2>
+  </div>
 
   <div class="work-list">
     <div class="work-row reveal">
       <div class="work-cat" data-fr="Long-métrage" data-en="Feature film">Long-métrage</div>
       <div class="work-title">Woodstock Express</div>
-      <div class="work-meta" data-fr="Réal. Coline Pagoda · 1h15 · Post-production" data-en="Dir. Coline Pagoda · 1h15 · Post-production">Réal. Coline Pagoda · 1h15 · Post-production</div>
-      <div class="work-year">2026</div>
-    </div>
-    <div class="work-row reveal">
-      <div class="work-cat" data-fr="Court-métrage" data-en="Short film">Court-métrage</div>
-      <div class="work-title" data-fr="Court Sœurs Jumelles" data-en="Sœurs Jumelles short">Court Sœurs Jumelles</div>
-      <div class="work-meta" data-fr="Création originale · Festival 2026" data-en="Original creation · Festival 2026">Création originale · Festival 2026</div>
+      <div class="work-meta" data-fr="Réal. Coline Pagoda · 1h15 · Post-prod" data-en="Dir. Coline Pagoda · 1h15 · Post-prod">Réal. Coline Pagoda · 1h15 · Post-prod</div>
       <div class="work-year">2026</div>
     </div>
     <div class="work-row reveal">
@@ -356,8 +491,8 @@
   </div>
 </section>
 
-<!-- ====== REFERENCES STRIP (small) ====== -->
-<section class="refs-strip container">
+<!-- ====== REFS ====== -->
+<section class="refs container">
   <div class="refs-label" data-fr="Ils m'ont fait confiance" data-en="Trusted by">Ils m'ont fait confiance</div>
   <div class="logos-grid">
     <div class="logo-cell"><img src="assets/images/logos/naro.jpg" alt="Naro" loading="lazy"></div>
@@ -367,7 +502,7 @@
     <div class="logo-cell"><img src="assets/images/logos/ateliers-gobelins.jpg" alt="Ateliers Gobelins" loading="lazy"></div>
     <div class="logo-cell"><img src="assets/images/logos/atelier-de-sevres.jpg" alt="Atelier de Sèvres" loading="lazy"></div>
   </div>
-  <div class="reference-line">
+  <div class="ref-line">
     <span data-fr="Référence professionnelle :" data-en="Professional reference:">Référence professionnelle :</span>
     <em><a href="https://anneolgadepass.com/" target="_blank" rel="noopener">Anne Olga de Pass</a></em>
     <span data-fr="— compositrice, sélection Cannes." data-en="— composer, Cannes selection.">— compositrice, sélection Cannes.</span>
@@ -377,29 +512,63 @@
 <!-- ====== LISTEN ====== -->
 <section id="listen" class="listen">
   <div class="container">
-    <span class="section-eyebrow" data-fr="Catalogue" data-en="Catalogue">Catalogue</span>
-    <h2 class="section-title" data-fr="<em>Écouter</em> en détail" data-en="<em>Listen</em> in detail">Écouter en détail</h2>
-    <p class="section-lead" data-fr="10 morceaux originaux — chansons, bandes originales, musiques de marque." data-en="10 original tracks — songs, scores, brand music.">10 morceaux originaux — chansons, bandes originales, musiques de marque.</p>
-    <div class="track-list">
-      <div class="track" data-src="assets/audio/woodstock-express.mp3"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Woodstock Express</h3><span data-fr="Bande originale · Long-métrage" data-en="Original score · Feature film">Bande originale · Long-métrage</span></div><div class="t-dur">5:23</div></div>
-      <div class="track" data-src="assets/audio/lenvol.m4a"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>L'envol</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">4:37</div></div>
-      <div class="track" data-src="assets/audio/the-wind-calls.m4a"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>The Wind Calls</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:53</div></div>
-      <div class="track" data-src="assets/audio/flying-sailor.m4a"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Flying Sailor</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:54</div></div>
-      <div class="track" data-src="assets/audio/sans-crier-gare.m4a"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Sans crier gare</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">3:01</div></div>
-      <div class="track" data-src="assets/audio/ma-nouvelle-maison.m4a"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Ma nouvelle maison</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:15</div></div>
-      <div class="track" data-src="assets/audio/jy-arriverai-pas.m4a"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>J'y arriverai pas</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:48</div></div>
-      <div class="track" data-src="assets/audio/arts-et-metiers.mp3"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Arts et métiers</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:16</div></div>
-      <div class="track" data-src="assets/audio/bastille.mp3"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Bastille</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:01</div></div>
-      <div class="track" data-src="assets/audio/hymne-piment-dor.m4a"><div class="play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><div class="track-info"><h3>Hymne Piment d'or</h3><span data-fr="Musique de marque" data-en="Brand music">Musique de marque</span></div><div class="t-dur">2:01</div></div>
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-fr="Catalogue" data-en="Catalogue">Catalogue</span>
+      <h2 class="sec-title" data-fr="<em>Écouter</em> en détail" data-en="<em>Listen</em> in detail">Écouter en détail</h2>
+      <p class="sec-lead" data-fr="10 morceaux originaux — chansons, bandes originales, musiques de marque." data-en="10 original tracks — songs, scores, brand music.">10 morceaux originaux — chansons, bandes originales, musiques de marque.</p>
+    </div>
+    <div class="track-list" id="trackList">
+      <div class="track" data-src="assets/audio/woodstock-express.mp3" data-dur="5:23">
+        <div class="track-row"><button class="play-btn" aria-label="Play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Woodstock Express</h3><span data-fr="Bande originale · Long-métrage" data-en="Original score · Feature film">Bande originale · Long-métrage</span></div><div class="t-dur">5:23</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10" aria-label="Reculer 10s">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">5:23</span></div></div><button class="ctrl-skip" data-skip="10" aria-label="Avancer 10s">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/lenvol.m4a" data-dur="4:37">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>L'envol</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">4:37</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">4:37</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/the-wind-calls.m4a" data-dur="2:53">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>The Wind Calls</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:53</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:53</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/flying-sailor.m4a" data-dur="2:54">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Flying Sailor</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:54</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:54</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/sans-crier-gare.m4a" data-dur="3:01">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Sans crier gare</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">3:01</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">3:01</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/ma-nouvelle-maison.m4a" data-dur="2:15">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Ma nouvelle maison</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:15</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:15</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/jy-arriverai-pas.m4a" data-dur="2:48">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>J'y arriverai pas</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:48</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:48</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/arts-et-metiers.mp3" data-dur="2:16">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Arts et métiers</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:16</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:16</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/bastille.mp3" data-dur="2:01">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Bastille</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:01</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:01</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
+      <div class="track" data-src="assets/audio/hymne-piment-dor.m4a" data-dur="2:01">
+        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Hymne Piment d'or</h3><span data-fr="Musique de marque" data-en="Brand music">Musique de marque</span></div><div class="t-dur">2:01</div></div>
+        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:01</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ====== METHOD (condensed) ====== -->
+<!-- ====== METHOD ====== -->
 <section id="method" class="method container">
-  <span class="section-eyebrow" data-fr="Comment je travaille" data-en="How I work">Comment je travaille</span>
-  <h2 class="section-title" data-fr="Ma <em>méthode</em>" data-en="My <em>method</em>">Ma <em>méthode</em></h2>
-  <p class="section-lead" data-fr="Trois étapes, des délais tenus, du sur-mesure. La musique de film est une conversation." data-en="Three steps, deadlines met, custom work. Film music is a conversation.">Trois étapes, des délais tenus, du sur-mesure. La musique de film est une conversation.</p>
+  <div class="sec-head">
+    <span class="sec-eyebrow" data-fr="Comment je travaille" data-en="How I work">Comment je travaille</span>
+    <h2 class="sec-title" data-fr="Ma <em>méthode</em>" data-en="My <em>method</em>">Ma <em>méthode</em></h2>
+    <p class="sec-lead" data-fr="Trois étapes, des délais tenus, du sur-mesure." data-en="Three steps, deadlines met, custom work.">Trois étapes, des délais tenus, du sur-mesure.</p>
+  </div>
   <div class="method-grid">
     <div class="method-card reveal">
       <div class="method-num">01</div>
@@ -419,14 +588,14 @@
   </div>
 </section>
 
-<!-- ====== ABOUT (short) ====== -->
+<!-- ====== ABOUT ====== -->
 <section id="about" class="about">
   <div class="container">
     <div class="about-grid">
       <div class="about-photo reveal" aria-label="Renaud Nico"></div>
       <div class="about-body reveal">
-        <span class="section-eyebrow" data-fr="À propos" data-en="About">À propos</span>
-        <h2 class="section-title" style="font-size:clamp(28px,4.5vw,42px)" data-fr="Servir le film,<br>jamais le <em>couvrir</em>." data-en="Serve the film,<br>never <em>cover</em> it.">Servir le film,<br>jamais le <em>couvrir</em>.</h2>
+        <span class="sec-eyebrow" data-fr="À propos" data-en="About">À propos</span>
+        <h2 class="sec-title" style="font-size:clamp(28px,4.5vw,44px);margin-top:6px;margin-bottom:18px" data-fr="Servir le film, jamais le <em>couvrir</em>." data-en="Serve the film, never <em>cover</em> it.">Servir le film, jamais le <em>couvrir</em>.</h2>
         <p data-fr="Pianiste compositeur, formé entre la France et les États-Unis, accompagné par <span class='hl'>Anne Olga de Pass</span>." data-en="Pianist composer, trained between France and the United States, mentored by <span class='hl'>Anne Olga de Pass</span>.">Pianiste compositeur, formé entre la France et les États-Unis, accompagné par <span class="hl">Anne Olga de Pass</span>.</p>
         <p data-fr="Du long-métrage à la pièce de théâtre, des marques à la scène internationale, j'ai appris une chose : la musique de film, c'est d'abord une conversation avec celles et ceux qui font le projet." data-en="From feature film to theatre, from brands to international stages, I learned one thing: film music is first a conversation with those who make the project.">Du long-métrage à la pièce de théâtre, des marques à la scène internationale, j'ai appris une chose : la musique de film, c'est d'abord une conversation avec celles et ceux qui font le projet.</p>
       </div>
@@ -436,7 +605,7 @@
 
 <!-- ====== CONTACT ====== -->
 <section id="contact" class="contact container">
-  <span class="section-eyebrow" data-fr="On en discute ?" data-en="Let's talk?">On en discute ?</span>
+  <span class="sec-eyebrow" data-fr="On en discute ?" data-en="Let's talk?">On en discute ?</span>
   <h2 data-fr="Donnons une voix<br>à vos <em>images</em>." data-en="Let's give a voice<br>to your <em>images</em>.">Donnons une voix<br>à vos <em>images</em>.</h2>
   <p data-fr="Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite." data-en="Feature, short, series, theatre, brand, event — tell me about your project. I respond fast.">Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite.</p>
   <div class="contact-actions">
@@ -453,28 +622,58 @@
 <footer>© 2026 Renaud Nico — <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></footer>
 
 <script>
-  // ===== Language + demo audio switching =====
-  const demoAudio = new Audio();
-  let demoSrcByLang = {fr:'assets/audio/demo-fr.m4a', en:'assets/audio/demo-en.m4a'};
+  // ===== LANGUAGE TOGGLE + SWIPE =====
+  const langToggle = document.getElementById('langToggle');
+  const demoSrcByLang = {fr:'assets/audio/demo-fr.m4a', en:'assets/audio/demo-en.m4a'};
   let currentLang = 'fr';
 
   function setLang(l){
+    if(l === currentLang) return;
     currentLang = l;
     document.documentElement.lang = l;
-    document.getElementById('fr').classList.toggle('on', l==='fr');
-    document.getElementById('en').classList.toggle('on', l==='en');
+    langToggle.dataset.lang = l;
+    langToggle.setAttribute('aria-checked', l === 'en');
     document.querySelectorAll('[data-fr]').forEach(el=>{
       const v = el.getAttribute('data-'+l);
       if(v !== null) el.innerHTML = v;
     });
-    // Reset demo audio with new language
+    // Swap demo audio
     const wasPlaying = !demoAudio.paused;
-    const t = demoAudio.currentTime;
     demoAudio.src = demoSrcByLang[l];
-    if(wasPlaying){ demoAudio.currentTime = 0; demoAudio.play().catch(()=>{}); }
+    if(wasPlaying){ demoAudio.play().catch(()=>{}); }
   }
 
-  // Init demo audio
+  langToggle.addEventListener('click', ()=> setLang(currentLang === 'fr' ? 'en' : 'fr'));
+  langToggle.addEventListener('keydown', e => {
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); langToggle.click(); }
+  });
+
+  // Swipe gesture (left/right anywhere on body) to switch lang
+  let touchStartX = null, touchStartY = null;
+  document.addEventListener('touchstart', e => {
+    if(e.target.closest('.track-controls, .demo-bar, iframe, button, a, .lang-toggle')) return;
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, {passive:true});
+  document.addEventListener('touchend', e => {
+    if(touchStartX === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    const dy = e.changedTouches[0].clientY - touchStartY;
+    if(Math.abs(dx) > 80 && Math.abs(dy) < 50){
+      if(dx < 0) setLang('en'); // swipe left → EN
+      else setLang('fr');       // swipe right → FR
+    }
+    touchStartX = null;
+  }, {passive:true});
+
+  // Show swipe hint on first mobile visit
+  if(window.matchMedia('(max-width:720px)').matches){
+    document.body.classList.add('swipe-hint');
+    setTimeout(()=>document.body.classList.remove('swipe-hint'), 3500);
+  }
+
+  // ===== DEMO AUDIO =====
+  const demoAudio = new Audio();
   demoAudio.src = demoSrcByLang.fr;
   demoAudio.preload = 'metadata';
 
@@ -490,8 +689,7 @@
   function fmt(s){ if(!isFinite(s)) return '—:—'; const m = Math.floor(s/60), x = Math.floor(s%60); return m+':'+(x<10?'0':'')+x; }
 
   demoPlayBtn.addEventListener('click', ()=>{
-    // Stop any playing track first
-    if(currentTrack){ currentTrack.classList.remove('playing'); setTrackIcon(currentTrack,false); trackAudio.pause(); currentTrack=null; }
+    if(currentTrack){ stopTrack(); }
     if(demoAudio.paused) demoAudio.play().catch(()=>{});
     else demoAudio.pause();
   });
@@ -504,38 +702,83 @@
     demoCur.textContent = fmt(demoAudio.currentTime);
   });
   demoAudio.addEventListener('ended', ()=>{ demoIcon.innerHTML = ICON_PLAY; demoFill.style.width = '0%'; });
-  demoBar.addEventListener('click', (e)=>{
+  demoBar.addEventListener('click', e => {
     if(!demoAudio.duration) return;
-    const rect = demoBar.getBoundingClientRect();
-    demoAudio.currentTime = ((e.clientX - rect.left)/rect.width)*demoAudio.duration;
+    const r = demoBar.getBoundingClientRect();
+    demoAudio.currentTime = ((e.clientX - r.left)/r.width)*demoAudio.duration;
   });
 
-  // ===== Track player =====
+  // ===== TRACK PLAYER =====
   const trackAudio = new Audio();
   let currentTrack = null;
-  function setTrackIcon(track, playing){
-    const s = track.querySelector('.play svg');
+
+  function setPlayIcon(track, playing){
+    const s = track.querySelector('.play-btn svg');
     if(s) s.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
   }
+  function stopTrack(){
+    if(!currentTrack) return;
+    trackAudio.pause();
+    currentTrack.classList.remove('playing');
+    setPlayIcon(currentTrack, false);
+    currentTrack = null;
+  }
+  function playTrack(track){
+    if(!demoAudio.paused) demoAudio.pause();
+    if(currentTrack && currentTrack !== track){
+      currentTrack.classList.remove('playing');
+      setPlayIcon(currentTrack, false);
+    }
+    if(currentTrack === track){
+      trackAudio.paused ? trackAudio.play() : trackAudio.pause();
+      return;
+    }
+    trackAudio.src = track.dataset.src;
+    trackAudio.play().catch(()=>{});
+    currentTrack = track;
+    track.classList.add('playing');
+    setPlayIcon(track, true);
+  }
+
   document.querySelectorAll('.track').forEach(track => {
-    track.addEventListener('click', ()=>{
-      const src = track.dataset.src; if(!src) return;
-      // Stop demo if playing
-      if(!demoAudio.paused){ demoAudio.pause(); }
-      if(currentTrack === track){
-        trackAudio.paused ? trackAudio.play() : trackAudio.pause();
-        return;
-      }
-      if(currentTrack){ currentTrack.classList.remove('playing'); setTrackIcon(currentTrack,false); }
-      trackAudio.src = src; trackAudio.play().catch(()=>{});
-      currentTrack = track; track.classList.add('playing'); setTrackIcon(track,true);
+    track.querySelector('.track-row').addEventListener('click', () => playTrack(track));
+    // Skip ±10s
+    track.querySelectorAll('.ctrl-skip').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        if(currentTrack !== track) return;
+        const delta = parseFloat(btn.dataset.skip);
+        trackAudio.currentTime = Math.max(0, Math.min((trackAudio.duration||1e9), trackAudio.currentTime + delta));
+      });
+    });
+    // Scrub
+    const bar = track.querySelector('.ctrl-bar-track');
+    bar.addEventListener('click', e => {
+      e.stopPropagation();
+      if(currentTrack !== track || !trackAudio.duration) return;
+      const r = bar.getBoundingClientRect();
+      trackAudio.currentTime = ((e.clientX - r.left)/r.width)*trackAudio.duration;
     });
   });
-  trackAudio.addEventListener('play', ()=>{ if(currentTrack){ currentTrack.classList.add('playing'); setTrackIcon(currentTrack,true); } });
-  trackAudio.addEventListener('pause', ()=>{ if(currentTrack) setTrackIcon(currentTrack,false); });
-  trackAudio.addEventListener('ended', ()=>{ if(currentTrack){ currentTrack.classList.remove('playing'); setTrackIcon(currentTrack,false); currentTrack=null; } });
 
-  // ===== Reveal animation =====
+  trackAudio.addEventListener('play', () => { if(currentTrack){ currentTrack.classList.add('playing'); setPlayIcon(currentTrack, true); } });
+  trackAudio.addEventListener('pause', () => { if(currentTrack) setPlayIcon(currentTrack, false); });
+  trackAudio.addEventListener('ended', () => { stopTrack(); });
+  trackAudio.addEventListener('timeupdate', () => {
+    if(!currentTrack || !trackAudio.duration) return;
+    const pct = (trackAudio.currentTime/trackAudio.duration)*100;
+    const fill = currentTrack.querySelector('.ctrl-bar-fill');
+    const cur = currentTrack.querySelector('.ctrl-cur');
+    if(fill) fill.style.width = pct + '%';
+    if(cur) cur.textContent = fmt(trackAudio.currentTime);
+  });
+  trackAudio.addEventListener('loadedmetadata', () => {
+    if(!currentTrack) return;
+    const tot = currentTrack.querySelector('.ctrl-tot');
+    if(tot) tot.textContent = fmt(trackAudio.duration);
+  });
+
+  // ===== REVEAL =====
   const obs = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } }), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
