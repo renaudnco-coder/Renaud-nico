@@ -7,871 +7,909 @@
 <meta name="description" content="Renaud Nico — compositeur de musique à l'image. Long-métrage, court-métrage, théâtre, marques.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F4EFE3;
-    --bg-2:#EDE7D7;
-    --paper:#FBF7EC;
-    --ink:#1A1815;
-    --ink-soft:#5A554C;
-    --muted:#928B7F;
-    --gold:#A66F2E;
-    --gold-soft:#D6B07A;
-    --line:rgba(26,24,21,.10);
-    --line-2:rgba(26,24,21,.18);
-    --shadow-sm:0 4px 16px -8px rgba(26,24,21,.18);
-    --shadow-md:0 18px 50px -22px rgba(26,24,21,.35);
-    --shadow-lg:0 30px 80px -30px rgba(26,24,21,.45);
+    /* PALETTE — extraite de la photo piano néon */
+    --bg:#0A0813;
+    --bg-2:#14101F;
+    --bg-3:#1E1830;
+    --border:rgba(240,233,218,.08);
+    --border-hi:rgba(240,233,218,.20);
+    --text:#F0E9DA;
+    --text-2:#B4ABC1;
+    --muted:#7D758C;
+    --pink:#F04292;
+    --pink-glow:#FF5FA6;
+    --cyan:#4FC9E8;
+    --cyan-glow:#6ED9F5;
+    --amber:#E8B570;
+    --gradient-hero:radial-gradient(ellipse at 30% 40%, rgba(240,66,146,.28) 0%, transparent 55%),
+                    radial-gradient(ellipse at 70% 60%, rgba(79,201,232,.24) 0%, transparent 55%),
+                    linear-gradient(135deg, #0A0813 0%, #1E0F2E 100%);
+    --gradient-accent:linear-gradient(90deg, var(--pink) 0%, var(--cyan) 100%);
+    --shadow-md:0 20px 60px -20px rgba(0,0,0,.55);
+    --shadow-lg:0 40px 100px -30px rgba(0,0,0,.75);
+    --shadow-glow-pink:0 0 40px rgba(240,66,146,.35);
+    --shadow-glow-cyan:0 0 40px rgba(79,201,232,.35);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
-    background:var(--bg);color:var(--ink);
-    font-family:'Inter',sans-serif;font-weight:400;line-height:1.55;
-    overflow-x:hidden;-webkit-font-smoothing:antialiased;
-    font-feature-settings:"ss01","cv11";
-    font-size:16px;
+    background:var(--bg);color:var(--text);
+    font-family:'Inter Tight',sans-serif;font-weight:400;line-height:1.55;
+    overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;
+    padding-bottom:80px;
   }
-  ::selection{background:var(--gold);color:var(--paper)}
-  .serif{font-family:'Instrument Serif',serif;font-weight:400;letter-spacing:-.005em;line-height:1}
-  .italic{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400}
-
+  ::selection{background:var(--pink);color:var(--bg)}
   img,iframe{max-width:100%;display:block}
   a{color:inherit}
+  button{font-family:inherit}
 
-  /* === LAYOUT === */
-  .container{width:100%;max-width:1180px;margin:0 auto;padding:0 22px}
-  .container-narrow{width:100%;max-width:880px;margin:0 auto;padding:0 22px}
-  section{padding:72px 0}
-  @media(min-width:860px){section{padding:100px 0}}
+  .display{font-family:'Anton',sans-serif;font-weight:400;letter-spacing:.005em;line-height:.92;text-transform:uppercase}
+  .italic{font-family:'Fraunces',serif;font-style:italic;font-weight:400;text-transform:none}
 
-  /* === NAV === */
+  .container{width:100%;max-width:1220px;margin:0 auto;padding:0 22px}
+  .container-narrow{width:100%;max-width:920px;margin:0 auto;padding:0 22px}
+
+  /* ================= NAV ================= */
   nav{
-    position:sticky;top:0;z-index:60;
-    background:rgba(244,239,227,.85);backdrop-filter:blur(18px) saturate(1.4);
-    border-bottom:1px solid var(--line);
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,8,19,.72);backdrop-filter:blur(20px) saturate(1.5);
+    -webkit-backdrop-filter:blur(20px) saturate(1.5);
+    border-bottom:1px solid var(--border);
   }
-  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
-  .nav-brand{font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;letter-spacing:.005em;text-decoration:none;color:var(--ink)}
-  .nav-brand em{font-style:italic;color:var(--gold)}
-  .nav-right{display:flex;align-items:center;gap:18px}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 22px}
+  .nav-brand{
+    font-family:'Anton',sans-serif;font-size:20px;font-weight:400;
+    letter-spacing:.06em;text-decoration:none;color:var(--text);
+    text-transform:uppercase;
+  }
+  .nav-brand em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--pink);text-transform:none;letter-spacing:0;margin-left:2px}
+  .nav-right{display:flex;align-items:center;gap:20px}
   .nav-menu{display:none}
-  @media(min-width:860px){
-    .nav-menu{display:flex;gap:30px;align-items:center}
-    .nav-menu a{text-decoration:none;color:var(--ink-soft);font-size:14px;font-weight:500;letter-spacing:-.005em;transition:color .25s ease}
-    .nav-menu a:hover{color:var(--gold)}
+  @media(min-width:900px){
+    .nav-menu{display:flex;gap:34px;align-items:center}
+    .nav-menu a{
+      text-decoration:none;color:var(--text-2);font-size:13px;font-weight:500;
+      letter-spacing:.5px;text-transform:uppercase;transition:color .25s ease;
+      position:relative;
+    }
+    .nav-menu a::after{
+      content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;
+      background:var(--cyan);transform:scaleX(0);transform-origin:right;
+      transition:transform .35s cubic-bezier(.5,.1,.3,1);
+    }
+    .nav-menu a:hover{color:var(--text)}
+    .nav-menu a:hover::after{transform:scaleX(1);transform-origin:left}
   }
 
-  /* === LANG SLIDER (iOS style toggle) === */
+  /* ================= LANG SLIDER ================= */
   .lang-toggle{
     position:relative;display:inline-flex;align-items:center;
-    width:80px;height:32px;border-radius:50px;
-    background:var(--bg-2);border:1px solid var(--line-2);
+    width:76px;height:30px;border-radius:50px;
+    background:var(--bg-2);border:1px solid var(--border-hi);
     cursor:pointer;user-select:none;padding:3px;
-    transition:background .3s ease;
   }
   .lang-toggle::before{
     content:'';position:absolute;top:3px;left:3px;
-    width:34px;height:24px;border-radius:50px;
-    background:var(--ink);
-    box-shadow:0 2px 6px rgba(26,24,21,.25);
-    transition:transform .35s cubic-bezier(.5,.1,.3,1.2);
-    z-index:1;
+    width:32px;height:22px;border-radius:50px;
+    background:var(--gradient-accent);
+    box-shadow:0 2px 8px rgba(240,66,146,.4);
+    transition:transform .35s cubic-bezier(.5,.1,.3,1.2);z-index:1;
   }
-  .lang-toggle[data-lang="en"]::before{transform:translateX(40px)}
+  .lang-toggle[data-lang="en"]::before{transform:translateX(38px)}
   .lang-toggle span{
-    flex:1;text-align:center;font-size:11px;font-weight:700;letter-spacing:1.5px;
-    color:var(--ink-soft);z-index:2;position:relative;transition:color .3s ease;
+    flex:1;text-align:center;font-size:10px;font-weight:700;letter-spacing:1.5px;
+    color:var(--text-2);z-index:2;position:relative;transition:color .3s ease;
   }
-  .lang-toggle[data-lang="fr"] span:first-child{color:#fff}
+  .lang-toggle[data-lang="fr"] span:first-child,
   .lang-toggle[data-lang="en"] span:last-child{color:#fff}
 
-  /* === BUTTONS === */
+  /* ================= BUTTONS ================= */
   .btn{
-    display:inline-flex;align-items:center;gap:8px;cursor:pointer;
-    font-family:'Inter',sans-serif;font-size:15px;font-weight:500;letter-spacing:-.005em;
-    padding:14px 26px;border-radius:50px;text-decoration:none;
-    background:var(--ink);color:var(--paper);border:1px solid var(--ink);
-    transition:transform .2s ease,background .25s ease,color .25s ease;
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    font-family:'Inter Tight',sans-serif;font-size:14px;font-weight:600;letter-spacing:.5px;
+    padding:14px 26px;border-radius:50px;text-decoration:none;text-transform:uppercase;
+    background:var(--text);color:var(--bg);border:1px solid var(--text);
+    transition:transform .2s ease,box-shadow .3s ease,background .3s ease,color .3s ease,border-color .3s ease;
   }
-  .btn:hover{transform:translateY(-2px);background:var(--gold);border-color:var(--gold)}
-  .btn-ghost{background:transparent;color:var(--ink)}
-  .btn-ghost:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .btn:hover{transform:translateY(-2px);background:var(--cyan);border-color:var(--cyan);color:var(--bg);box-shadow:var(--shadow-glow-cyan)}
+  .btn-ghost{background:transparent;color:var(--text);border-color:var(--border-hi)}
+  .btn-ghost:hover{background:transparent;color:var(--pink);border-color:var(--pink);box-shadow:var(--shadow-glow-pink)}
   .arrow{transition:transform .25s ease;display:inline-block}
   .btn:hover .arrow{transform:translateX(3px)}
 
-  /* === HERO === */
-  .hero{padding:38px 0 60px}
-  @media(min-width:860px){.hero{padding:60px 0 90px}}
-  .hero-head{text-align:center;margin-bottom:36px}
-  @media(min-width:860px){.hero-head{margin-bottom:50px}}
-  .hero-meta{
-    display:inline-flex;align-items:center;gap:10px;
-    font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
-    color:var(--gold);font-weight:600;margin-bottom:24px;
-  }
-  .hero-meta::before,.hero-meta::after{
-    content:'';width:20px;height:1px;background:var(--gold);opacity:.5;
-  }
-  .hero-title{
-    font-family:'Instrument Serif',serif;font-weight:400;
-    font-size:clamp(40px,7vw,82px);line-height:.98;letter-spacing:-.015em;
-    color:var(--ink);max-width:14ch;margin:0 auto;
-  }
-  .hero-title em{font-style:italic;color:var(--gold)}
-  .hero-sub{
-    font-size:15px;color:var(--ink-soft);max-width:520px;
-    margin:22px auto 0;line-height:1.55;
-  }
-  .hero-video{
-    position:relative;width:100%;aspect-ratio:16/9;
-    border-radius:18px;overflow:hidden;
-    box-shadow:var(--shadow-lg);
-    background:var(--ink);
-  }
-  .hero-video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-
-  /* === POSITIONING (name + role) === */
-  .positioning{padding:70px 0;text-align:center;border-top:1px solid var(--line)}
-  .pos-eyebrow{
-    display:inline-block;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
-    color:var(--gold);font-weight:600;margin-bottom:18px;
-  }
-  .pos-name{
-    font-family:'Instrument Serif',serif;font-weight:400;
-    font-size:clamp(60px,12vw,140px);letter-spacing:-.025em;line-height:.95;
-    color:var(--ink);margin-bottom:22px;
-  }
-  .pos-name em{font-style:italic;color:var(--gold)}
-  .pos-role{
-    font-size:clamp(15px,1.8vw,18px);color:var(--ink-soft);
-    max-width:620px;margin:0 auto;line-height:1.55;
-  }
-  .pos-role .hl{color:var(--ink);font-weight:500}
-
-  /* === SECTION HEAD === */
-  .sec-head{margin-bottom:44px}
-  @media(min-width:860px){.sec-head{margin-bottom:60px;text-align:center}}
+  /* ================= SECTION FRAMEWORK ================= */
+  section{padding:80px 0;position:relative}
+  @media(min-width:900px){section{padding:120px 0}}
+  .sec-alt{background:var(--bg-2)}
   .sec-eyebrow{
-    display:inline-block;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
-    color:var(--gold);font-weight:600;margin-bottom:14px;
+    display:inline-block;font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--cyan);font-weight:600;margin-bottom:16px;
   }
+  .sec-eyebrow.pink{color:var(--pink)}
   .sec-title{
-    font-family:'Instrument Serif',serif;font-weight:400;
-    font-size:clamp(36px,5.5vw,60px);letter-spacing:-.018em;line-height:1.02;
-    color:var(--ink);
+    font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(42px,7vw,80px);line-height:.94;letter-spacing:.005em;
+    color:var(--text);
   }
-  .sec-title em{font-style:italic;color:var(--gold)}
-  .sec-lead{
-    font-size:15px;color:var(--ink-soft);max-width:520px;
-    margin:14px auto 0;line-height:1.55;
-  }
+  .sec-title em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--pink);text-transform:none;letter-spacing:-.01em}
+  .sec-lead{color:var(--text-2);font-size:15px;max-width:520px;margin-top:16px;line-height:1.6}
+  .sec-head{margin-bottom:44px}
+  @media(min-width:900px){.sec-head{margin-bottom:64px}}
 
-  /* === DEMO REEL === */
-  .demo{padding:0 0 80px}
-  .demo-card{
-    background:var(--paper);border:1px solid var(--line);border-radius:20px;
-    padding:26px 22px;display:flex;flex-direction:column;gap:18px;
-    box-shadow:var(--shadow-sm);
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;min-height:88vh;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:100px 0 60px;overflow:hidden;
   }
-  @media(min-width:720px){
-    .demo-card{flex-direction:row;align-items:center;gap:30px;padding:30px 36px}
+  .hero-bg{
+    position:absolute;inset:0;
+    background:var(--gradient-hero);
+    z-index:0;
   }
-  .demo-info{flex:1;min-width:0}
-  .demo-eyebrow{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
-  .demo-title{font-family:'Instrument Serif',serif;font-size:clamp(26px,3.4vw,32px);font-weight:400;color:var(--ink);margin-bottom:6px;letter-spacing:-.012em;line-height:1.1}
-  .demo-title em{font-style:italic;color:var(--gold)}
-  .demo-sub{font-size:13px;color:var(--ink-soft)}
-  .demo-controls{display:flex;align-items:center;gap:14px;flex-shrink:0;width:100%}
-  @media(min-width:720px){.demo-controls{width:auto;min-width:300px}}
-  .demo-play{
-    width:56px;height:56px;border-radius:50%;background:var(--ink);color:var(--paper);
-    border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-    transition:background .25s ease,transform .15s ease;flex-shrink:0;
-  }
-  .demo-play:hover{background:var(--gold);transform:scale(1.05)}
-  .demo-play svg{fill:currentColor}
-  .demo-progress{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
-  .demo-bar{height:3px;background:var(--line-2);border-radius:50px;overflow:hidden;position:relative;cursor:pointer}
-  .demo-bar-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;border-radius:50px;transition:width .1s linear}
-  .demo-time{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
-
-  /* === VIDEO GRID (projects) === */
-  .videos{padding:60px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  @media(min-width:860px){.videos{padding:90px 0}}
-
-  /* === FEATURED FILM (Premier Service) === */
-  .featured-film{margin-top:36px;margin-bottom:40px}
-  .ff-card{
-    display:grid;grid-template-columns:1fr;gap:22px;
-    background:var(--bg);border:1px solid var(--line);border-radius:18px;
-    overflow:hidden;box-shadow:var(--shadow-md);
-  }
-  @media(min-width:780px){
-    .ff-card{grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:0;align-items:stretch}
-  }
-  .ff-poster{
-    position:relative;aspect-ratio:4/5;background:#000;
-    cursor:pointer;overflow:hidden;
-  }
-  .ff-poster img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
-  .ff-poster:hover img{transform:scale(1.03)}
-  .ff-poster::after{
+  .hero-bg::before{
     content:'';position:absolute;inset:0;
-    background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.55) 100%);
-    pointer-events:none;opacity:0;transition:opacity .35s ease;
+    background-image:url('assets/images/piano-hero.jpg');
+    background-size:cover;background-position:center;
+    opacity:0;transition:opacity 1.2s ease;
   }
-  .ff-poster:hover::after{opacity:1}
-  .ff-play-btn{
-    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:72px;height:72px;border-radius:50%;
-    background:rgba(255,255,255,.94);color:var(--ink);
-    border:none;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 12px 36px rgba(0,0,0,.4);
-    transition:transform .25s ease,background .25s ease;
+  .hero-bg.loaded::before{opacity:.75}
+  .hero-bg::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(10,8,19,.2) 0%, rgba(10,8,19,.65) 60%, rgba(10,8,19,.95) 100%);
+    z-index:1;
   }
-  .ff-poster:hover .ff-play-btn{transform:translate(-50%,-50%) scale(1.08);background:var(--gold);color:var(--paper)}
-  .ff-play-btn svg{margin-left:4px;fill:currentColor}
-  .ff-iframe-wrap{position:relative;aspect-ratio:16/9;background:#000;display:none}
-  .ff-card.playing .ff-poster{display:none}
-  .ff-card.playing .ff-iframe-wrap{display:block;grid-column:1 / -1}
-  .ff-iframe-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .ff-info{padding:28px 26px;display:flex;flex-direction:column;justify-content:center;gap:14px}
-  @media(min-width:780px){.ff-info{padding:38px 38px}}
-  .ff-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700}
-  .ff-title{font-family:'Instrument Serif',serif;font-size:clamp(32px,4.5vw,46px);font-weight:400;letter-spacing:-.015em;line-height:1;color:var(--ink)}
-  .ff-title em{font-style:italic;color:var(--gold)}
-  .ff-credits{font-size:14px;color:var(--ink-soft);line-height:1.65}
-  .ff-credits strong{color:var(--ink);font-weight:500}
-  .ff-credit-row{margin-top:2px}
-  .ff-credit-row:not(:last-child){padding-bottom:2px}
-  .ff-cta{margin-top:10px;align-self:flex-start}
+  .hero-content{position:relative;z-index:2;padding:0 22px}
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--cyan);font-weight:600;margin-bottom:26px;
+  }
+  .hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--cyan)}
+  .hero-name{
+    font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
+    font-size:clamp(72px,17vw,220px);line-height:.85;letter-spacing:-.01em;
+    color:var(--text);margin-bottom:28px;
+  }
+  .hero-name em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--pink);text-transform:none;letter-spacing:-.03em;display:inline-block}
+  .hero-tagline{
+    font-size:clamp(16px,2vw,20px);color:var(--text-2);max-width:540px;
+    line-height:1.45;margin-bottom:36px;font-weight:400;
+  }
+  .hero-tagline .hl{color:var(--text)}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .hero-scroll{
+    position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+    font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;
+    z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;
+    animation:bob 2.4s ease-in-out infinite;
+  }
+  .hero-scroll::after{content:'';width:1px;height:32px;background:var(--muted)}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
 
-  .video-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-top:36px}
-  @media(min-width:720px){.video-grid{grid-template-columns:1fr 1fr;gap:26px}}
-  .vid-item{
-    background:var(--bg);border:1px solid var(--line);border-radius:14px;
-    overflow:hidden;transition:transform .35s ease,box-shadow .35s ease;
+  /* ================= MARQUEE LOGOS ================= */
+  .marquee-strip{
+    padding:36px 0;background:var(--bg);
+    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+    overflow:hidden;position:relative;
   }
-  .vid-item:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
-  .vid-frame{position:relative;aspect-ratio:16/9;background:var(--ink)}
-  .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-  .vid-meta{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
-  .vid-meta .vid-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
-  .vid-meta .vid-title{font-family:'Instrument Serif',serif;font-size:18px;color:var(--ink);letter-spacing:-.01em}
+  .marquee-strip::before,.marquee-strip::after{
+    content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
+  }
+  .marquee-strip::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+  .marquee-strip::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
+  .marquee-track{
+    display:flex;gap:56px;animation:marquee 26s linear infinite;
+    width:max-content;align-items:center;
+  }
+  @media(min-width:720px){.marquee-track{gap:78px}}
+  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .marquee-logo{
+    flex-shrink:0;height:52px;width:auto;
+    filter:brightness(0) invert(1) opacity(.55);
+    transition:filter .35s ease;
+  }
+  @media(min-width:720px){.marquee-logo{height:60px}}
+  .marquee-logo:hover{filter:brightness(0) invert(1) opacity(1)}
+  .marquee-caption{
+    text-align:center;font-size:11px;letter-spacing:4px;text-transform:uppercase;
+    color:var(--muted);font-weight:600;margin-bottom:24px;
+  }
 
-  /* === WORKS / CREDITS (list) === */
-  .works{padding:60px 0}
-  @media(min-width:860px){.works{padding:100px 0}}
-  .work-list{display:flex;flex-direction:column;border-top:1px solid var(--line);margin-top:36px}
-  .work-row{
-    display:grid;grid-template-columns:1fr;gap:6px;padding:22px 0;
-    border-bottom:1px solid var(--line);
-    transition:padding-left .35s ease,background .35s ease;
-  }
-  @media(min-width:720px){
-    .work-row{grid-template-columns:140px 1fr 230px 60px;gap:24px;align-items:center;padding:22px 16px;border-radius:10px}
-    .work-row:hover{padding-left:24px;background:var(--paper)}
-  }
-  .work-cat{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);font-weight:600}
-  .work-title{font-family:'Instrument Serif',serif;font-size:clamp(22px,3vw,26px);font-weight:400;letter-spacing:-.01em;color:var(--ink);line-height:1.15}
-  .work-meta{font-size:13px;color:var(--ink-soft);line-height:1.5}
-  .work-year{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px;text-align:right}
-  @media(max-width:720px){.work-year{display:none}}
-
-  /* === LISTEN === */
-  .listen{padding:80px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  @media(min-width:860px){.listen{padding:110px 0}}
-  .track-list{display:flex;flex-direction:column;gap:2px;margin-top:36px;max-width:780px;margin-left:auto;margin-right:auto}
+  /* ================= LISTEN ================= */
+  .listen{padding:100px 0;background:var(--bg)}
+  @media(min-width:900px){.listen{padding:140px 0}}
+  .track-list{max-width:820px;margin:44px auto 0;display:flex;flex-direction:column;gap:2px}
   .track{
-    border-radius:14px;
-    transition:background .25s ease;
-    overflow:hidden;
+    display:grid;grid-template-columns:auto 1fr auto auto;gap:16px;align-items:center;
+    padding:16px 18px;border-radius:12px;cursor:pointer;
+    transition:background .3s ease;
   }
   .track:hover{background:var(--bg-2)}
-  .track-row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:14px 16px;cursor:pointer}
-  .play-btn{
-    width:42px;height:42px;border-radius:50%;border:1.5px solid var(--ink);
-    display:flex;align-items:center;justify-content:center;flex-shrink:0;
-    transition:background .25s ease,color .25s ease;color:var(--ink);
-    background:transparent;cursor:pointer;
+  .track-num{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:1px;width:24px}
+  .track-play{
+    width:44px;height:44px;border-radius:50%;border:1.5px solid var(--border-hi);
+    background:transparent;color:var(--text);
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+    transition:all .25s ease;flex-shrink:0;
   }
-  .track:hover .play-btn{background:var(--ink);color:var(--paper)}
-  .play-btn svg{fill:currentColor;margin-left:2px}
-  .track-info h3{font-family:'Instrument Serif',serif;font-size:19px;font-weight:400;color:var(--ink);letter-spacing:-.01em;line-height:1.2}
-  .track-info span{font-size:12px;color:var(--ink-soft);display:block;margin-top:2px}
-  .t-dur{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .track:hover .track-play{border-color:var(--text)}
+  .track.active .track-play{background:var(--pink);border-color:var(--pink);color:var(--bg);box-shadow:var(--shadow-glow-pink)}
+  .track-play svg{fill:currentColor;margin-left:2px}
+  .track-info{min-width:0;overflow:hidden}
+  .track-info h3{
+    font-family:'Fraunces',serif;font-size:19px;font-weight:500;
+    color:var(--text);letter-spacing:-.01em;line-height:1.2;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  }
+  .track-info span{font-size:12px;color:var(--muted);display:block;margin-top:2px;letter-spacing:.3px}
+  .track.active .track-info h3{color:var(--pink)}
+  .track-eq{display:none;gap:2px;align-items:end;height:22px}
+  .track.active .track-eq{display:flex}
+  .track-eq i{width:2.5px;background:var(--pink);border-radius:2px;animation:eq 1s ease-in-out infinite}
+  .track-eq i:nth-child(1){height:8px;animation-delay:0s}
+  .track-eq i:nth-child(2){height:16px;animation-delay:.2s}
+  .track-eq i:nth-child(3){height:10px;animation-delay:.4s}
+  .track-eq i:nth-child(4){height:18px;animation-delay:.1s}
+  @keyframes eq{0%,100%{transform:scaleY(.3)}50%{transform:scaleY(1)}}
+  .track-dur{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px;min-width:36px;text-align:right}
 
-  /* Expanded controls when playing */
-  .track-controls{
-    max-height:0;overflow:hidden;
-    transition:max-height .35s ease;
-    padding:0 16px;
+  /* ================= AUDIO BRIDGE (sticky) ================= */
+  .bridge{
+    position:fixed;left:0;right:0;bottom:0;z-index:70;
+    background:rgba(20,16,31,.85);backdrop-filter:blur(24px) saturate(1.5);
+    -webkit-backdrop-filter:blur(24px) saturate(1.5);
+    border-top:1px solid var(--border-hi);
+    transform:translateY(100%);transition:transform .5s cubic-bezier(.4,0,.2,1);
+    padding:12px 18px;
   }
-  .track.playing .track-controls{max-height:80px;padding:0 16px 16px}
-  .track.playing{background:var(--bg-2)}
-  .track.playing .play-btn{background:var(--gold);border-color:var(--gold);color:var(--paper)}
-  .ctrl-bar{display:flex;align-items:center;gap:12px}
-  .ctrl-skip{
-    width:34px;height:34px;border-radius:50%;border:1px solid var(--line-2);
-    background:transparent;cursor:pointer;color:var(--ink);
+  .bridge.visible{transform:translateY(0)}
+  .bridge-inner{
+    max-width:1220px;margin:0 auto;
+    display:grid;grid-template-columns:1fr;gap:10px;align-items:center;
+  }
+  @media(min-width:720px){
+    .bridge-inner{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:20px}
+  }
+  .bridge-track{display:flex;align-items:center;gap:12px;min-width:0}
+  .bridge-cover{
+    width:44px;height:44px;border-radius:8px;flex-shrink:0;
+    background:var(--gradient-accent);
     display:flex;align-items:center;justify-content:center;
-    font-size:10px;font-weight:700;letter-spacing:0;
-    transition:background .25s ease,color .25s ease,border-color .25s ease;
-    flex-shrink:0;
+    box-shadow:var(--shadow-glow-pink);
   }
-  .ctrl-skip:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .ctrl-progress{flex:1;display:flex;flex-direction:column;gap:4px;min-width:0}
-  .ctrl-bar-track{height:3px;background:var(--line-2);border-radius:50px;cursor:pointer;position:relative;overflow:hidden}
-  .ctrl-bar-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;border-radius:50px;transition:width .1s linear}
-  .ctrl-time{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.5px}
+  .bridge-cover svg{fill:var(--bg)}
+  .bridge-meta{min-width:0;overflow:hidden}
+  .bridge-title{
+    font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:var(--text);
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap;line-height:1.2;
+  }
+  .bridge-sub{font-size:11px;color:var(--muted);letter-spacing:.3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .bridge-controls{display:flex;align-items:center;gap:8px;justify-content:center}
+  .bridge-btn{
+    width:36px;height:36px;border-radius:50%;border:none;background:transparent;
+    color:var(--text-2);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:color .2s ease,background .2s ease;font-size:10px;font-weight:700;letter-spacing:.5px;
+  }
+  .bridge-btn:hover{color:var(--text);background:var(--bg-3)}
+  .bridge-btn.main{
+    width:42px;height:42px;background:var(--text);color:var(--bg);
+  }
+  .bridge-btn.main:hover{background:var(--cyan);color:var(--bg)}
+  .bridge-btn.main svg{fill:currentColor;margin-left:1px}
+  .bridge-progress{display:none;flex-direction:column;gap:4px}
+  @media(min-width:720px){.bridge-progress{display:flex}}
+  .bridge-bar{height:3px;background:var(--bg-3);border-radius:50px;cursor:pointer;position:relative;overflow:hidden}
+  .bridge-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gradient-accent);width:0;border-radius:50px;transition:width .1s linear}
+  .bridge-time{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.3px}
+  /* Mobile scrubber */
+  .bridge-mobile-bar{height:2px;background:var(--bg-3);position:relative;overflow:hidden;border-radius:50px}
+  @media(min-width:720px){.bridge-mobile-bar{display:none}}
+  .bridge-mobile-fill{position:absolute;left:0;top:0;bottom:0;background:var(--gradient-accent);width:0;border-radius:50px;transition:width .1s linear}
 
-  /* === REFS STRIP === */
-  .refs{padding:60px 0}
-  .refs-label{
-    text-align:center;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;
-    color:var(--muted);font-weight:600;margin-bottom:22px;
+  /* ================= FEATURED (Sœurs Jumelles) ================= */
+  .featured{padding:100px 0;background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  @media(min-width:900px){.featured{padding:140px 0}}
+  .ff-grid{
+    display:grid;grid-template-columns:1fr;gap:32px;
+    margin-top:44px;align-items:start;
   }
-  .logos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:860px;margin:0 auto}
-  @media(min-width:640px){.logos-grid{grid-template-columns:repeat(6,1fr);gap:14px}}
-  .logo-cell{
-    aspect-ratio:1/1;background:var(--paper);border:1px solid var(--line);border-radius:12px;
-    display:flex;align-items:center;justify-content:center;padding:14px;
-    transition:transform .3s ease,box-shadow .3s ease;
+  @media(min-width:900px){.ff-grid{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:56px}}
+  .ff-poster-wrap{
+    position:relative;aspect-ratio:4/5;
+    border-radius:20px;overflow:hidden;
+    background:linear-gradient(135deg, var(--pink) 0%, var(--cyan) 100%);
+    box-shadow:var(--shadow-lg);
+    display:flex;align-items:center;justify-content:center;
   }
-  .logo-cell:hover{transform:translateY(-3px);box-shadow:var(--shadow-md)}
-  .logo-cell img{max-width:100%;max-height:100%;object-fit:contain}
-  .ref-line{
-    text-align:center;font-size:13px;color:var(--ink-soft);
-    margin-top:30px;padding-top:24px;border-top:1px solid var(--line);
+  .ff-poster-wrap img{width:100%;height:100%;object-fit:cover}
+  .ff-poster-placeholder{
+    text-align:center;padding:40px;color:rgba(10,8,19,.85);
+    font-family:'Anton',sans-serif;font-size:clamp(28px,4vw,42px);
+    text-transform:uppercase;letter-spacing:.02em;line-height:1;
   }
-  .ref-line em{font-style:italic;color:var(--gold);font-family:'Instrument Serif',serif;font-size:16px}
-  .ref-line a{color:var(--gold);text-decoration:underline;text-decoration-color:rgba(166,111,46,.35);text-underline-offset:3px;transition:text-decoration-color .25s}
-  .ref-line a:hover{text-decoration-color:var(--gold)}
+  .ff-info{padding:8px 0}
+  .ff-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;letter-spacing:3px;text-transform:uppercase;
+    color:var(--pink);font-weight:600;margin-bottom:20px;
+  }
+  .ff-tag::before{content:'';width:8px;height:8px;border-radius:50%;background:var(--pink);box-shadow:0 0 12px var(--pink);animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+  .ff-title{
+    font-family:'Anton',sans-serif;font-size:clamp(38px,5.5vw,64px);line-height:.94;
+    text-transform:uppercase;letter-spacing:.005em;margin-bottom:18px;color:var(--text);
+  }
+  .ff-title em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--pink);text-transform:none;letter-spacing:-.02em}
+  .ff-meta{color:var(--text-2);font-size:15px;line-height:1.65;margin-bottom:28px;max-width:560px}
+  .ff-meta strong{color:var(--text);font-weight:500}
+  .ff-details{display:grid;grid-template-columns:auto 1fr;gap:12px 22px;font-size:13px;color:var(--text-2);margin-bottom:32px}
+  .ff-details dt{color:var(--muted);letter-spacing:2px;text-transform:uppercase;font-size:10px;font-weight:600;padding-top:2px}
+  .ff-details dd{color:var(--text-2)}
+  .ff-details dd strong{color:var(--text);font-weight:500}
+  .ff-actions{display:flex;flex-wrap:wrap;gap:12px}
 
-  /* === METHOD === */
-  .method{padding:80px 0}
-  @media(min-width:860px){.method{padding:110px 0}}
-  .method-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:42px}
-  @media(min-width:720px){.method-grid{grid-template-columns:repeat(3,1fr);gap:22px}}
-  .method-card{
-    padding:28px 24px;background:var(--paper);border:1px solid var(--line);border-radius:16px;
-    transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;
+  /* ================= VIDEOS ================= */
+  .videos{padding:100px 0;background:var(--bg)}
+  @media(min-width:900px){.videos{padding:140px 0}}
+  .vid-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:44px}
+  @media(min-width:720px){.vid-grid{grid-template-columns:1fr 1fr;gap:28px}}
+  .vid-card{
+    background:var(--bg-2);border:1px solid var(--border);border-radius:16px;
+    overflow:hidden;transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease;
   }
-  .method-card:hover{transform:translateY(-3px);border-color:var(--gold-soft);box-shadow:var(--shadow-md)}
-  .method-num{font-family:'Instrument Serif',serif;font-style:italic;font-size:46px;color:var(--gold);line-height:1;margin-bottom:14px}
-  .method-title{font-family:'Instrument Serif',serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:10px;letter-spacing:-.01em}
-  .method-text{font-size:14px;color:var(--ink-soft);line-height:1.6}
+  .vid-card:hover{transform:translateY(-4px);border-color:var(--border-hi);box-shadow:var(--shadow-md)}
+  .vid-frame{position:relative;aspect-ratio:16/9;background:#000}
+  .vid-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .vid-caption{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .vid-caption .vid-title{font-family:'Fraunces',serif;font-size:17px;color:var(--text);letter-spacing:-.01em}
+  .vid-caption .vid-tag{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);font-weight:600}
+  .vid-caption .vid-tag.pink{color:var(--pink)}
 
-  /* === ABOUT === */
-  .about{padding:80px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  @media(min-width:860px){.about{padding:110px 0}}
-  .about-grid{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
-  @media(min-width:720px){.about-grid{grid-template-columns:260px 1fr;gap:60px}}
-  .about-photo{
-    width:100%;max-width:280px;aspect-ratio:1/1;border-radius:50%;
+  /* ================= BIO ================= */
+  .bio{padding:100px 0;background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+  @media(min-width:900px){.bio{padding:140px 0}}
+  .bio-grid{display:grid;grid-template-columns:1fr;gap:44px;align-items:center;max-width:1080px;margin:0 auto}
+  @media(min-width:820px){.bio-grid{grid-template-columns:280px 1fr;gap:70px}}
+  .bio-photo{
+    width:100%;max-width:300px;aspect-ratio:1/1;border-radius:50%;
     background:url('assets/images/portrait.jpg') center/cover;
-    border:1px solid var(--line);box-shadow:var(--shadow-md);
+    border:2px solid var(--pink);box-shadow:var(--shadow-glow-pink);
     margin:0 auto;
   }
-  @media(min-width:720px){.about-photo{max-width:260px}}
-  .about-body p{margin-bottom:16px;color:var(--ink-soft);font-size:16px;line-height:1.65}
-  .about-body p .hl{color:var(--ink);font-weight:500}
+  @media(min-width:820px){.bio-photo{max-width:280px}}
+  .bio-body{max-width:640px}
+  .bio-body .sec-eyebrow{color:var(--pink)}
+  .bio-body h2{
+    font-family:'Anton',sans-serif;font-size:clamp(34px,5vw,56px);line-height:.98;
+    text-transform:uppercase;letter-spacing:.005em;color:var(--text);margin-bottom:22px;
+  }
+  .bio-body h2 em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--cyan);text-transform:none;letter-spacing:-.01em}
+  .bio-body p{color:var(--text-2);font-size:16px;line-height:1.7;margin-bottom:18px}
+  .bio-body p .hl{color:var(--text);font-weight:500}
+  .bio-body a.inline{color:var(--pink);text-decoration:underline;text-decoration-color:rgba(240,66,146,.4);text-underline-offset:3px;transition:text-decoration-color .3s}
+  .bio-body a.inline:hover{text-decoration-color:var(--pink)}
 
-  /* === CONTACT === */
-  .contact{padding:90px 0;text-align:center}
-  @media(min-width:860px){.contact{padding:120px 0}}
-  .contact h2{font-family:'Instrument Serif',serif;font-size:clamp(42px,7vw,76px);font-weight:400;letter-spacing:-.02em;line-height:1.02;margin-bottom:20px;color:var(--ink)}
-  .contact h2 em{font-style:italic;color:var(--gold)}
-  .contact p{color:var(--ink-soft);font-size:16px;max-width:520px;margin:0 auto 34px}
+  /* ================= METHOD ================= */
+  .method{padding:100px 0;background:var(--bg)}
+  @media(min-width:900px){.method{padding:140px 0}}
+  .method-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:44px}
+  @media(min-width:720px){.method-grid{grid-template-columns:repeat(3,1fr);gap:24px}}
+  .method-card{
+    padding:32px 26px;background:var(--bg-2);border:1px solid var(--border);
+    border-radius:18px;transition:transform .35s ease,border-color .35s ease;
+  }
+  .method-card:hover{transform:translateY(-4px);border-color:var(--pink)}
+  .method-num{
+    font-family:'Anton',sans-serif;font-size:64px;color:var(--pink);
+    line-height:1;margin-bottom:14px;letter-spacing:.005em;
+  }
+  .method-title{font-family:'Fraunces',serif;font-size:22px;font-weight:500;color:var(--text);margin-bottom:12px;letter-spacing:-.01em}
+  .method-text{font-size:14px;color:var(--text-2);line-height:1.65}
+
+  /* ================= CONTACT ================= */
+  .contact{
+    padding:120px 0;text-align:center;
+    background:radial-gradient(ellipse at 50% 30%, rgba(240,66,146,.15) 0%, transparent 55%),
+               radial-gradient(ellipse at 50% 70%, rgba(79,201,232,.12) 0%, transparent 55%),
+               var(--bg);
+  }
+  @media(min-width:900px){.contact{padding:160px 0}}
+  .contact h2{
+    font-family:'Anton',sans-serif;font-size:clamp(50px,10vw,140px);line-height:.92;
+    text-transform:uppercase;letter-spacing:-.005em;margin-bottom:24px;color:var(--text);
+  }
+  .contact h2 em{font-family:'Fraunces',serif;font-style:italic;font-weight:400;color:var(--pink);text-transform:none;letter-spacing:-.02em}
+  .contact p{color:var(--text-2);font-size:17px;max-width:520px;margin:0 auto 38px;line-height:1.55}
   .contact-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-  .contact-links{margin-top:36px;display:flex;gap:22px;justify-content:center;flex-wrap:wrap;font-size:13px;color:var(--ink-soft)}
-  .contact-links a{color:var(--ink-soft);text-decoration:none;transition:color .3s}
-  .contact-links a:hover{color:var(--gold)}
+  .contact-links{margin-top:44px;display:flex;gap:24px;justify-content:center;flex-wrap:wrap;font-size:13px}
+  .contact-links a{color:var(--text-2);text-decoration:none;transition:color .3s;letter-spacing:.5px}
+  .contact-links a:hover{color:var(--pink)}
 
-  footer{padding:26px 0;text-align:center;font-size:12px;color:var(--muted);border-top:1px solid var(--line);letter-spacing:.3px}
+  footer{padding:28px 0;text-align:center;font-size:11px;color:var(--muted);border-top:1px solid var(--border);letter-spacing:1px;text-transform:uppercase}
 
-  /* === REVEAL === */
-  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  /* ================= REVEAL ================= */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.reveal{opacity:1;transform:none}}
-
-  /* Swipe affordance hint (subtle) */
-  body.swipe-hint::after{
-    content:'← FR · EN →';position:fixed;top:14px;left:50%;transform:translateX(-50%);
-    background:var(--ink);color:var(--paper);padding:6px 14px;border-radius:50px;
-    font-size:11px;letter-spacing:2px;z-index:100;opacity:0;
-    animation:swipeHint 3s ease forwards;
-  }
-  @keyframes swipeHint{0%,100%{opacity:0}15%,85%{opacity:.85}}
 </style>
 </head>
 <body>
 
+<!-- ================= NAV ================= -->
 <nav>
   <div class="nav-inner">
     <a href="#top" class="nav-brand">Renaud <em>Nico</em></a>
     <div class="nav-right">
       <div class="nav-menu">
-        <a href="#works" data-fr="Œuvres" data-en="Work">Œuvres</a>
-        <a href="#videos" data-fr="Vidéos" data-en="Videos">Vidéos</a>
         <a href="#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
+        <a href="#featured" data-fr="À l'affiche" data-en="Featured">À l'affiche</a>
+        <a href="#videos" data-fr="Vidéos" data-en="Videos">Vidéos</a>
+        <a href="#bio" data-fr="Bio" data-en="Bio">Bio</a>
         <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
       </div>
-      <div class="lang-toggle" id="langToggle" data-lang="fr" role="switch" aria-checked="false" tabindex="0">
-        <span>FR</span>
-        <span>EN</span>
+      <div class="lang-toggle" id="langToggle" data-lang="fr" role="switch" tabindex="0">
+        <span>FR</span><span>EN</span>
       </div>
     </div>
   </div>
 </nav>
 
-<!-- ====== HERO ====== -->
-<section id="top" class="hero">
+<!-- ================= ① HERO ================= -->
+<header id="top" class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="container hero-content">
+    <div class="hero-eyebrow" data-fr="Compositeur · Musique à l'image" data-en="Composer · Music for screen">Compositeur · Musique à l'image</div>
+    <h1 class="hero-name">Renaud <em>Nico</em></h1>
+    <p class="hero-tagline" data-fr="J'écris la musique de vos <span class='hl'>films</span>, <span class='hl'>séries</span>, <span class='hl'>marques</span> et <span class='hl'>pièces</span>." data-en="I write the music for your <span class='hl'>films</span>, <span class='hl'>series</span>, <span class='hl'>brands</span> and <span class='hl'>plays</span>.">J'écris la musique de vos <span class="hl">films</span>, <span class="hl">séries</span>, <span class="hl">marques</span> et <span class="hl">pièces</span>.</p>
+    <div class="hero-cta">
+      <button class="btn" id="heroPlayBtn" data-fr="▶ Écouter la démo" data-en="▶ Listen to demo">▶ Écouter la démo</button>
+      <a href="#featured" class="btn btn-ghost" data-fr="Voir mes projets" data-en="See my projects">Voir mes projets <span class="arrow">→</span></a>
+    </div>
+  </div>
+  <div class="hero-scroll" data-fr="Faire défiler" data-en="Scroll">Faire défiler</div>
+</header>
+
+<!-- ================= ② MARQUEE LOGOS ================= -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack">
+    <img class="marquee-logo" src="assets/images/logos/naro.jpg" alt="Naro">
+    <img class="marquee-logo" src="assets/images/logos/bbq-expo.jpg" alt="Barbecue Expo">
+    <img class="marquee-logo" src="assets/images/logos/bbq-fest.jpg" alt="Barbecue Fest">
+    <img class="marquee-logo" src="assets/images/logos/salon-du-bon.jpg" alt="Salon du Bon">
+    <img class="marquee-logo" src="assets/images/logos/ateliers-gobelins.jpg" alt="Ateliers Gobelins">
+    <img class="marquee-logo" src="assets/images/logos/atelier-de-sevres.jpg" alt="Atelier de Sèvres">
+    <!-- duplicated for seamless loop -->
+    <img class="marquee-logo" src="assets/images/logos/naro.jpg" alt="">
+    <img class="marquee-logo" src="assets/images/logos/bbq-expo.jpg" alt="">
+    <img class="marquee-logo" src="assets/images/logos/bbq-fest.jpg" alt="">
+    <img class="marquee-logo" src="assets/images/logos/salon-du-bon.jpg" alt="">
+    <img class="marquee-logo" src="assets/images/logos/ateliers-gobelins.jpg" alt="">
+    <img class="marquee-logo" src="assets/images/logos/atelier-de-sevres.jpg" alt="">
+  </div>
+</div>
+
+<!-- ================= ③ LISTEN ================= -->
+<section id="listen" class="listen">
   <div class="container-narrow">
-    <div class="hero-head">
-      <div class="hero-meta" data-fr="Rochefort · 23 juin 2026" data-en="Rochefort · June 23, 2026">Rochefort · 23 juin 2026</div>
-      <h1 class="hero-title" data-fr="Mon court-métrage du <em>Festival Sœurs Jumelles</em>." data-en="My short film for the <em>Sœurs Jumelles Festival</em>.">Mon court-métrage du <em>Festival Sœurs Jumelles</em>.</h1>
-      <p class="hero-sub" data-fr="Une création originale écrite, composée et mixée pour l'image." data-en="An original creation written, composed and mixed for the screen.">Une création originale écrite, composée et mixée pour l'image.</p>
+    <div class="sec-head">
+      <span class="sec-eyebrow" data-fr="Catalogue original" data-en="Original catalogue">Catalogue original</span>
+      <h2 class="sec-title" data-fr="<em>Écouter</em> le travail" data-en="<em>Listen</em> to the work">Écouter le travail</h2>
+      <p class="sec-lead" data-fr="Sélection de morceaux — bandes originales, chansons, musique de marque. Le lecteur en bas de l'écran vous suit partout." data-en="Selected tracks — scores, songs, brand music. The player at the bottom stays with you.">Sélection de morceaux — bandes originales, chansons, musique de marque. Le lecteur en bas de l'écran vous suit partout.</p>
     </div>
-  </div>
-  <div class="container">
-    <div class="hero-video reveal">
-      <iframe src="https://www.youtube.com/embed/RDN6T9qsDQQ" title="Court-métrage Festival Sœurs Jumelles — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </div>
-</section>
 
-<!-- ====== POSITIONING ====== -->
-<section class="positioning container">
-  <span class="pos-eyebrow" data-fr="Compositeur · Musique à l'image" data-en="Composer · Music for screen">Compositeur · Musique à l'image</span>
-  <h2 class="pos-name">Renaud <em>Nico</em></h2>
-  <p class="pos-role" data-fr="J'écris la musique de vos <span class='hl'>films</span>, <span class='hl'>séries</span>, <span class='hl'>marques</span> et <span class='hl'>pièces</span>. Une oreille pour l'image, un réseau de musiciens, des délais tenus." data-en="I write music for your <span class='hl'>films</span>, <span class='hl'>series</span>, <span class='hl'>brands</span> and <span class='hl'>plays</span>. An ear for image, a network of musicians, deadlines met.">J'écris la musique de vos <span class="hl">films</span>, <span class="hl">séries</span>, <span class="hl">marques</span> et <span class="hl">pièces</span>. Une oreille pour l'image, un réseau de musiciens, des délais tenus.</p>
-</section>
-
-<!-- ====== DEMO REEL ====== -->
-<section class="demo container">
-  <div class="demo-card reveal">
-    <div class="demo-info">
-      <div class="demo-eyebrow" data-fr="Bande démo" data-en="Demo reel">Bande démo</div>
-      <div class="demo-title" data-fr="Un aperçu en <em>deux minutes</em>" data-en="A <em>two-minute</em> overview">Un aperçu en <em>deux minutes</em></div>
-      <div class="demo-sub" data-fr="Sélection d'extraits — orchestre, piano, voix, synth." data-en="Selected excerpts — orchestra, piano, voice, synth.">Sélection d'extraits — orchestre, piano, voix, synth.</div>
-    </div>
-    <div class="demo-controls">
-      <button class="demo-play" id="demoPlay" aria-label="Play demo">
-        <svg id="demoIcon" width="22" height="22" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-      </button>
-      <div class="demo-progress">
-        <div class="demo-bar" id="demoBar"><div class="demo-bar-fill" id="demoFill"></div></div>
-        <div class="demo-time"><span id="demoCur">0:00</span><span id="demoDur">—:—</span></div>
+    <div class="track-list" id="trackList">
+      <div class="track" data-src="assets/audio/demo-fr.m4a" data-en-src="assets/audio/demo-en.m4a" data-title="Bande démo" data-en-title="Demo reel" data-sub="Aperçu 2 min" data-en-sub="2-min overview" data-dur="2:00" data-featured>
+        <div class="track-num">▶</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3 data-fr="Bande démo" data-en="Demo reel">Bande démo</h3><span data-fr="Aperçu du travail — 2 min" data-en="Work overview — 2 min">Aperçu du travail — 2 min</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">2:00</div>
+      </div>
+      <div class="track" data-src="assets/audio/transition-bergers-taverne.m4a" data-title="Transition Bergers / Taverne" data-sub="Composition originale" data-en-sub="Original composition" data-dur="1:34">
+        <div class="track-num">01</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Transition Bergers / Taverne</h3><span data-fr="Composition originale" data-en="Original composition">Composition originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">1:34</div>
+      </div>
+      <div class="track" data-src="assets/audio/woodstock-express.mp3" data-title="Woodstock Express" data-sub="BO Long-métrage" data-en-sub="Feature film score" data-dur="5:23">
+        <div class="track-num">02</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Woodstock Express</h3><span data-fr="Bande originale · Long-métrage" data-en="Original score · Feature film">Bande originale · Long-métrage</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">5:23</div>
+      </div>
+      <div class="track" data-src="assets/audio/lenvol.m4a" data-title="L'envol" data-sub="Chanson originale" data-en-sub="Original song" data-dur="4:37">
+        <div class="track-num">03</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>L'envol</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">4:37</div>
+      </div>
+      <div class="track" data-src="assets/audio/the-wind-calls.m4a" data-title="The Wind Calls" data-sub="Chanson originale" data-en-sub="Original song" data-dur="3:53">
+        <div class="track-num">04</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>The Wind Calls</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">3:53</div>
+      </div>
+      <div class="track" data-src="assets/audio/flying-sailor.m4a" data-title="Flying Sailor" data-sub="Chanson originale" data-en-sub="Original song" data-dur="2:54">
+        <div class="track-num">05</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Flying Sailor</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">2:54</div>
+      </div>
+      <div class="track" data-src="assets/audio/sans-crier-gare.m4a" data-title="Sans crier gare" data-sub="Chanson originale" data-en-sub="Original song" data-dur="3:01">
+        <div class="track-num">06</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Sans crier gare</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">3:01</div>
+      </div>
+      <div class="track" data-src="assets/audio/ma-nouvelle-maison.m4a" data-title="Ma nouvelle maison" data-sub="Chanson originale" data-en-sub="Original song" data-dur="2:15">
+        <div class="track-num">07</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Ma nouvelle maison</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">2:15</div>
+      </div>
+      <div class="track" data-src="assets/audio/jy-arriverai-pas.m4a" data-title="J'y arriverai pas" data-sub="Chanson originale" data-en-sub="Original song" data-dur="2:48">
+        <div class="track-num">08</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>J'y arriverai pas</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">2:48</div>
+      </div>
+      <div class="track" data-src="assets/audio/arts-et-metiers.mp3" data-title="Arts et métiers" data-sub="Chanson originale" data-en-sub="Original song" data-dur="2:16">
+        <div class="track-num">09</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Arts et métiers</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">2:16</div>
+      </div>
+      <div class="track" data-src="assets/audio/bastille.mp3" data-title="Bastille" data-sub="Chanson originale" data-en-sub="Original song" data-dur="2:01">
+        <div class="track-num">10</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Bastille</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">2:01</div>
+      </div>
+      <div class="track" data-src="assets/audio/hymne-piment-dor.m4a" data-title="Hymne Piment d'or" data-sub="Musique de marque" data-en-sub="Brand music" data-dur="2:06">
+        <div class="track-num">11</div>
+        <button class="track-play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        <div class="track-info"><h3>Hymne Piment d'or</h3><span data-fr="Musique de marque" data-en="Brand music">Musique de marque</span></div>
+        <div class="track-eq"><i></i><i></i><i></i><i></i></div>
+        <div class="track-dur">2:06</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ====== VIDEO PROJECTS ====== -->
+<!-- ================= ④ FEATURED — SŒURS JUMELLES ================= -->
+<section id="featured" class="featured">
+  <div class="container">
+    <div class="sec-head">
+      <span class="sec-eyebrow pink" data-fr="À l'affiche · Juin 2026" data-en="Featured · June 2026">À l'affiche · Juin 2026</span>
+      <h2 class="sec-title" data-fr="Festival <em>Sœurs Jumelles</em>" data-en="<em>Sœurs Jumelles</em> Festival">Festival <em>Sœurs Jumelles</em></h2>
+    </div>
+    <div class="ff-grid">
+      <div class="ff-poster-wrap reveal">
+        <img src="assets/images/affiches/soeurs-jumelles.jpg" alt="Festival Sœurs Jumelles × France.tv 2026" loading="lazy" onerror="this.style.display='none';this.parentElement.querySelector('.ff-poster-placeholder').style.display='block'">
+        <div class="ff-poster-placeholder" style="display:none">Sœurs Jumelles<br>× France.tv<br>2026</div>
+      </div>
+      <div class="ff-info reveal">
+        <div class="ff-tag" data-fr="En sélection" data-en="Selected">En sélection</div>
+        <h3 class="ff-title" data-fr="Concours national étudiant <em>2026</em>" data-en="National student competition <em>2026</em>">Concours national étudiant <em>2026</em></h3>
+        <p class="ff-meta" data-fr="Court-métrage sélectionné au <strong>Festival Sœurs Jumelles × France.tv</strong>. Musique originale composée, arrangée et mixée pour l'image." data-en="Short film selected at the <strong>Sœurs Jumelles × France.tv Festival</strong>. Original music composed, arranged and mixed for the screen.">Court-métrage sélectionné au <strong>Festival Sœurs Jumelles × France.tv</strong>. Musique originale composée, arrangée et mixée pour l'image.</p>
+        <dl class="ff-details">
+          <dt data-fr="Édition" data-en="Edition">Édition</dt>
+          <dd><strong>23 – 28 juin 2026</strong> · Rochefort</dd>
+          <dt data-fr="Programme" data-en="Line-up">Programme</dt>
+          <dd>Vanessa Paradis · Oxmo Puccino · Camille · Charlotte Cardin · Mentissa · Birds on a Wire · P.R2B</dd>
+          <dt data-fr="Musique" data-en="Music">Musique</dt>
+          <dd><strong>Renaud Nico</strong></dd>
+        </dl>
+        <div class="ff-actions">
+          <a href="https://www.youtube.com/watch?v=RDN6T9qsDQQ" target="_blank" rel="noopener" class="btn" data-fr="▶ Voir le court-métrage" data-en="▶ Watch the short">▶ Voir le court-métrage</a>
+          <a href="https://soeursjumelles.com/" target="_blank" rel="noopener" class="btn btn-ghost" data-fr="soeursjumelles.com" data-en="soeursjumelles.com">soeursjumelles.com <span class="arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ⑤ VIDEOS ================= -->
 <section id="videos" class="videos">
   <div class="container">
     <div class="sec-head">
-      <span class="sec-eyebrow" data-fr="Mes vidéos" data-en="My videos">Mes vidéos</span>
-      <h2 class="sec-title" data-fr="Quelques <em>projets</em> en images" data-en="Selected <em>projects</em> on screen">Quelques <em>projets</em> en images</h2>
+      <span class="sec-eyebrow" data-fr="Autres projets" data-en="Other projects">Autres projets</span>
+      <h2 class="sec-title" data-fr="Quelques <em>films</em>" data-en="Selected <em>films</em>">Quelques <em>films</em></h2>
     </div>
-
-    <div class="featured-film reveal">
-      <div class="ff-card" id="ffPremier">
-        <div class="ff-poster" id="ffPoster">
-          <img src="assets/images/affiches/premier-service.png" alt="Premier Service — Affiche" loading="lazy">
-          <button class="ff-play-btn" aria-label="Voir le film"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
-        </div>
-        <div class="ff-iframe-wrap" id="ffIframe"></div>
-        <div class="ff-info">
-          <span class="ff-tag" data-fr="Court-métrage · À l'affiche" data-en="Short film · Now showing">Court-métrage · À l'affiche</span>
-          <h3 class="ff-title">Premier <em>Service</em></h3>
-          <div class="ff-credits">
-            <div class="ff-credit-row"><span data-fr="Un film de" data-en="A film by">Un film de</span> <strong>Valentin Prost</strong></div>
-            <div class="ff-credit-row"><span data-fr="Musique originale :" data-en="Original score:">Musique originale :</span> <strong>Renaud Nicolas</strong></div>
-            <div class="ff-credit-row"><span data-fr="Avec" data-en="Starring">Avec</span> Maud Casari Tenenbaum, Elisabeth Renault-Geslin, Jean-Pierre Cliquet, André Lamorthe, Jean-François Mounet</div>
-            <div class="ff-credit-row"><span data-fr="Production :" data-en="Production:">Production :</span> <strong>Kino Pop Paname</strong></div>
-          </div>
-          <button class="btn ff-cta" id="ffCta" data-fr="▶ Voir le film" data-en="▶ Watch the film">▶ Voir le film</button>
-        </div>
+    <div class="vid-grid">
+      <div class="vid-card reveal">
+        <div class="vid-frame"><iframe src="https://player.vimeo.com/video/1153730026?title=0&byline=0&portrait=0" title="Premier Service — Valentin Prost" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-caption"><div class="vid-title">Premier Service</div><span class="vid-tag pink" data-fr="Court-métrage · Valentin Prost" data-en="Short · Valentin Prost">Court-métrage · Valentin Prost</span></div>
       </div>
-    </div>
-
-    <div class="video-grid">
-      <div class="vid-item reveal">
+      <div class="vid-card reveal">
+        <div class="vid-frame"><iframe src="https://www.youtube.com/embed/RDN6T9qsDQQ" title="Court-métrage Festival Sœurs Jumelles" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
+        <div class="vid-caption"><div class="vid-title" data-fr="Court Sœurs Jumelles" data-en="Sœurs Jumelles short">Court Sœurs Jumelles</div><span class="vid-tag" data-fr="Festival · 2026" data-en="Festival · 2026">Festival · 2026</span></div>
+      </div>
+      <div class="vid-card reveal">
         <div class="vid-frame"><iframe src="https://www.youtube.com/embed/lodZSW_CFD4" title="Projet — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="vid-meta"><span class="vid-tag" data-fr="Vidéo" data-en="Video">Vidéo</span></div>
+        <div class="vid-caption"><div class="vid-title" data-fr="Vidéo" data-en="Video">Vidéo</div><span class="vid-tag" data-fr="Projet" data-en="Project">Projet</span></div>
       </div>
-      <div class="vid-item reveal">
+      <div class="vid-card reveal">
         <div class="vid-frame"><iframe src="https://www.youtube.com/embed/JPmRByW6yaY" title="Projet — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="vid-meta"><span class="vid-tag" data-fr="Vidéo" data-en="Video">Vidéo</span></div>
+        <div class="vid-caption"><div class="vid-title" data-fr="Vidéo" data-en="Video">Vidéo</div><span class="vid-tag" data-fr="Projet" data-en="Project">Projet</span></div>
       </div>
-      <div class="vid-item reveal">
+      <div class="vid-card reveal">
         <div class="vid-frame"><iframe src="https://www.youtube.com/embed/U9AFBi2bOnE" title="Création originale — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="vid-meta"><span class="vid-tag" data-fr="Création originale" data-en="Original">Création originale</span></div>
+        <div class="vid-caption"><div class="vid-title" data-fr="Création originale" data-en="Original creation">Création originale</div><span class="vid-tag" data-fr="Studio" data-en="Studio">Studio</span></div>
       </div>
-      <div class="vid-item reveal">
+      <div class="vid-card reveal">
         <div class="vid-frame"><iframe src="https://www.youtube.com/embed/b0J1dGOX4QU" title="Reprise — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
-        <div class="vid-meta"><span class="vid-tag" data-fr="Reprise" data-en="Cover">Reprise</span></div>
+        <div class="vid-caption"><div class="vid-title" data-fr="Reprise" data-en="Cover">Reprise</div><span class="vid-tag" data-fr="Live" data-en="Live">Live</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ====== WORKS ====== -->
-<section id="works" class="works container">
-  <div class="sec-head">
-    <span class="sec-eyebrow" data-fr="Sélection" data-en="Selected">Sélection</span>
-    <h2 class="sec-title" data-fr="Sur quoi j'ai <em>travaillé</em>" data-en="What I've <em>worked on</em>">Sur quoi j'ai <em>travaillé</em></h2>
-  </div>
-
-  <div class="work-list">
-    <div class="work-row reveal">
-      <div class="work-cat" data-fr="Long-métrage" data-en="Feature film">Long-métrage</div>
-      <div class="work-title">Woodstock Express</div>
-      <div class="work-meta" data-fr="Réal. Coline Pagoda · 1h15 · Post-prod" data-en="Dir. Coline Pagoda · 1h15 · Post-prod">Réal. Coline Pagoda · 1h15 · Post-prod</div>
-      <div class="work-year">2026</div>
-    </div>
-    <div class="work-row reveal">
-      <div class="work-cat" data-fr="Théâtre · USA" data-en="Theatre · USA">Théâtre · USA</div>
-      <div class="work-title">On the High Road</div>
-      <div class="work-meta" data-fr="A. Tchekhov · Oyster Bay, Long Island · 600 spectateurs" data-en="A. Chekhov · Oyster Bay, Long Island · 600 attendees">A. Tchekhov · Oyster Bay, Long Island · 600 spectateurs</div>
-      <div class="work-year">2025</div>
-    </div>
-    <div class="work-row reveal">
-      <div class="work-cat" data-fr="Marques" data-en="Brands">Marques</div>
-      <div class="work-title" data-fr="Musique de marque" data-en="Brand music">Musique de marque</div>
-      <div class="work-meta">Naro · BBQ Expo · BBQ Fest · Salon du Bon</div>
-      <div class="work-year">2024–26</div>
-    </div>
-    <div class="work-row reveal">
-      <div class="work-cat" data-fr="En cours" data-en="In progress">En cours</div>
-      <div class="work-title" data-fr="Écoles d'art" data-en="Art schools">Écoles d'art</div>
-      <div class="work-meta">Ateliers Gobelins · Atelier de Sèvres</div>
-      <div class="work-year">2026</div>
-    </div>
-    <div class="work-row reveal">
-      <div class="work-cat" data-fr="Live international" data-en="International live">Live international</div>
-      <div class="work-title" data-fr="Concerts" data-en="Concerts">Concerts</div>
-      <div class="work-meta">Paris · New York · Moscou · Kiev · Londres · Italie</div>
-      <div class="work-year">2018–25</div>
+<!-- ================= ⑥ BIO ================= -->
+<section id="bio" class="bio">
+  <div class="container">
+    <div class="bio-grid">
+      <div class="bio-photo reveal" aria-label="Renaud Nico"></div>
+      <div class="bio-body reveal">
+        <span class="sec-eyebrow" data-fr="Une voix" data-en="A voice">Une voix</span>
+        <h2 data-fr="Servir le film, jamais le <em>couvrir</em>." data-en="Serve the film, never <em>cover</em> it.">Servir le film, jamais le <em>couvrir</em>.</h2>
+        <p data-fr="Pianiste compositeur, formé entre la France et les États-Unis, accompagné par <a class='inline' href='https://anneolgadepass.com/' target='_blank' rel='noopener'>Anne Olga de Pass</a>, compositrice pour films français et internationaux." data-en="Pianist composer, trained between France and the United States, mentored by <a class='inline' href='https://anneolgadepass.com/' target='_blank' rel='noopener'>Anne Olga de Pass</a>, composer for French and international films.">Pianiste compositeur, formé entre la France et les États-Unis, accompagné par <a class="inline" href="https://anneolgadepass.com/" target="_blank" rel="noopener">Anne Olga de Pass</a>, compositrice pour films français et internationaux.</p>
+        <p data-fr="Du <span class='hl'>long-métrage</span> (Woodstock Express, réal. Coline Pagoda) à la <span class='hl'>pièce de théâtre</span> (Tchekhov, Oyster Bay — 600 spectateurs), des <span class='hl'>marques</span> (Naro, BBQ Fest, Salon du Bon) à la <span class='hl'>scène internationale</span> (Paris, New York, Moscou, Kiev, Londres, Italie), j'ai appris une chose : la musique de film, c'est d'abord une conversation." data-en="From <span class='hl'>feature film</span> (Woodstock Express, dir. Coline Pagoda) to <span class='hl'>theatre</span> (Chekhov, Oyster Bay — 600 attendees), from <span class='hl'>brands</span> (Naro, BBQ Fest, Salon du Bon) to <span class='hl'>international stages</span> (Paris, New York, Moscow, Kyiv, London, Italy), I learned one thing: film music is first a conversation.">Du <span class="hl">long-métrage</span> (Woodstock Express, réal. Coline Pagoda) à la <span class="hl">pièce de théâtre</span> (Tchekhov, Oyster Bay — 600 spectateurs), des <span class="hl">marques</span> (Naro, BBQ Fest, Salon du Bon) à la <span class="hl">scène internationale</span> (Paris, New York, Moscou, Kiev, Londres, Italie), j'ai appris une chose : la musique de film, c'est d'abord une conversation.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ====== REFS ====== -->
-<section class="refs container">
-  <div class="refs-label" data-fr="Ils m'ont fait confiance" data-en="Trusted by">Ils m'ont fait confiance</div>
-  <div class="logos-grid">
-    <div class="logo-cell"><img src="assets/images/logos/naro.jpg" alt="Naro" loading="lazy"></div>
-    <div class="logo-cell"><img src="assets/images/logos/bbq-expo.jpg" alt="Barbecue Expo" loading="lazy"></div>
-    <div class="logo-cell"><img src="assets/images/logos/bbq-fest.jpg" alt="Barbecue Fest" loading="lazy"></div>
-    <div class="logo-cell"><img src="assets/images/logos/salon-du-bon.jpg" alt="Salon du Bon" loading="lazy"></div>
-    <div class="logo-cell"><img src="assets/images/logos/ateliers-gobelins.jpg" alt="Ateliers Gobelins" loading="lazy"></div>
-    <div class="logo-cell"><img src="assets/images/logos/atelier-de-sevres.jpg" alt="Atelier de Sèvres" loading="lazy"></div>
-  </div>
-  <div class="ref-line">
-    <span data-fr="Référence professionnelle :" data-en="Professional reference:">Référence professionnelle :</span>
-    <em><a href="https://anneolgadepass.com/" target="_blank" rel="noopener">Anne Olga de Pass</a></em>
-    <span data-fr="— compositrice, sélection Cannes." data-en="— composer, Cannes selection.">— compositrice, sélection Cannes.</span>
-  </div>
-</section>
-
-<!-- ====== LISTEN ====== -->
-<section id="listen" class="listen">
+<!-- ================= ⑦ METHOD ================= -->
+<section class="method">
   <div class="container">
     <div class="sec-head">
-      <span class="sec-eyebrow" data-fr="Catalogue" data-en="Catalogue">Catalogue</span>
-      <h2 class="sec-title" data-fr="<em>Écouter</em> en détail" data-en="<em>Listen</em> in detail">Écouter en détail</h2>
-      <p class="sec-lead" data-fr="11 morceaux originaux — chansons, bandes originales, musiques de marque." data-en="11 original tracks — songs, scores, brand music.">11 morceaux originaux — chansons, bandes originales, musiques de marque.</p>
+      <span class="sec-eyebrow" data-fr="Comment je travaille" data-en="How I work">Comment je travaille</span>
+      <h2 class="sec-title" data-fr="Trois <em>principes</em>" data-en="Three <em>principles</em>">Trois <em>principes</em></h2>
     </div>
-    <div class="track-list" id="trackList">
-      <div class="track" data-src="assets/audio/transition-bergers-taverne.m4a" data-dur="1:34">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Transition Bergers / Taverne</h3><span data-fr="Composition originale" data-en="Original composition">Composition originale</span></div><div class="t-dur">1:34</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">1:34</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+    <div class="method-grid">
+      <div class="method-card reveal">
+        <div class="method-num">01</div>
+        <div class="method-title" data-fr="Cahier des charges" data-en="Brief">Cahier des charges</div>
+        <p class="method-text" data-fr="Lecture du projet, échange de références, identification des moments où la musique parle — et de ceux où elle se tait." data-en="Project reading, reference exchange, identifying moments where music speaks — and where it stays silent.">Lecture du projet, échange de références, identification des moments où la musique parle — et de ceux où elle se tait.</p>
       </div>
-      <div class="track" data-src="assets/audio/woodstock-express.mp3" data-dur="5:23">
-        <div class="track-row"><button class="play-btn" aria-label="Play"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Woodstock Express</h3><span data-fr="Bande originale · Long-métrage" data-en="Original score · Feature film">Bande originale · Long-métrage</span></div><div class="t-dur">5:23</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10" aria-label="Reculer 10s">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">5:23</span></div></div><button class="ctrl-skip" data-skip="10" aria-label="Avancer 10s">+10</button></div></div>
+      <div class="method-card reveal">
+        <div class="method-num">02</div>
+        <div class="method-title" data-fr="Calendrier tenu" data-en="Schedule kept">Calendrier tenu</div>
+        <p class="method-text" data-fr="Maquettes, jalons de retours fixés à l'avance, versions numérotées. Vous savez quoi attendre, et quand." data-en="Demos, feedback milestones set in advance, numbered versions. You know what to expect, and when.">Maquettes, jalons de retours fixés à l'avance, versions numérotées. Vous savez quoi attendre, et quand.</p>
       </div>
-      <div class="track" data-src="assets/audio/lenvol.m4a" data-dur="4:37">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>L'envol</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">4:37</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">4:37</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/the-wind-calls.m4a" data-dur="3:53">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>The Wind Calls</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">3:53</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">3:53</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/flying-sailor.m4a" data-dur="2:54">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Flying Sailor</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:54</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:54</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/sans-crier-gare.m4a" data-dur="3:01">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Sans crier gare</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">3:01</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">3:01</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/ma-nouvelle-maison.m4a" data-dur="2:15">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Ma nouvelle maison</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:15</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:15</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/jy-arriverai-pas.m4a" data-dur="2:48">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>J'y arriverai pas</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:48</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:48</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/arts-et-metiers.mp3" data-dur="2:16">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Arts et métiers</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:16</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:16</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/bastille.mp3" data-dur="2:01">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Bastille</h3><span data-fr="Chanson originale" data-en="Original song">Chanson originale</span></div><div class="t-dur">2:01</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:01</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
-      </div>
-      <div class="track" data-src="assets/audio/hymne-piment-dor.m4a" data-dur="2:06">
-        <div class="track-row"><button class="play-btn"><svg width="14" height="14" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button><div class="track-info"><h3>Hymne Piment d'or</h3><span data-fr="Musique de marque" data-en="Brand music">Musique de marque</span></div><div class="t-dur">2:06</div></div>
-        <div class="track-controls"><div class="ctrl-bar"><button class="ctrl-skip" data-skip="-10">−10</button><div class="ctrl-progress"><div class="ctrl-bar-track"><div class="ctrl-bar-fill"></div></div><div class="ctrl-time"><span class="ctrl-cur">0:00</span><span class="ctrl-tot">2:06</span></div></div><button class="ctrl-skip" data-skip="10">+10</button></div></div>
+      <div class="method-card reveal">
+        <div class="method-num">03</div>
+        <div class="method-title" data-fr="Sur mesure" data-en="Custom-made">Sur mesure</div>
+        <p class="method-text" data-fr="Composition originale, vrais musiciens si besoin (piano, voix, cordes, harmonica), stems propres prêts au mastering." data-en="Original composition, real musicians if needed (piano, voice, strings, harmonica), clean stems ready for mastering.">Composition originale, vrais musiciens si besoin (piano, voix, cordes, harmonica), stems propres prêts au mastering.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ====== METHOD ====== -->
-<section id="method" class="method container">
-  <div class="sec-head">
-    <span class="sec-eyebrow" data-fr="Comment je travaille" data-en="How I work">Comment je travaille</span>
-    <h2 class="sec-title" data-fr="Ma <em>méthode</em>" data-en="My <em>method</em>">Ma <em>méthode</em></h2>
-    <p class="sec-lead" data-fr="Trois étapes, des délais tenus, du sur-mesure." data-en="Three steps, deadlines met, custom work.">Trois étapes, des délais tenus, du sur-mesure.</p>
-  </div>
-  <div class="method-grid">
-    <div class="method-card reveal">
-      <div class="method-num">01</div>
-      <div class="method-title" data-fr="Cahier des charges" data-en="Brief">Cahier des charges</div>
-      <p class="method-text" data-fr="Lecture du projet, échange de références, identification des moments où la musique parle — et de ceux où elle se tait." data-en="Project reading, reference exchange, identifying moments where music speaks — and where it stays silent.">Lecture du projet, échange de références, identification des moments où la musique parle — et de ceux où elle se tait.</p>
-    </div>
-    <div class="method-card reveal">
-      <div class="method-num">02</div>
-      <div class="method-title" data-fr="Calendrier précis" data-en="Precise schedule">Calendrier précis</div>
-      <p class="method-text" data-fr="Maquettes, jalons de retours fixés à l'avance, versions numérotées. Vous savez quoi attendre, et quand." data-en="Demos, feedback milestones set in advance, numbered versions. You know what to expect, and when.">Maquettes, jalons de retours fixés à l'avance, versions numérotées. Vous savez quoi attendre, et quand.</p>
-    </div>
-    <div class="method-card reveal">
-      <div class="method-num">03</div>
-      <div class="method-title" data-fr="Livraison sur mesure" data-en="Custom delivery">Livraison sur mesure</div>
-      <p class="method-text" data-fr="Composition originale, vrais musiciens si besoin (piano, voix, cordes, harmonica), stems propres prêts au mastering." data-en="Original composition, real musicians if needed (piano, voice, strings, harmonica), clean stems ready for mastering.">Composition originale, vrais musiciens si besoin (piano, voix, cordes, harmonica), stems propres prêts au mastering.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ====== ABOUT ====== -->
-<section id="about" class="about">
+<!-- ================= ⑧ CONTACT ================= -->
+<section id="contact" class="contact">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-photo reveal" aria-label="Renaud Nico"></div>
-      <div class="about-body reveal">
-        <span class="sec-eyebrow" data-fr="À propos" data-en="About">À propos</span>
-        <h2 class="sec-title" style="font-size:clamp(28px,4.5vw,44px);margin-top:6px;margin-bottom:18px" data-fr="Servir le film, jamais le <em>couvrir</em>." data-en="Serve the film, never <em>cover</em> it.">Servir le film, jamais le <em>couvrir</em>.</h2>
-        <p data-fr="Pianiste compositeur, formé entre la France et les États-Unis, accompagné par <span class='hl'>Anne Olga de Pass</span>." data-en="Pianist composer, trained between France and the United States, mentored by <span class='hl'>Anne Olga de Pass</span>.">Pianiste compositeur, formé entre la France et les États-Unis, accompagné par <span class="hl">Anne Olga de Pass</span>.</p>
-        <p data-fr="Du long-métrage à la pièce de théâtre, des marques à la scène internationale, j'ai appris une chose : la musique de film, c'est d'abord une conversation avec celles et ceux qui font le projet." data-en="From feature film to theatre, from brands to international stages, I learned one thing: film music is first a conversation with those who make the project.">Du long-métrage à la pièce de théâtre, des marques à la scène internationale, j'ai appris une chose : la musique de film, c'est d'abord une conversation avec celles et ceux qui font le projet.</p>
-      </div>
+    <span class="sec-eyebrow" data-fr="Un projet en tête ?" data-en="A project in mind?">Un projet en tête ?</span>
+    <h2 data-fr="Donnons une voix<br>à vos <em>images</em>." data-en="Let's give a voice<br>to your <em>images</em>.">Donnons une voix<br>à vos <em>images</em>.</h2>
+    <p data-fr="Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite." data-en="Feature, short, series, theatre, brand, event — tell me about your project. I respond fast.">Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite.</p>
+    <div class="contact-actions">
+      <a href="mailto:renaudnco@gmail.com?subject=Projet%20musical" class="btn" data-fr="Écrivez-moi →" data-en="Email me →">Écrivez-moi →</a>
+      <a href="#listen" class="btn btn-ghost" data-fr="Réécouter" data-en="Listen again">Réécouter</a>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:renaudnco@gmail.com">renaudnco@gmail.com</a>
+      <a href="https://www.instagram.com/neo.bachique/" target="_blank" rel="noopener">Instagram · @neo.bachique</a>
+      <a href="https://soeursjumelles.com/" target="_blank" rel="noopener">Festival Sœurs Jumelles</a>
     </div>
   </div>
 </section>
 
-<!-- ====== CONTACT ====== -->
-<section id="contact" class="contact container">
-  <span class="sec-eyebrow" data-fr="On en discute ?" data-en="Let's talk?">On en discute ?</span>
-  <h2 data-fr="Donnons une voix<br>à vos <em>images</em>." data-en="Let's give a voice<br>to your <em>images</em>.">Donnons une voix<br>à vos <em>images</em>.</h2>
-  <p data-fr="Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite." data-en="Feature, short, series, theatre, brand, event — tell me about your project. I respond fast.">Long-métrage, court, série, théâtre, marque, événement — parlez-moi de votre projet. Je réponds vite.</p>
-  <div class="contact-actions">
-    <a href="mailto:renaudnco@gmail.com?subject=Projet%20musical" class="btn" data-fr="Écrivez-moi →" data-en="Email me →">Écrivez-moi →</a>
-    <a href="#listen" class="btn btn-ghost" data-fr="Réécouter" data-en="Listen again">Réécouter</a>
-  </div>
-  <div class="contact-links">
-    <a href="mailto:renaudnco@gmail.com">renaudnco@gmail.com</a>
-    <a href="https://www.instagram.com/neo.bachique/" target="_blank" rel="noopener">Instagram · @neo.bachique</a>
-    <a href="https://soeursjumelles.com/" target="_blank" rel="noopener">Festival Sœurs Jumelles</a>
-    <a href="https://anneolgadepass.com/" target="_blank" rel="noopener">Anne Olga de Pass</a>
-  </div>
-</section>
+<footer>© 2026 Renaud Nico</footer>
 
-<footer>© 2026 Renaud Nico — <span data-fr="Tous droits réservés" data-en="All rights reserved">Tous droits réservés</span></footer>
+<!-- ================= AUDIO BRIDGE (sticky player) ================= -->
+<div class="bridge" id="bridge">
+  <div class="bridge-inner">
+    <div class="bridge-track">
+      <div class="bridge-cover"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg></div>
+      <div class="bridge-meta">
+        <div class="bridge-title" id="bridgeTitle" data-fr="Prêt à écouter" data-en="Ready to listen">Prêt à écouter</div>
+        <div class="bridge-sub" id="bridgeSub" data-fr="Cliquez sur un morceau" data-en="Click a track">Cliquez sur un morceau</div>
+      </div>
+    </div>
+    <div class="bridge-controls">
+      <button class="bridge-btn" id="brPrev" aria-label="Précédent"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg></button>
+      <button class="bridge-btn" id="brBack" aria-label="-10s">−10</button>
+      <button class="bridge-btn main" id="brPlay" aria-label="Play/Pause"><svg id="brIcon" width="16" height="16" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+      <button class="bridge-btn" id="brFwd" aria-label="+10s">+10</button>
+      <button class="bridge-btn" id="brNext" aria-label="Suivant"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg></button>
+    </div>
+    <div class="bridge-progress">
+      <div class="bridge-bar" id="brBar"><div class="bridge-fill" id="brFill"></div></div>
+      <div class="bridge-time"><span id="brCur">0:00</span><span id="brDur">—:—</span></div>
+    </div>
+  </div>
+  <div class="bridge-mobile-bar"><div class="bridge-mobile-fill" id="brMobileFill"></div></div>
+</div>
 
 <script>
-  // ===== LANGUAGE TOGGLE + SWIPE =====
+  // ===== LANG =====
   const langToggle = document.getElementById('langToggle');
-  const demoSrcByLang = {fr:'assets/audio/demo-fr.m4a', en:'assets/audio/demo-en.m4a'};
   let currentLang = 'fr';
-
   function setLang(l){
     if(l === currentLang) return;
     currentLang = l;
     document.documentElement.lang = l;
     langToggle.dataset.lang = l;
-    langToggle.setAttribute('aria-checked', l === 'en');
-    document.querySelectorAll('[data-fr]').forEach(el=>{
+    document.querySelectorAll('[data-fr]').forEach(el => {
       const v = el.getAttribute('data-'+l);
       if(v !== null) el.innerHTML = v;
     });
-    // Swap demo audio
-    const wasPlaying = !demoAudio.paused;
-    demoAudio.src = demoSrcByLang[l];
-    if(wasPlaying){ demoAudio.play().catch(()=>{}); }
+    // Handle demo audio language swap
+    if(currentTrack && currentTrack.dataset.enSrc){
+      const wasPlaying = !audio.paused;
+      const t = audio.currentTime;
+      audio.src = l === 'en' ? currentTrack.dataset.enSrc : currentTrack.dataset.src;
+      audio.currentTime = t;
+      if(wasPlaying) audio.play().catch(()=>{});
+    }
+    // Update bridge title
+    updateBridgeMeta();
   }
-
   langToggle.addEventListener('click', ()=> setLang(currentLang === 'fr' ? 'en' : 'fr'));
-  langToggle.addEventListener('keydown', e => {
-    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); langToggle.click(); }
-  });
+  langToggle.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); langToggle.click(); }});
 
-  // Swipe gesture (left/right anywhere on body) to switch lang
-  let touchStartX = null, touchStartY = null;
+  // Swipe FR/EN
+  let tx = null, ty = null;
   document.addEventListener('touchstart', e => {
-    if(e.target.closest('.track-controls, .demo-bar, iframe, button, a, .lang-toggle')) return;
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
+    if(e.target.closest('.bridge, .track, iframe, button, a, .lang-toggle, .marquee-strip')) return;
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
   }, {passive:true});
   document.addEventListener('touchend', e => {
-    if(touchStartX === null) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
+    if(tx === null) return;
+    const dx = e.changedTouches[0].clientX - tx;
+    const dy = e.changedTouches[0].clientY - ty;
     if(Math.abs(dx) > 80 && Math.abs(dy) < 50){
-      if(dx < 0) setLang('en'); // swipe left → EN
-      else setLang('fr');       // swipe right → FR
+      setLang(dx < 0 ? 'en' : 'fr');
     }
-    touchStartX = null;
+    tx = null;
   }, {passive:true});
 
-  // Show swipe hint on first mobile visit
-  if(window.matchMedia('(max-width:720px)').matches){
-    document.body.classList.add('swipe-hint');
-    setTimeout(()=>document.body.classList.remove('swipe-hint'), 3500);
-  }
+  // ===== HERO IMAGE LOAD =====
+  const heroBg = document.getElementById('heroBg');
+  const heroImg = new Image();
+  heroImg.onload = () => heroBg.classList.add('loaded');
+  heroImg.src = 'assets/images/piano-hero.jpg';
 
-  // ===== DEMO AUDIO =====
-  const demoAudio = new Audio();
-  demoAudio.src = demoSrcByLang.fr;
-  demoAudio.preload = 'metadata';
-
-  const demoPlayBtn = document.getElementById('demoPlay');
-  const demoIcon = document.getElementById('demoIcon');
-  const demoFill = document.getElementById('demoFill');
-  const demoBar = document.getElementById('demoBar');
-  const demoCur = document.getElementById('demoCur');
-  const demoDur = document.getElementById('demoDur');
+  // ===== AUDIO ENGINE (single instance) =====
+  const audio = new Audio();
+  audio.preload = 'metadata';
+  let currentTrack = null;
+  const tracks = Array.from(document.querySelectorAll('.track'));
+  const bridge = document.getElementById('bridge');
+  const brIcon = document.getElementById('brIcon');
+  const brTitle = document.getElementById('bridgeTitle');
+  const brSub = document.getElementById('bridgeSub');
+  const brFill = document.getElementById('brFill');
+  const brMobileFill = document.getElementById('brMobileFill');
+  const brBar = document.getElementById('brBar');
+  const brCur = document.getElementById('brCur');
+  const brDur = document.getElementById('brDur');
   const ICON_PLAY = '<path d="M8 5v14l11-7z"/>';
   const ICON_PAUSE = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
-
   function fmt(s){ if(!isFinite(s)) return '—:—'; const m = Math.floor(s/60), x = Math.floor(s%60); return m+':'+(x<10?'0':'')+x; }
 
-  demoPlayBtn.addEventListener('click', ()=>{
-    if(currentTrack){ stopTrack(); }
-    if(demoAudio.paused) demoAudio.play().catch(()=>{});
-    else demoAudio.pause();
-  });
-  demoAudio.addEventListener('play', ()=>{ demoIcon.innerHTML = ICON_PAUSE; });
-  demoAudio.addEventListener('pause', ()=>{ demoIcon.innerHTML = ICON_PLAY; });
-  demoAudio.addEventListener('loadedmetadata', ()=>{ demoDur.textContent = fmt(demoAudio.duration); });
-  demoAudio.addEventListener('timeupdate', ()=>{
-    if(!demoAudio.duration) return;
-    demoFill.style.width = (demoAudio.currentTime/demoAudio.duration*100)+'%';
-    demoCur.textContent = fmt(demoAudio.currentTime);
-  });
-  demoAudio.addEventListener('ended', ()=>{ demoIcon.innerHTML = ICON_PLAY; demoFill.style.width = '0%'; });
-  demoBar.addEventListener('click', e => {
-    if(!demoAudio.duration) return;
-    const r = demoBar.getBoundingClientRect();
-    demoAudio.currentTime = ((e.clientX - r.left)/r.width)*demoAudio.duration;
-  });
-
-  // ===== TRACK PLAYER =====
-  const trackAudio = new Audio();
-  let currentTrack = null;
-
-  function setPlayIcon(track, playing){
-    const s = track.querySelector('.play-btn svg');
-    if(s) s.innerHTML = playing ? ICON_PAUSE : ICON_PLAY;
-  }
-  function stopTrack(){
+  function updateBridgeMeta(){
     if(!currentTrack) return;
-    trackAudio.pause();
-    currentTrack.classList.remove('playing');
-    setPlayIcon(currentTrack, false);
-    currentTrack = null;
+    const isEn = currentLang === 'en';
+    const title = (isEn && currentTrack.dataset.enTitle) ? currentTrack.dataset.enTitle : currentTrack.dataset.title;
+    const sub = (isEn && currentTrack.dataset.enSub) ? currentTrack.dataset.enSub : currentTrack.dataset.sub;
+    brTitle.textContent = title;
+    brSub.textContent = sub;
   }
+
   function playTrack(track){
-    if(!demoAudio.paused) demoAudio.pause();
     if(currentTrack && currentTrack !== track){
-      currentTrack.classList.remove('playing');
-      setPlayIcon(currentTrack, false);
+      currentTrack.classList.remove('active');
     }
     if(currentTrack === track){
-      trackAudio.paused ? trackAudio.play() : trackAudio.pause();
+      audio.paused ? audio.play() : audio.pause();
       return;
     }
-    trackAudio.src = track.dataset.src;
-    trackAudio.play().catch(()=>{});
+    const src = (currentLang === 'en' && track.dataset.enSrc) ? track.dataset.enSrc : track.dataset.src;
+    audio.src = src;
+    audio.play().catch(()=>{});
     currentTrack = track;
-    track.classList.add('playing');
-    setPlayIcon(track, true);
-  }
-
-  document.querySelectorAll('.track').forEach(track => {
-    track.querySelector('.track-row').addEventListener('click', () => playTrack(track));
-    // Skip ±10s
-    track.querySelectorAll('.ctrl-skip').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        if(currentTrack !== track) return;
-        const delta = parseFloat(btn.dataset.skip);
-        trackAudio.currentTime = Math.max(0, Math.min((trackAudio.duration||1e9), trackAudio.currentTime + delta));
-      });
-    });
-    // Scrub
-    const bar = track.querySelector('.ctrl-bar-track');
-    bar.addEventListener('click', e => {
-      e.stopPropagation();
-      if(currentTrack !== track || !trackAudio.duration) return;
-      const r = bar.getBoundingClientRect();
-      trackAudio.currentTime = ((e.clientX - r.left)/r.width)*trackAudio.duration;
-    });
-  });
-
-  trackAudio.addEventListener('play', () => { if(currentTrack){ currentTrack.classList.add('playing'); setPlayIcon(currentTrack, true); } });
-  trackAudio.addEventListener('pause', () => { if(currentTrack) setPlayIcon(currentTrack, false); });
-  trackAudio.addEventListener('ended', () => { stopTrack(); });
-  trackAudio.addEventListener('timeupdate', () => {
-    if(!currentTrack || !trackAudio.duration) return;
-    const pct = (trackAudio.currentTime/trackAudio.duration)*100;
-    const fill = currentTrack.querySelector('.ctrl-bar-fill');
-    const cur = currentTrack.querySelector('.ctrl-cur');
-    if(fill) fill.style.width = pct + '%';
-    if(cur) cur.textContent = fmt(trackAudio.currentTime);
-  });
-  trackAudio.addEventListener('loadedmetadata', () => {
-    if(!currentTrack) return;
-    const tot = currentTrack.querySelector('.ctrl-tot');
-    if(tot) tot.textContent = fmt(trackAudio.duration);
-  });
-
-  // ===== FEATURED FILM (Premier Service) =====
-  const ffCard = document.getElementById('ffPremier');
-  const ffPoster = document.getElementById('ffPoster');
-  const ffIframe = document.getElementById('ffIframe');
-  const ffCta = document.getElementById('ffCta');
-  function playFeaturedFilm(){
-    if(!demoAudio.paused) demoAudio.pause();
-    if(currentTrack) stopTrack();
-    if(!ffIframe.querySelector('iframe')){
-      ffIframe.innerHTML = '<iframe src="https://player.vimeo.com/video/1153730026?autoplay=1&title=0&byline=0&portrait=0" title="Premier Service — Valentin Prost" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    track.classList.add('active');
+    updateBridgeMeta();
+    if(!bridge.classList.contains('visible')){
+      bridge.classList.add('visible');
+      document.body.style.paddingBottom = '110px';
     }
-    ffCard.classList.add('playing');
   }
-  ffPoster.addEventListener('click', playFeaturedFilm);
-  ffCta.addEventListener('click', playFeaturedFilm);
+
+  tracks.forEach(track => {
+    track.addEventListener('click', () => playTrack(track));
+  });
+
+  // Hero play button → demo
+  document.getElementById('heroPlayBtn').addEventListener('click', () => {
+    playTrack(tracks[0]);
+    document.getElementById('listen').scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  audio.addEventListener('play', () => {
+    brIcon.innerHTML = ICON_PAUSE;
+    if(currentTrack) currentTrack.classList.add('active');
+  });
+  audio.addEventListener('pause', () => {
+    brIcon.innerHTML = ICON_PLAY;
+  });
+  audio.addEventListener('ended', () => {
+    // Auto next
+    if(!currentTrack) return;
+    const idx = tracks.indexOf(currentTrack);
+    if(idx < tracks.length - 1) playTrack(tracks[idx + 1]);
+    else{ currentTrack.classList.remove('active'); currentTrack = null; brIcon.innerHTML = ICON_PLAY; }
+  });
+  audio.addEventListener('loadedmetadata', () => { brDur.textContent = fmt(audio.duration); });
+  audio.addEventListener('timeupdate', () => {
+    if(!audio.duration) return;
+    const pct = (audio.currentTime / audio.duration) * 100;
+    brFill.style.width = pct + '%';
+    brMobileFill.style.width = pct + '%';
+    brCur.textContent = fmt(audio.currentTime);
+  });
+
+  // Bridge controls
+  document.getElementById('brPlay').addEventListener('click', () => {
+    if(!currentTrack) return playTrack(tracks[0]);
+    audio.paused ? audio.play() : audio.pause();
+  });
+  document.getElementById('brBack').addEventListener('click', () => {
+    if(!currentTrack) return;
+    audio.currentTime = Math.max(0, audio.currentTime - 10);
+  });
+  document.getElementById('brFwd').addEventListener('click', () => {
+    if(!currentTrack) return;
+    audio.currentTime = Math.min(audio.duration || 1e9, audio.currentTime + 10);
+  });
+  document.getElementById('brPrev').addEventListener('click', () => {
+    if(!currentTrack) return;
+    const idx = tracks.indexOf(currentTrack);
+    if(idx > 0) playTrack(tracks[idx - 1]);
+    else audio.currentTime = 0;
+  });
+  document.getElementById('brNext').addEventListener('click', () => {
+    if(!currentTrack) return;
+    const idx = tracks.indexOf(currentTrack);
+    if(idx < tracks.length - 1) playTrack(tracks[idx + 1]);
+  });
+  brBar.addEventListener('click', e => {
+    if(!audio.duration) return;
+    const r = brBar.getBoundingClientRect();
+    audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
+  });
 
   // ===== REVEAL =====
-  const obs = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } }), {threshold:.12});
+  const obs = new IntersectionObserver((es) => es.forEach(e => {
+    if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+  }), {threshold:.12});
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 </script>
 </body>
