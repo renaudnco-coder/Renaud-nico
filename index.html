@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Renaud Nico — Compositeur de musique à l'image</title>
-<meta name="description" content="Renaud Nico — compositeur de musique à l'image. Long-métrage, court-métrage, théâtre, marques.">
+<title>Renaud Nino — Compositeur de musique à l'image</title>
+<meta name="description" content="Renaud Nino — compositeur de musique à l'image. Long-métrage, court-métrage, théâtre, marques.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,8 +39,8 @@
     background:var(--bg);color:var(--text);
     font-family:'Inter Tight',sans-serif;font-weight:400;line-height:1.55;
     overflow-x:hidden;-webkit-font-smoothing:antialiased;font-size:16px;
-    padding-bottom:80px;
   }
+  body.bridge-open{padding-bottom:100px}
   ::selection{background:var(--pink);color:var(--bg)}
   img,iframe{max-width:100%;display:block}
   a{color:inherit}
@@ -184,40 +184,12 @@
   .hero-scroll{
     position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
     font-size:10px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;
-    z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;
+    z-index:2;display:none;flex-direction:column;align-items:center;gap:6px;
     animation:bob 2.4s ease-in-out infinite;
   }
+  @media(min-width:900px){.hero-scroll{display:flex}}
   .hero-scroll::after{content:'';width:1px;height:32px;background:var(--muted)}
   @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
-
-  /* ================= MARQUEE LOGOS ================= */
-  .marquee-strip{
-    padding:36px 0;background:var(--bg);
-    border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-    overflow:hidden;position:relative;
-  }
-  .marquee-strip::before,.marquee-strip::after{
-    content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
-  }
-  .marquee-strip::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
-  .marquee-strip::after{right:0;background:linear-gradient(-90deg,var(--bg),transparent)}
-  .marquee-track{
-    display:flex;gap:56px;animation:marquee 26s linear infinite;
-    width:max-content;align-items:center;
-  }
-  @media(min-width:720px){.marquee-track{gap:78px}}
-  @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-  .marquee-logo{
-    flex-shrink:0;height:52px;width:auto;
-    filter:brightness(0) invert(1) opacity(.55);
-    transition:filter .35s ease;
-  }
-  @media(min-width:720px){.marquee-logo{height:60px}}
-  .marquee-logo:hover{filter:brightness(0) invert(1) opacity(1)}
-  .marquee-caption{
-    text-align:center;font-size:11px;letter-spacing:4px;text-transform:uppercase;
-    color:var(--muted);font-weight:600;margin-bottom:24px;
-  }
 
   /* ================= LISTEN ================= */
   .listen{padding:100px 0;background:var(--bg)}
@@ -443,7 +415,7 @@
 <!-- ================= NAV ================= -->
 <nav>
   <div class="nav-inner">
-    <a href="#top" class="nav-brand">Renaud <em>Nico</em></a>
+    <a href="#top" class="nav-brand">Renaud <em>Nino</em></a>
     <div class="nav-right">
       <div class="nav-menu">
         <a href="#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
@@ -464,7 +436,7 @@
   <div class="hero-bg" id="heroBg"></div>
   <div class="container hero-content">
     <div class="hero-eyebrow" data-fr="Compositeur · Musique à l'image" data-en="Composer · Music for screen">Compositeur · Musique à l'image</div>
-    <h1 class="hero-name">Renaud <em>Nico</em></h1>
+    <h1 class="hero-name">Renaud <em>Nino</em></h1>
     <p class="hero-tagline" data-fr="J'écris la musique de vos <span class='hl'>films</span>, <span class='hl'>séries</span>, <span class='hl'>marques</span> et <span class='hl'>pièces</span>." data-en="I write the music for your <span class='hl'>films</span>, <span class='hl'>series</span>, <span class='hl'>brands</span> and <span class='hl'>plays</span>.">J'écris la musique de vos <span class="hl">films</span>, <span class="hl">séries</span>, <span class="hl">marques</span> et <span class="hl">pièces</span>.</p>
     <div class="hero-cta">
       <button class="btn" id="heroPlayBtn" data-fr="▶ Écouter la démo" data-en="▶ Listen to demo">▶ Écouter la démo</button>
@@ -474,32 +446,13 @@
   <div class="hero-scroll" data-fr="Faire défiler" data-en="Scroll">Faire défiler</div>
 </header>
 
-<!-- ================= ② MARQUEE LOGOS ================= -->
-<div class="marquee-strip">
-  <div class="marquee-track" id="marqueeTrack">
-    <img class="marquee-logo" src="assets/images/logos/naro.jpg" alt="Naro">
-    <img class="marquee-logo" src="assets/images/logos/bbq-expo.jpg" alt="Barbecue Expo">
-    <img class="marquee-logo" src="assets/images/logos/bbq-fest.jpg" alt="Barbecue Fest">
-    <img class="marquee-logo" src="assets/images/logos/salon-du-bon.jpg" alt="Salon du Bon">
-    <img class="marquee-logo" src="assets/images/logos/ateliers-gobelins.jpg" alt="Ateliers Gobelins">
-    <img class="marquee-logo" src="assets/images/logos/atelier-de-sevres.jpg" alt="Atelier de Sèvres">
-    <!-- duplicated for seamless loop -->
-    <img class="marquee-logo" src="assets/images/logos/naro.jpg" alt="">
-    <img class="marquee-logo" src="assets/images/logos/bbq-expo.jpg" alt="">
-    <img class="marquee-logo" src="assets/images/logos/bbq-fest.jpg" alt="">
-    <img class="marquee-logo" src="assets/images/logos/salon-du-bon.jpg" alt="">
-    <img class="marquee-logo" src="assets/images/logos/ateliers-gobelins.jpg" alt="">
-    <img class="marquee-logo" src="assets/images/logos/atelier-de-sevres.jpg" alt="">
-  </div>
-</div>
-
-<!-- ================= ③ LISTEN ================= -->
+<!-- ================= ② LISTEN ================= -->
 <section id="listen" class="listen">
   <div class="container-narrow">
     <div class="sec-head">
       <span class="sec-eyebrow" data-fr="Catalogue original" data-en="Original catalogue">Catalogue original</span>
       <h2 class="sec-title" data-fr="<em>Écouter</em> le travail" data-en="<em>Listen</em> to the work">Écouter le travail</h2>
-      <p class="sec-lead" data-fr="Sélection de morceaux — bandes originales, chansons, musique de marque. Le lecteur en bas de l'écran vous suit partout." data-en="Selected tracks — scores, songs, brand music. The player at the bottom stays with you.">Sélection de morceaux — bandes originales, chansons, musique de marque. Le lecteur en bas de l'écran vous suit partout.</p>
+      <p class="sec-lead" data-fr="Sélection de morceaux — bandes originales, chansons, musique de marque." data-en="Selected tracks — scores, songs, brand music.">Sélection de morceaux — bandes originales, chansons, musique de marque.</p>
     </div>
 
     <div class="track-list" id="trackList">
@@ -720,7 +673,7 @@
   </div>
 </section>
 
-<footer>© 2026 Renaud Nico</footer>
+<footer>© 2026 Renaud Nino</footer>
 
 <!-- ================= AUDIO BRIDGE (sticky player) ================= -->
 <div class="bridge" id="bridge">
@@ -839,7 +792,7 @@
     updateBridgeMeta();
     if(!bridge.classList.contains('visible')){
       bridge.classList.add('visible');
-      document.body.style.paddingBottom = '110px';
+      document.body.classList.add('bridge-open');
     }
   }
 
