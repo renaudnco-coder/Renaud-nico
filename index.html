@@ -200,6 +200,55 @@
   /* === VIDEO GRID (projects) === */
   .videos{padding:60px 0;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   @media(min-width:860px){.videos{padding:90px 0}}
+
+  /* === FEATURED FILM (Premier Service) === */
+  .featured-film{margin-top:36px;margin-bottom:40px}
+  .ff-card{
+    display:grid;grid-template-columns:1fr;gap:22px;
+    background:var(--bg);border:1px solid var(--line);border-radius:18px;
+    overflow:hidden;box-shadow:var(--shadow-md);
+  }
+  @media(min-width:780px){
+    .ff-card{grid-template-columns:minmax(0,2fr) minmax(0,3fr);gap:0;align-items:stretch}
+  }
+  .ff-poster{
+    position:relative;aspect-ratio:4/5;background:#000;
+    cursor:pointer;overflow:hidden;
+  }
+  .ff-poster img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .ff-poster:hover img{transform:scale(1.03)}
+  .ff-poster::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.55) 100%);
+    pointer-events:none;opacity:0;transition:opacity .35s ease;
+  }
+  .ff-poster:hover::after{opacity:1}
+  .ff-play-btn{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:72px;height:72px;border-radius:50%;
+    background:rgba(255,255,255,.94);color:var(--ink);
+    border:none;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 36px rgba(0,0,0,.4);
+    transition:transform .25s ease,background .25s ease;
+  }
+  .ff-poster:hover .ff-play-btn{transform:translate(-50%,-50%) scale(1.08);background:var(--gold);color:var(--paper)}
+  .ff-play-btn svg{margin-left:4px;fill:currentColor}
+  .ff-iframe-wrap{position:relative;aspect-ratio:16/9;background:#000;display:none}
+  .ff-card.playing .ff-poster{display:none}
+  .ff-card.playing .ff-iframe-wrap{display:block;grid-column:1 / -1}
+  .ff-iframe-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .ff-info{padding:28px 26px;display:flex;flex-direction:column;justify-content:center;gap:14px}
+  @media(min-width:780px){.ff-info{padding:38px 38px}}
+  .ff-tag{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);font-weight:700}
+  .ff-title{font-family:'Instrument Serif',serif;font-size:clamp(32px,4.5vw,46px);font-weight:400;letter-spacing:-.015em;line-height:1;color:var(--ink)}
+  .ff-title em{font-style:italic;color:var(--gold)}
+  .ff-credits{font-size:14px;color:var(--ink-soft);line-height:1.65}
+  .ff-credits strong{color:var(--ink);font-weight:500}
+  .ff-credit-row{margin-top:2px}
+  .ff-credit-row:not(:last-child){padding-bottom:2px}
+  .ff-cta{margin-top:10px;align-self:flex-start}
+
   .video-grid{display:grid;grid-template-columns:1fr;gap:22px;margin-top:36px}
   @media(min-width:720px){.video-grid{grid-template-columns:1fr 1fr;gap:26px}}
   .vid-item{
@@ -429,6 +478,28 @@
       <span class="sec-eyebrow" data-fr="Mes vidéos" data-en="My videos">Mes vidéos</span>
       <h2 class="sec-title" data-fr="Quelques <em>projets</em> en images" data-en="Selected <em>projects</em> on screen">Quelques <em>projets</em> en images</h2>
     </div>
+
+    <div class="featured-film reveal">
+      <div class="ff-card" id="ffPremier">
+        <div class="ff-poster" id="ffPoster">
+          <img src="assets/images/affiches/premier-service.png" alt="Premier Service — Affiche" loading="lazy">
+          <button class="ff-play-btn" aria-label="Voir le film"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></button>
+        </div>
+        <div class="ff-iframe-wrap" id="ffIframe"></div>
+        <div class="ff-info">
+          <span class="ff-tag" data-fr="Court-métrage · À l'affiche" data-en="Short film · Now showing">Court-métrage · À l'affiche</span>
+          <h3 class="ff-title">Premier <em>Service</em></h3>
+          <div class="ff-credits">
+            <div class="ff-credit-row"><span data-fr="Un film de" data-en="A film by">Un film de</span> <strong>Valentin Prost</strong></div>
+            <div class="ff-credit-row"><span data-fr="Musique originale :" data-en="Original score:">Musique originale :</span> <strong>Renaud Nicolas</strong></div>
+            <div class="ff-credit-row"><span data-fr="Avec" data-en="Starring">Avec</span> Maud Casari Tenenbaum, Elisabeth Renault-Geslin, Jean-Pierre Cliquet, André Lamorthe, Jean-François Mounet</div>
+            <div class="ff-credit-row"><span data-fr="Production :" data-en="Production:">Production :</span> <strong>Kino Pop Paname</strong></div>
+          </div>
+          <button class="btn ff-cta" id="ffCta" data-fr="▶ Voir le film" data-en="▶ Watch the film">▶ Voir le film</button>
+        </div>
+      </div>
+    </div>
+
     <div class="video-grid">
       <div class="vid-item reveal">
         <div class="vid-frame"><iframe src="https://www.youtube.com/embed/lodZSW_CFD4" title="Projet — Renaud Nico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe></div>
@@ -782,6 +853,22 @@
     const tot = currentTrack.querySelector('.ctrl-tot');
     if(tot) tot.textContent = fmt(trackAudio.duration);
   });
+
+  // ===== FEATURED FILM (Premier Service) =====
+  const ffCard = document.getElementById('ffPremier');
+  const ffPoster = document.getElementById('ffPoster');
+  const ffIframe = document.getElementById('ffIframe');
+  const ffCta = document.getElementById('ffCta');
+  function playFeaturedFilm(){
+    if(!demoAudio.paused) demoAudio.pause();
+    if(currentTrack) stopTrack();
+    if(!ffIframe.querySelector('iframe')){
+      ffIframe.innerHTML = '<iframe src="https://player.vimeo.com/video/1153730026?autoplay=1&title=0&byline=0&portrait=0" title="Premier Service — Valentin Prost" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    }
+    ffCard.classList.add('playing');
+  }
+  ffPoster.addEventListener('click', playFeaturedFilm);
+  ffCta.addEventListener('click', playFeaturedFilm);
 
   // ===== REVEAL =====
   const obs = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } }), {threshold:.12});
