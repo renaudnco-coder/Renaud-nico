@@ -7,8 +7,18 @@
 <meta name="description" content="Ma méthode de travail : cahier des charges, calendrier précis, résultat sur mesure. Comment composer pour votre projet — film, théâtre, marque.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
+  /* LOGO OKTAV — la gamme qui monte et s'intensifie */
+  .oktav{display:inline-flex;align-items:flex-end;font-family:'Space Grotesk',sans-serif;letter-spacing:.08em;line-height:1;text-transform:none;padding-top:.72em}
+  .hero-name .oktav{font-size:.72em}
+  .oktav>span{display:inline-block}
+  .oktav>span:nth-child(1){font-weight:300}
+  .oktav>span:nth-child(2){font-weight:400;transform:translateY(-.18em)}
+  .oktav>span:nth-child(3){font-weight:500;transform:translateY(-.36em)}
+  .oktav>span:nth-child(4){font-weight:600;transform:translateY(-.54em)}
+  .oktav>span:nth-child(5){font-weight:700;transform:translateY(-.72em)}
+
   :root{
     --navy:#04060E;
     --navy-2:#070A14;
@@ -117,7 +127,7 @@
 <div class="grain"></div>
 
 <nav id="nav">
-  <a href="index.html" class="logo-link">OKTAV</a>
+  <a href="index.html" class="logo-link"><span class="oktav" role="img" aria-label="OKTAV"><span>O</span><span>K</span><span>T</span><span>A</span><span>V</span></span></a>
   <div class="nav-links">
     <a href="index.html#works" data-fr="Œuvres" data-en="Work">Œuvres</a>
     <a href="index.html#listen" data-fr="Écouter" data-en="Listen">Écouter</a>

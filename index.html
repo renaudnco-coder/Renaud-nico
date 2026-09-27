@@ -7,8 +7,18 @@
 <meta name="description" content="OKTAV — compositeur de musique à l'image. Long-métrage, court-métrage, théâtre, marques.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+  /* LOGO OKTAV — la gamme qui monte et s'intensifie */
+  .oktav{display:inline-flex;align-items:flex-end;font-family:'Space Grotesk',sans-serif;letter-spacing:.08em;line-height:1;text-transform:none;padding-top:.72em}
+  .hero-name .oktav{font-size:.72em}
+  .oktav>span{display:inline-block}
+  .oktav>span:nth-child(1){font-weight:300}
+  .oktav>span:nth-child(2){font-weight:400;transform:translateY(-.18em)}
+  .oktav>span:nth-child(3){font-weight:500;transform:translateY(-.36em)}
+  .oktav>span:nth-child(4){font-weight:600;transform:translateY(-.54em)}
+  .oktav>span:nth-child(5){font-weight:700;transform:translateY(-.72em)}
+
   :root{
     /* PALETTE — extraite de la photo piano néon */
     --bg:#0A0813;
@@ -404,6 +414,36 @@
 
   footer{padding:28px 0;text-align:center;font-size:11px;color:var(--muted);border-top:1px solid var(--border);letter-spacing:1px;text-transform:uppercase}
 
+
+  /* ================= PRIVÉ — pianiste pour événements (DA éditoriale sépia) ================= */
+  .prive{padding:0;background:#0A0907;border-top:1px solid var(--border);scroll-margin-top:60px;overflow:hidden}
+  .prive-grid{display:grid;grid-template-columns:1fr}
+  @media(min-width:900px){.prive-grid{grid-template-columns:5fr 6fr;min-height:100vh}}
+  .prive-photo{position:relative;aspect-ratio:4/5;background:#0A0907 url('assets/images/prive-live.jpg') center 30%/cover no-repeat}
+  @media(min-width:900px){.prive-photo{aspect-ratio:auto}}
+  .prive-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,#0A0907 100%)}
+  @media(min-width:900px){.prive-photo::after{background:linear-gradient(90deg,transparent 70%,#0A0907 100%)}}
+  .prive-cap{position:absolute;left:22px;bottom:22px;z-index:1;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(240,233,218,.55)}
+  .prive-body{display:flex;flex-direction:column;justify-content:center;padding:56px 22px 90px}
+  @media(min-width:900px){.prive-body{padding:120px 8vw 120px 6vw}}
+  .prive .sec-eyebrow{color:#C9A46A}
+  .prive-title{font-family:'Space Grotesk',sans-serif;font-weight:300;font-size:clamp(38px,4.6vw,68px);line-height:1.04;letter-spacing:-.03em;color:#EFE6D4}
+  .prive-title strong{font-weight:600}
+  .prive-lead{color:#A89F8E;font-size:17px;margin-top:18px}
+  .offer{margin-top:56px;border-top:1px solid rgba(239,230,212,.14);max-width:520px}
+  .offer-row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:20px 0;border-bottom:1px solid rgba(239,230,212,.14)}
+  .offer-name{font-family:'Space Grotesk',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:#EFE6D4}
+  .offer-price{font-family:'Space Grotesk',sans-serif;font-weight:300;font-size:22px;color:#EFE6D4}
+  .offer ul{list-style:none;padding:20px 0 0;display:flex;flex-direction:column;gap:10px}
+  .offer li{font-size:15px;color:#A89F8E;padding-left:22px;position:relative}
+  .offer li::before{content:'';position:absolute;left:0;top:.72em;width:10px;height:1px;background:#C9A46A}
+  .prive-btn{display:inline-block;margin-top:40px;padding:15px 30px;border-radius:6px;background:#EFE6D4;color:#0A0907;font-size:13px;font-weight:600;letter-spacing:.6px;text-decoration:none;align-self:flex-start;transition:background .2s ease;cursor:pointer}
+  .prive-btn:hover{background:#C9A46A}
+  .prive-btn:focus-visible{outline:2px solid #C9A46A;outline-offset:4px}
+  .prive-refs{margin-top:64px;font-size:13px;color:#7E766A;line-height:1.9}
+  .prive-refs span{display:block;font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+  .prive-refs b{font-weight:400;color:#C8BFAE}
+
   /* ================= REVEAL ================= */
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
   .reveal.in{opacity:1;transform:none}
@@ -415,7 +455,7 @@
 <!-- ================= NAV ================= -->
 <nav>
   <div class="nav-inner">
-    <a href="#top" class="nav-brand">OKTAV</a>
+    <a href="#top" class="nav-brand"><span class="oktav" role="img" aria-label="OKTAV"><span>O</span><span>K</span><span>T</span><span>A</span><span>V</span></span></a>
     <div class="nav-right">
       <div class="nav-menu">
         <a href="#listen" data-fr="Écouter" data-en="Listen">Écouter</a>
@@ -436,7 +476,7 @@
   <div class="hero-bg" id="heroBg"></div>
   <div class="container hero-content">
     <div class="hero-eyebrow" data-fr="Compositeur · Musique à l'image" data-en="Composer · Music for screen">Compositeur · Musique à l'image</div>
-    <h1 class="hero-name">OKTAV</h1>
+    <h1 class="hero-name"><span class="oktav" role="img" aria-label="OKTAV"><span>O</span><span>K</span><span>T</span><span>A</span><span>V</span></span></h1>
     <p class="hero-tagline" data-fr="J'écris la musique de vos <span class='hl'>films</span>, <span class='hl'>séries</span>, <span class='hl'>marques</span> et <span class='hl'>pièces</span>." data-en="I write the music for your <span class='hl'>films</span>, <span class='hl'>series</span>, <span class='hl'>brands</span> and <span class='hl'>plays</span>.">J'écris la musique de vos <span class="hl">films</span>, <span class="hl">séries</span>, <span class="hl">marques</span> et <span class="hl">pièces</span>.</p>
     <div class="hero-cta">
       <button class="btn" id="heroPlayBtn" data-fr="▶ Écouter la démo" data-en="▶ Listen to demo">▶ Écouter la démo</button>
@@ -669,6 +709,30 @@
       <a href="mailto:renaudnco@gmail.com">renaudnco@gmail.com</a>
       <a href="https://www.instagram.com/neo.bachique/" target="_blank" rel="noopener">Instagram · @neo.bachique</a>
       <a href="https://soeursjumelles.com/" target="_blank" rel="noopener">Festival Sœurs Jumelles</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ⑨ PRIVÉ — pianiste pour événements (oktavmusic.com/prive) ================= -->
+<section id="prive" class="prive">
+  <div class="prive-grid">
+    <div class="prive-photo" role="img" aria-label="OKTAV au piano en soirée">
+      <span class="prive-cap">OKTAV — live</span>
+    </div>
+    <div class="prive-body">
+      <span class="sec-eyebrow" data-fr="Événements privés" data-en="Private events">Événements privés</span>
+      <h2 class="prive-title reveal" data-fr="Le piano de vos soirées <strong>d'exception</strong>." data-en="The piano for your <strong>exceptional</strong> evenings.">Le piano de vos soirées <strong>d'exception</strong>.</h2>
+      <p class="prive-lead reveal" data-fr="Tout le répertoire. Une ambiance unique." data-en="Every song. A one-of-a-kind mood.">Tout le répertoire. Une ambiance unique.</p>
+      <div class="offer reveal">
+        <div class="offer-row"><span class="offer-name" data-fr="La soirée" data-en="The evening">La soirée</span><span class="offer-price" data-fr="Sur devis" data-en="On request">Sur devis</span></div>
+        <ul>
+          <li data-fr="Du cocktail au dernier morceau" data-en="From cocktails to the last song">Du cocktail au dernier morceau</li>
+          <li data-fr="Répertoire à la demande" data-en="Repertoire on request">Répertoire à la demande</li>
+          <li data-fr="Les demandes de vos invités, en direct" data-en="Your guests' requests, played live">Les demandes de vos invités, en direct</li>
+        </ul>
+      </div>
+      <a class="prive-btn" href="mailto:renaudnco@gmail.com?subject=%C3%89v%C3%A9nement%20priv%C3%A9" data-fr="Réserver une date" data-en="Book a date">Réserver une date</a>
+      <p class="prive-refs reveal"><span data-fr="Ils m'ont reçu" data-en="Played for">Ils m'ont reçu</span><b>JPC</b> · <b>Salon du Bon</b> · <b>Théâtre de Grégorio</b> · <b>Barbecue Festival</b></p>
     </div>
   </div>
 </section>

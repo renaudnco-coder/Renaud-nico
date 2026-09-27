@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/prive", "destination": "/#prive", "permanent": false },
+    { "source": "/private", "destination": "/#prive", "permanent": false }
+  ]
+}
