@@ -1,6 +1,69 @@
 {
   "redirects": [
-    { "source": "/prive", "destination": "/#prive", "permanent": false },
-    { "source": "/private", "destination": "/#prive", "permanent": false }
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.oktavmusic.com"
+        }
+      ],
+      "destination": "https://oktavmusic.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "renaudnico.com"
+        }
+      ],
+      "destination": "https://oktavmusic.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.renaudnico.com"
+        }
+      ],
+      "destination": "https://oktavmusic.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "octave-music.com"
+        }
+      ],
+      "destination": "https://oktavmusic.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.octave-music.com"
+        }
+      ],
+      "destination": "https://oktavmusic.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/prive",
+      "destination": "/#prive",
+      "permanent": false
+    },
+    {
+      "source": "/private",
+      "destination": "/#prive",
+      "permanent": false
+    }
   ]
 }
