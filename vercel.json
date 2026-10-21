@@ -5,10 +5,32 @@
       "has": [
         {
           "type": "host",
+          "value": "www.octave-music.com"
+        }
+      ],
+      "destination": "https://octave-music.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "oktavmusic.com"
+        }
+      ],
+      "destination": "https://octave-music.com/:path*",
+      "permanent": false
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
           "value": "www.oktavmusic.com"
         }
       ],
-      "destination": "https://oktavmusic.com/:path*",
+      "destination": "https://octave-music.com/:path*",
       "permanent": false
     },
     {
@@ -19,7 +41,7 @@
           "value": "renaudnico.com"
         }
       ],
-      "destination": "https://oktavmusic.com/:path*",
+      "destination": "https://octave-music.com/:path*",
       "permanent": false
     },
     {
@@ -30,29 +52,7 @@
           "value": "www.renaudnico.com"
         }
       ],
-      "destination": "https://oktavmusic.com/:path*",
-      "permanent": false
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "octave-music.com"
-        }
-      ],
-      "destination": "https://oktavmusic.com/:path*",
-      "permanent": false
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.octave-music.com"
-        }
-      ],
-      "destination": "https://oktavmusic.com/:path*",
+      "destination": "https://octave-music.com/:path*",
       "permanent": false
     },
     {
