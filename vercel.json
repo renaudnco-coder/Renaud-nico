@@ -57,13 +57,19 @@
     },
     {
       "source": "/prive",
-      "destination": "/#prive",
+      "destination": "/",
       "permanent": false
     },
     {
       "source": "/private",
-      "destination": "/#prive",
+      "destination": "/",
       "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/compositeur",
+      "destination": "/compositeur.html"
     }
   ]
 }
