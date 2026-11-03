@@ -1,6 +1,61 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.octave-music.com"
+        }
+      ],
+      "destination": "https://octave-music.com/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "oktavmusic.com"
+        }
+      ],
+      "destination": "https://octave-music.com/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.oktavmusic.com"
+        }
+      ],
+      "destination": "https://octave-music.com/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "renaudnico.com"
+        }
+      ],
+      "destination": "https://octave-music.com/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.renaudnico.com"
+        }
+      ],
+      "destination": "https://octave-music.com/",
+      "permanent": false
+    },
+    {
       "source": "/:path*",
       "has": [
         {
