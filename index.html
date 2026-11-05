@@ -291,6 +291,21 @@ section{position:relative}
 .run.static .run-list{flex-wrap:wrap;row-gap:6px}
 .run.static{-webkit-mask-image:none;mask-image:none}
 @media (prefers-reduced-motion:reduce){.run-track{animation:none;width:auto}.run-list{flex-wrap:wrap;row-gap:6px}.run{-webkit-mask-image:none;mask-image:none}.run-list[aria-hidden]{display:none}}
+
+/* Un poisson rouge qui nage dans le noir de « À propos » */
+.about{overflow:hidden}
+.about .wrap{position:relative;z-index:1}
+.fish{position:absolute;z-index:0;top:9%;right:16%;width:170px;height:auto;pointer-events:none;mix-blend-mode:screen;
+  -webkit-mask-image:radial-gradient(closest-side,#000 60%,transparent);mask-image:radial-gradient(closest-side,#000 60%,transparent);
+  animation:nage 16s ease-in-out infinite}
+@keyframes nage{
+  0%{transform:translate(0,0) rotate(-6deg)}
+  25%{transform:translate(-26px,-14px) rotate(4deg)}
+  50%{transform:translate(-48px,8px) rotate(-3deg)}
+  75%{transform:translate(-18px,16px) rotate(6deg)}
+  100%{transform:translate(0,0) rotate(-6deg)}}
+@media (max-width:959px){.fish{display:none}}
+@media (prefers-reduced-motion:reduce){.fish{animation:none}}
 </style>
 </head>
 <body>
@@ -407,6 +422,7 @@ section{position:relative}
 
   <!-- À propos -->
   <section class="about" id="apropos">
+    <img class="fish" src="assets/images/octave/poisson.jpg" alt="" aria-hidden="true" loading="lazy">
     <div class="wrap about-grid">
       <figure class="about-img rv"><img src="assets/images/octave/live.jpg" alt="Octave au clavier, devant la Seine" data-en-alt="Octave at the keyboard, by the Seine" loading="lazy"></figure>
       <div class="rv">
