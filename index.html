@@ -129,16 +129,8 @@ section{position:relative}
 .rule{display:block;width:1px;height:64px;background:linear-gradient(var(--gold),transparent);margin:0 auto 40px}
 
 /* Écouter */
-.film{position:relative;height:clamp(520px,88vh,900px);overflow:hidden;background:#05070A}
-.film img{width:100%;height:100%;object-fit:cover;object-position:40% 40%}
-.film::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,16,.9),rgba(10,12,16,.1) 50%,rgba(10,12,16,.45))}
-.film-top{position:absolute;z-index:2;top:clamp(100px,9vw,120px);left:0;right:0}
-.film-mid{position:absolute;z-index:2;inset:0;display:grid;place-items:center}
 .play{display:grid;place-items:center;width:96px;height:96px;border-radius:50%;border:1px solid rgba(241,238,231,.6);background:rgba(10,12,16,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .play svg{width:22px;height:22px;margin-left:4px;fill:var(--fg)}
-.film-bottom{position:absolute;z-index:2;left:0;right:0;bottom:clamp(36px,7vw,72px)}
-.film-bottom .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-.film-bottom h2{font-size:clamp(32px,4vw,52px)}
 .soon{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--fg-2);border:1px solid var(--line);padding:9px 14px}
 
 /* Situations */
@@ -183,7 +175,7 @@ section{position:relative}
 @media (min-width:1100px){.assets-grid{grid-template-columns:repeat(4,1fr)}}
 
 /* Références */
-.refs{padding:0 0 clamp(100px,12vw,150px)}
+.refs{padding:clamp(100px,12vw,150px) 0}
 .refs .eyebrow{text-align:center;margin-bottom:48px}
 .logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px clamp(44px,7vw,100px)}
 .logos img{height:52px;width:auto;opacity:.72;transition:opacity .3s}
@@ -263,17 +255,21 @@ section{position:relative}
 .list li:hover h3,.list li:hover h3 a{color:var(--c)}
 .play{cursor:pointer;transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
 .play:hover{background:rgba(241,238,231,.14);border-color:var(--fg)}
-.film iframe{position:absolute;inset:0;z-index:4;width:100%;height:100%;border:0;background:#000}
-.film.playing .film-top,.film.playing .film-mid,.film.playing .film-bottom{display:none}
-.film picture{position:absolute;inset:0}
-.film picture img{object-position:50% 50%}
-/* Ordinateur : le titre est déjà dans l'image, le bouton passe dessous */
-@media (min-width:701px){
-  .film-title{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .film-bottom .wrap{justify-content:flex-end}
-  .film-mid .play{transform:translateY(118px)}
-  .film::after{background:linear-gradient(to top,rgba(10,12,16,.85),rgba(10,12,16,0) 40%),linear-gradient(rgba(10,12,16,.4),rgba(10,12,16,0) 30%)}
-}
+
+/* Écouter : la vidéo à gauche, le halo à droite */
+.listen{position:relative;overflow:hidden;isolation:isolate;background:var(--bg);padding:clamp(110px,14vw,170px) 0}
+.listen .wrap{position:relative;z-index:1}
+.listen-main{width:100%}
+@media (min-width:960px){.listen-main{width:60%}}
+.video{position:relative;aspect-ratio:16/9;overflow:hidden;background:#05070A}
+.video>img{width:100%;height:100%;object-fit:cover}
+.video::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,16,.35),transparent 40%);pointer-events:none}
+.video .play{position:absolute;z-index:2;left:50%;top:73%;width:76px;height:76px;transform:translate(-50%,-50%)}
+.video iframe{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;background:#000}
+.video.playing .play,.video.playing::after{display:none}
+.listen-halo{position:absolute;z-index:0;right:-5%;top:36%;height:min(70%,540px);width:auto;max-width:none;transform:translateY(-50%);pointer-events:none;mix-blend-mode:screen;opacity:.42;filter:saturate(.85) blur(2px);
+  -webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent);mask-image:radial-gradient(closest-side,#000 72%,transparent)}
+@media (max-width:959px){.listen-halo{display:none}.video .play{width:56px;height:56px;top:78%}}
 </style>
 </head>
 <body>
@@ -282,8 +278,8 @@ section{position:relative}
 <header class="head" id="head">
   <div class="wrap head-in">
     <nav class="nav" aria-label="Principale">
-      <a href="#ecouter" data-en="Listen">Écouter</a>
       <a href="#situations" data-en="Occasions">Situations</a>
+      <a href="#ecouter" data-en="Listen">Écouter</a>
       <a href="#apropos" data-en="About">À propos</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer"><i></i><span data-en="Menu">Menu</span></button>
@@ -307,8 +303,8 @@ section{position:relative}
     <button class="menu-btn" id="closeBtn" style="display:inline-flex"><span data-en="Close">Fermer</span></button>
   </div>
   <nav aria-label="Menu mobile">
-    <a href="#ecouter" data-en="Listen">Écouter</a>
     <a href="#situations" data-en="Occasions">Situations</a>
+    <a href="#ecouter" data-en="Listen">Écouter</a>
     <a href="#apropos" data-en="About">À propos</a>
     <a href="#contact" data-en="Contact">Contact</a>
   </nav>
@@ -337,22 +333,6 @@ section{position:relative}
   </section>
 
   
-  <!-- Écouter -->
-  <section class="film" id="ecouter" aria-label="Écouter">
-    <picture>
-      <source media="(max-width:700px)" srcset="assets/images/octave/profil.jpg">
-      <img src="assets/images/octave/something.jpg" alt="Octave au piano à queue, reprise de Something des Beatles" data-en-alt="Octave at a grand piano, covering Something by the Beatles" loading="lazy">
-    </picture>
-    <div class="film-top"><div class="wrap"><span class="eyebrow" data-en="Listen">Écouter</span></div></div>
-    <div class="film-mid"><button class="play" id="playBtn" data-yt="b0J1dGOX4QU" aria-label="Lire la vidéo : Something (The Beatles), reprise par Octave" data-en-label="Play the video: Something (The Beatles), covered by Octave"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg></button></div>
-    <div class="film-bottom">
-      <div class="wrap">
-        <h2 class="display film-title">Something</h2>
-        <span class="soon" data-en="The Beatles · cover">The Beatles · reprise</span>
-      </div>
-    </div>
-  </section>
-
   <!-- Situations -->
   <section class="situ" id="situations">
     <img class="situ-light" src="assets/images/octave/lumiere.jpg" alt="" aria-hidden="true" loading="lazy">
@@ -375,6 +355,21 @@ section{position:relative}
 
   
   
+  <!-- Écouter -->
+  <section class="listen" id="ecouter" aria-labelledby="listenTitle">
+    <img class="listen-halo" src="assets/images/octave/halo.jpg" alt="" aria-hidden="true" loading="lazy">
+    <div class="wrap">
+      <div class="listen-main">
+        <span class="eyebrow rv" data-en="Listen">Écouter</span>
+        <h2 class="sr" id="listenTitle" data-en="Something (The Beatles), covered by Octave">Something (The Beatles), reprise par Octave</h2>
+        <div class="video rv">
+          <img src="assets/images/octave/something.jpg" alt="Octave au piano à queue, reprise de Something des Beatles" data-en-alt="Octave at a grand piano, covering Something by the Beatles" loading="lazy">
+          <button class="play" id="playBtn" data-yt="b0J1dGOX4QU" aria-label="Lire la vidéo : Something (The Beatles), reprise par Octave" data-en-label="Play the video: Something (The Beatles), covered by Octave"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Références -->
   <section class="refs" aria-label="Références">
     <div class="wrap">
@@ -422,8 +417,8 @@ section{position:relative}
       <span class="octave" aria-hidden="true" style="font-size:18px"><span>O</span><span>C</span><span>T</span><span>A</span><span>V</span><span>E</span></span>
     </a>
     <nav aria-label="Pied de page">
-      <a href="#ecouter" data-en="Listen">Écouter</a>
       <a href="#situations" data-en="Occasions">Situations</a>
+      <a href="#ecouter" data-en="Listen">Écouter</a>
       <a href="compositeur.html" data-en="Composer for film">Compositeur pour l’image</a>
     </nav>
     <span class="copy">© 2026 Octave · Paris</span>
@@ -458,7 +453,7 @@ section{position:relative}
   // Vidéo : le lecteur YouTube ne se charge qu'au clic
   var playBtn=document.getElementById('playBtn');
   if(playBtn)playBtn.addEventListener('click',function(){
-    var film=playBtn.closest('.film'),f=document.createElement('iframe');
+    var film=playBtn.closest('.video'),f=document.createElement('iframe');
     f.src='https://www.youtube-nocookie.com/embed/'+playBtn.dataset.yt+'?autoplay=1&rel=0&playsinline=1';
     f.title='Something (The Beatles), reprise par Octave';
     f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
