@@ -261,6 +261,19 @@ section{position:relative}
 .list .n,.list .ref{color:var(--c)}
 .list h3{transition:color .25s var(--ease)}
 .list li:hover h3,.list li:hover h3 a{color:var(--c)}
+.play{cursor:pointer;transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
+.play:hover{background:rgba(241,238,231,.14);border-color:var(--fg)}
+.film iframe{position:absolute;inset:0;z-index:4;width:100%;height:100%;border:0;background:#000}
+.film.playing .film-top,.film.playing .film-mid,.film.playing .film-bottom{display:none}
+.film picture{position:absolute;inset:0}
+.film picture img{object-position:50% 50%}
+/* Ordinateur : le titre est déjà dans l'image, le bouton passe dessous */
+@media (min-width:701px){
+  .film-title{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .film-bottom .wrap{justify-content:flex-end}
+  .film-mid .play{transform:translateY(118px)}
+  .film::after{background:linear-gradient(to top,rgba(10,12,16,.85),rgba(10,12,16,0) 40%),linear-gradient(rgba(10,12,16,.4),rgba(10,12,16,0) 30%)}
+}
 </style>
 </head>
 <body>
@@ -326,13 +339,16 @@ section{position:relative}
   
   <!-- Écouter -->
   <section class="film" id="ecouter" aria-label="Écouter">
-    <img src="assets/images/octave/profil.jpg" alt="Octave au clavier, de profil" data-en-alt="Octave at the keyboard, in profile" loading="lazy">
+    <picture>
+      <source media="(max-width:700px)" srcset="assets/images/octave/profil.jpg">
+      <img src="assets/images/octave/something.jpg" alt="Octave au piano à queue, reprise de Something des Beatles" data-en-alt="Octave at a grand piano, covering Something by the Beatles" loading="lazy">
+    </picture>
     <div class="film-top"><div class="wrap"><span class="eyebrow" data-en="Listen">Écouter</span></div></div>
-    <div class="film-mid"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 3l16 9-16 9z"/></svg></span></div>
+    <div class="film-mid"><button class="play" id="playBtn" data-yt="b0J1dGOX4QU" aria-label="Lire la vidéo : Something (The Beatles), reprise par Octave" data-en-label="Play the video: Something (The Beatles), covered by Octave"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg></button></div>
     <div class="film-bottom">
       <div class="wrap">
-        <h2 class="display" data-en="Octave at the piano">Octave au piano</h2>
-        <span class="soon" data-en="Video coming soon">Vidéo à venir</span>
+        <h2 class="display film-title">Something</h2>
+        <span class="soon" data-en="The Beatles · cover">The Beatles · reprise</span>
       </div>
     </div>
   </section>
@@ -439,13 +455,27 @@ section{position:relative}
     document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
   }else{document.querySelectorAll('.rv').forEach(function(el){el.classList.add('in')})}
 
+  // Vidéo : le lecteur YouTube ne se charge qu'au clic
+  var playBtn=document.getElementById('playBtn');
+  if(playBtn)playBtn.addEventListener('click',function(){
+    var film=playBtn.closest('.film'),f=document.createElement('iframe');
+    f.src='https://www.youtube-nocookie.com/embed/'+playBtn.dataset.yt+'?autoplay=1&rel=0&playsinline=1';
+    f.title='Something (The Beatles), reprise par Octave';
+    f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
+    f.allowFullscreen=true;
+    film.appendChild(f);film.classList.add('playing');
+  });
+
   // FR / EN
   var nodes=document.querySelectorAll('[data-en]'),alts=document.querySelectorAll('[data-en-alt]');
+  var labels=document.querySelectorAll('[data-en-label]');
+  labels.forEach(function(n){n.dataset.frLabel=n.getAttribute('aria-label')});
   nodes.forEach(function(n){n.dataset.fr=n.innerHTML});
   alts.forEach(function(n){n.dataset.frAlt=n.alt});
   function setLang(l){
     nodes.forEach(function(n){n.innerHTML=l==='en'?n.dataset.en:n.dataset.fr});
     alts.forEach(function(n){n.alt=l==='en'?n.dataset.enAlt:n.dataset.frAlt});
+    labels.forEach(function(n){n.setAttribute('aria-label',l==='en'?n.dataset.enLabel:n.dataset.frLabel)});
     root.lang=l;
     document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l)});
     try{localStorage.setItem('octave-lang',l)}catch(e){}
