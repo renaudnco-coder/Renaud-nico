@@ -234,6 +234,8 @@ section{position:relative}
 @media (max-width:700px){.hero-text{align-items:flex-start;text-align:left}.hero-role{margin-left:0!important}}
 .rep-line{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:36px;color:var(--fg-2);font-size:15px}
 .rep-line>span:first-child{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);padding-top:3px}
+.rep-items>span+span::before{content:" · "}
+.hero-light,.m-only{display:none}
 .langs-line{font-family:var(--serif);font-size:19px;color:var(--fg);margin:-6px 0 26px}
 
 /* Twist coloré : un faisceau de lumière collé au bord gauche */
@@ -325,7 +327,6 @@ section{position:relative}
   .contact{padding:96px 0}
   .list h3{font-size:26px}
   .list li{padding:20px 0}
-  .rep-line{flex-direction:column;gap:6px}
   /* écouter : la vidéo prend toute la largeur */
   .video{margin:0 calc(-1 * var(--pad))}
   .video:not(.playing){-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 90%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 10%,#000 90%,transparent 100%)}
@@ -337,6 +338,33 @@ section{position:relative}
   .about-grid{gap:36px}
   .fish{display:block;width:96px;top:auto;bottom:40px;right:4%}
   .contact .h2{font-size:clamp(38px,11vw,52px)}
+}
+
+/* ===== Téléphone : retouches du 6/11 ===== */
+@media (max-width:700px){
+  /* le faisceau souligne le bouton Écouter de l'ouverture */
+  .hero-text{bottom:132px}
+  .hero .hero-light{display:block;position:absolute;z-index:1;top:auto;right:auto;left:0;bottom:-6px;width:100%;height:220px;object-fit:cover;object-position:0% 80%;transform:none;pointer-events:none;mix-blend-mode:screen;filter:saturate(1.25) brightness(1.15);
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 34%,#000 66%,transparent 100%),linear-gradient(to right,#000 30%,transparent 100%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to bottom,transparent 0,#000 34%,#000 66%,transparent 100%),linear-gradient(to right,#000 30%,transparent 100%);mask-composite:intersect}
+  .situ-light{display:none}
+  .situ{padding-top:64px;padding-bottom:40px}
+  .listen{padding-top:48px}
+  /* titre « Situations », sans sous-titre ni descriptions */
+  .d-only{display:none}
+  .m-only{display:inline}
+  .situ-head{margin-bottom:28px}
+  .list p{display:none}
+  .list li{padding:18px 0 16px}
+  .list .n{padding-top:6px}
+  .run{margin-top:8px}
+  /* répertoire : trois lignes en serif, comme une petite carte */
+  .rep-line{display:block;margin-top:44px}
+  .rep-line>span:first-child{display:block;margin-bottom:14px}
+  .rep-items{display:block}
+  .rep-items>span{display:block;font-family:var(--serif);font-size:24px;line-height:1.25;color:var(--fg);padding:10px 0;border-top:1px solid var(--line)}
+  .rep-items>span:last-child{border-bottom:1px solid var(--line)}
+  .rep-items>span+span::before{content:none}
 }
 </style>
 </head>
@@ -389,6 +417,7 @@ section{position:relative}
     <picture>
       <img src="assets/images/octave/salon.jpg" alt="Octave au piano à queue, dans un salon parisien" data-en-alt="Octave at a grand piano in a Paris salon" fetchpriority="high">
     </picture>
+    <img class="hero-light" src="assets/images/octave/lumiere.jpg" alt="" aria-hidden="true">
     <div class="hero-text">
       <h1 class="hero-name"><span class="octave" aria-hidden="true"><span>O</span><span>C</span><span>T</span><span>A</span><span>V</span><span>E</span></span><span class="sr">Octave</span></h1>
       <p class="hero-role" data-en="Pianist · Composer">Pianiste · Compositeur</p>
@@ -406,8 +435,8 @@ section{position:relative}
     <div class="wrap situ-grid">
       <div>
         <div class="situ-head rv">
-          <span class="eyebrow" data-en="Occasions">Situations</span>
-          <h2 class="h2" data-en="On every occasion.">En toute circonstance.</h2>
+          <span class="eyebrow d-only" data-en="Occasions">Situations</span>
+          <h2 class="h2"><span class="d-only" data-en="On every occasion.">En toute circonstance.</span><span class="m-only" data-en="Occasions">Situations</span></h2>
         </div>
         <ol class="list">
           <li class="rv"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" data-speed="30" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span>Art Basel</span><span>Salon du Bon</span><span>B Expo</span><span>Barbecue Fest</span><span>Galerie Florence de Voldère</span><span>Ambassade de France</span></span></div></div></li>
@@ -415,7 +444,7 @@ section{position:relative}
           <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p></li>
           <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" data-speed="22" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div></li>
         </ol>
-        <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span data-en="French chanson · British pop · American songbook">Chanson française · Pop anglaise · Variété américaine</span></p>
+        <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span class="rep-items"><span data-en="French chanson">Chanson française</span><span data-en="British pop">Pop anglaise</span><span data-en="American songbook">Variété américaine</span></span></p>
       </div>
     </div>
   </section>
