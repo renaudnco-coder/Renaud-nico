@@ -144,7 +144,6 @@ section{position:relative}
 .list .n{font-family:var(--serif);font-size:15px;color:var(--gold);padding-top:8px}
 .list h3{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.4vw,32px);line-height:1.2}
 .list p{grid-column:2;color:var(--fg-2);font-size:15px}
-.list .ref{grid-column:2;margin-top:8px;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 .list h3 a{transition:color .25s var(--ease)}
 .list h3 a:hover{color:var(--gold)}
 @media (min-width:960px){
@@ -178,10 +177,11 @@ section{position:relative}
 .refs{padding:clamp(100px,12vw,150px) 0}
 .refs .eyebrow{text-align:center;margin-bottom:48px}
 .logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px clamp(44px,7vw,100px)}
-.logos img{height:52px;width:auto;opacity:.72;transition:opacity .3s}
-.logos img.tall{height:78px}
-.logos img.wide{height:52px}
-.logos img:hover{opacity:1}
+.lg{display:block;position:relative;background:var(--fg);opacity:.72;cursor:default;transition:opacity .35s var(--ease);
+  -webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.lg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--c1),var(--c2),var(--c3),#4FA3E0,var(--c4));opacity:0;transition:opacity .35s var(--ease)}
+.lg:hover{opacity:1}
+.lg:hover::after{opacity:1}
 
 /* À propos */
 .about{padding:clamp(110px,14vw,170px) 0;border-top:1px solid var(--line)}
@@ -250,7 +250,7 @@ section{position:relative}
 .list li:nth-child(2){--c:var(--c2)}
 .list li:nth-child(3){--c:var(--c3)}
 .list li:nth-child(4){--c:var(--c4)}
-.list .n,.list .ref{color:var(--c)}
+.list .n{color:var(--c)}
 .list h3{transition:color .25s var(--ease)}
 .list li:hover h3,.list li:hover h3 a{color:var(--c)}
 .play{cursor:pointer;transition:background .25s var(--ease),border-color .25s var(--ease),transform .25s var(--ease)}
@@ -276,6 +276,20 @@ section{position:relative}
 .listen-halo{position:absolute;z-index:0;right:-9%;top:48%;height:min(112%,900px);width:auto;max-width:none;transform:translateY(-50%);pointer-events:none;mix-blend-mode:screen;opacity:.8;filter:saturate(1.3) brightness(1.1) blur(1px);
   -webkit-mask-image:radial-gradient(closest-side,#000 72%,transparent);mask-image:radial-gradient(closest-side,#000 72%,transparent)}
 @media (max-width:959px){.listen-halo{display:none}.video .play{width:56px;height:56px;top:78%}}
+
+/* Bandeaux de références qui défilent */
+.run{grid-column:2;margin-top:12px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 90%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 90%,transparent)}
+.run-track{display:flex;width:max-content;animation:run var(--dur,30s) linear infinite}
+.run:hover .run-track{animation-play-state:paused}
+.run-list{display:flex}
+.run-list>span{position:relative;padding-right:2.6em;font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--c);white-space:nowrap}
+.run-list>span::after{content:"";position:absolute;right:1.15em;top:50%;width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.55}
+@keyframes run{to{transform:translateX(-50%)}}
+.no-js .run-track,.run.static .run-track{animation:none;width:auto}
+.run.static .run-list{flex-wrap:wrap;row-gap:6px}
+.run.static{-webkit-mask-image:none;mask-image:none}
+@media (prefers-reduced-motion:reduce){.run-track{animation:none;width:auto}.run-list{flex-wrap:wrap;row-gap:6px}.run{-webkit-mask-image:none;mask-image:none}.run-list[aria-hidden]{display:none}}
 </style>
 </head>
 <body>
@@ -349,10 +363,10 @@ section{position:relative}
           <h2 class="h2" data-en="On every occasion.">En toute circonstance.</h2>
         </div>
         <ol class="list">
-          <li class="rv"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><span class="ref">Art Basel</span></li>
-          <li class="rv"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p></li>
+          <li class="rv"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span>Art Basel</span><span>Salon du Bon</span><span>B Expo</span><span>Barbecue Fest</span><span>Galerie Florence de Voldère</span><span>Ambassade de France</span></span></div></div></li>
+          <li class="rv"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span>Coco Productions</span></span></div></div></li>
           <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p></li>
-          <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><span class="ref">Silencio</span></li>
+          <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div></li>
         </ol>
         <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span data-en="French chanson · British pop · American songbook">Chanson française · Pop anglaise · Variété américaine</span></p>
       </div>
@@ -381,10 +395,10 @@ section{position:relative}
     <div class="wrap">
       <span class="eyebrow rv" data-en="They trusted me">Ils m’ont fait confiance</span>
       <div class="logos rv">
-        <img class="wide" src="assets/images/octave/logo-jpc.png" alt="JPC Events">
-        <img class="tall" src="assets/images/octave/logo-bexpo.png" alt="B Expo">
-        <img class="tall" src="assets/images/octave/logo-bfest.png" alt="B Fest">
-        <img src="assets/images/octave/logo-galerie.svg" alt="Galerie Florence de Voldère">
+        <span class="lg" role="img" aria-label="JPC Events" style="--m:url(assets/images/octave/logo-jpc.png);width:104px;height:52px"></span>
+        <span class="lg" role="img" aria-label="B Expo" style="--m:url(assets/images/octave/logo-bexpo.png);width:47px;height:78px"></span>
+        <span class="lg" role="img" aria-label="B Fest" style="--m:url(assets/images/octave/logo-bfest.png);width:48px;height:78px"></span>
+        <span class="lg" role="img" aria-label="Galerie Florence de Voldère" style="--m:url(assets/images/octave/logo-galerie.svg);width:188px;height:52px"></span>
       </div>
     </div>
   </section>
@@ -465,6 +479,16 @@ section{position:relative}
     f.allow='autoplay; encrypted-media; picture-in-picture; fullscreen';
     f.allowFullscreen=true;
     film.appendChild(f);film.classList.add('playing');
+  });
+
+  // Bandeaux de références : on duplique la liste pour un défilement sans couture
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.run').forEach(function(run){
+    if(reduce)return;
+    var track=run.querySelector('.run-track'),list=track.querySelector('.run-list'),items=[].slice.call(list.children);
+    while(list.scrollWidth<run.clientWidth+40){items.forEach(function(it){var c=it.cloneNode(true);c.setAttribute('aria-hidden','true');list.appendChild(c)})}
+    var copy=list.cloneNode(true);copy.setAttribute('aria-hidden','true');track.appendChild(copy);
+    track.style.setProperty('--dur',(list.scrollWidth/38)+'s');
   });
 
   // FR / EN
