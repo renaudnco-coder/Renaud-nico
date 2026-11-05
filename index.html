@@ -179,9 +179,10 @@ section{position:relative}
 .logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px clamp(44px,7vw,100px)}
 .lg{display:block;position:relative;background:var(--fg);opacity:.72;cursor:default;transition:opacity .35s var(--ease);
   -webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
-.lg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--c1),var(--c2),var(--c3),#4FA3E0,var(--c4));opacity:0;transition:opacity .35s var(--ease)}
 .lg:hover{opacity:1}
-.lg:hover::after{opacity:1}
+/* Logos en couleur : gris au repos, leurs vraies couleurs au survol */
+.lgc{width:80px;height:80px;filter:grayscale(1) brightness(.8);opacity:.7;transition:filter .4s var(--ease),opacity .4s var(--ease)}
+.lgc:hover{filter:none;opacity:1}
 
 /* À propos */
 .about{padding:clamp(110px,14vw,170px) 0;border-top:1px solid var(--line)}
@@ -363,10 +364,10 @@ section{position:relative}
           <h2 class="h2" data-en="On every occasion.">En toute circonstance.</h2>
         </div>
         <ol class="list">
-          <li class="rv"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span>Art Basel</span><span>Salon du Bon</span><span>B Expo</span><span>Barbecue Fest</span><span>Galerie Florence de Voldère</span><span>Ambassade de France</span></span></div></div></li>
-          <li class="rv"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span>Coco Productions</span></span></div></div></li>
+          <li class="rv"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" data-speed="30" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span>Art Basel</span><span>Salon du Bon</span><span>B Expo</span><span>Barbecue Fest</span><span>Galerie Florence de Voldère</span><span>Ambassade de France</span></span></div></div></li>
+          <li class="rv"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" data-speed="52" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span>Coco Productions</span></span></div></div></li>
           <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p></li>
-          <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div></li>
+          <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" data-speed="22" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div></li>
         </ol>
         <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span data-en="French chanson · British pop · American songbook">Chanson française · Pop anglaise · Variété américaine</span></p>
       </div>
@@ -396,8 +397,9 @@ section{position:relative}
       <span class="eyebrow rv" data-en="They trusted me">Ils m’ont fait confiance</span>
       <div class="logos rv">
         <span class="lg" role="img" aria-label="JPC Events" style="--m:url(assets/images/octave/logo-jpc.png);width:104px;height:52px"></span>
-        <span class="lg" role="img" aria-label="B Expo" style="--m:url(assets/images/octave/logo-bexpo.png);width:47px;height:78px"></span>
-        <span class="lg" role="img" aria-label="B Fest" style="--m:url(assets/images/octave/logo-bfest.png);width:48px;height:78px"></span>
+        <img class="lgc" src="assets/images/octave/logo-bexpo-couleur.png" alt="B Expo" width="80" height="80" loading="lazy">
+        <img class="lgc" src="assets/images/octave/logo-bfest-couleur.png" alt="B Fest" width="80" height="80" loading="lazy">
+        <img class="lgc" src="assets/images/octave/logo-bon-couleur.png" alt="Le Salon du Bon" width="80" height="80" loading="lazy">
         <span class="lg" role="img" aria-label="Galerie Florence de Voldère" style="--m:url(assets/images/octave/logo-galerie.svg);width:188px;height:52px"></span>
       </div>
     </div>
@@ -488,7 +490,7 @@ section{position:relative}
     var track=run.querySelector('.run-track'),list=track.querySelector('.run-list'),items=[].slice.call(list.children);
     while(list.scrollWidth<run.clientWidth+40){items.forEach(function(it){var c=it.cloneNode(true);c.setAttribute('aria-hidden','true');list.appendChild(c)})}
     var copy=list.cloneNode(true);copy.setAttribute('aria-hidden','true');track.appendChild(copy);
-    track.style.setProperty('--dur',(list.scrollWidth/38)+'s');
+    track.style.setProperty('--dur',(list.scrollWidth/(+run.dataset.speed||38))+'s');
   });
 
   // FR / EN
