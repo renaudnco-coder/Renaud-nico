@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Octave, pianiste</title>
-<meta name="description" content="Octave, pianiste pour palaces, hôtels et réceptions privées. Chanson française, pop anglaise et américaine.">
+<meta name="description" content="Octave, pianiste et compositeur. Salons, événements privés, concerts et musique à l’image.">
 <meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://octave-music.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://octave-music.com/">
 <meta property="og:title" content="Octave, pianiste">
-<meta property="og:description" content="Pianiste pour palaces, hôtels et réceptions privées. Chanson française, pop anglaise et américaine.">
+<meta property="og:description" content="Pianiste et compositeur. Salons, événements privés, concerts et musique à l’image.">
 <meta property="og:image" content="https://octave-music.com/assets/images/octave/salon.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -229,6 +229,38 @@ section{position:relative}
   .hero img,.js .rv,.js .hero-text>*{transition:none!important;transform:none!important;opacity:1!important}
   .scroll i::after{animation:none}
 }
+
+/* Ouverture A : le nom seul */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero-text{width:auto;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+.hero-name{margin:0;line-height:1}
+.hero-name .octave{font-size:clamp(64px,10vw,168px);letter-spacing:.1em;margin-right:-.1em}
+.hero-role{margin:18px -.46em 40px 0!important;font-size:13px!important;letter-spacing:.46em;text-transform:uppercase;color:var(--fg)!important;opacity:.82}
+.head:not(.solid) .logo{opacity:0;pointer-events:none}
+.head .logo{transition:opacity .4s var(--ease)}
+@media (max-width:700px){.hero-text{align-items:flex-start;text-align:left}.hero-role{margin-left:0!important}}
+.rep-line{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:36px;color:var(--fg-2);font-size:15px}
+.rep-line>span:first-child{font-size:11px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);padding-top:3px}
+.langs-line{font-family:var(--serif);font-size:19px;color:var(--fg);margin:-6px 0 26px}
+
+/* Twist coloré : un faisceau de lumière collé au bord gauche */
+:root{--c1:#E0603A;--c2:#D8CC4A;--c3:#6FCB62;--c4:#8E78E6}
+.situ{overflow:hidden;isolation:isolate;background:var(--bg)}
+.situ .wrap{position:relative;z-index:1}
+.situ-light{position:absolute;left:0;top:0;height:100%;width:auto;max-width:none;z-index:0;pointer-events:none;mix-blend-mode:screen;filter:saturate(1.25) brightness(1.15);
+  -webkit-mask-image:linear-gradient(to right,#000 45%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 80%,transparent 100%);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,#000 45%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 12%,#000 80%,transparent 100%);
+  mask-composite:intersect}
+@media (min-width:960px){.situ-grid>div{grid-column:2}}
+@media (max-width:959px){.situ-light{opacity:.55}}
+.list li:nth-child(1){--c:var(--c1)}
+.list li:nth-child(2){--c:var(--c2)}
+.list li:nth-child(3){--c:var(--c3)}
+.list li:nth-child(4){--c:var(--c4)}
+.list .n,.list .ref{color:var(--c)}
+.list h3{transition:color .25s var(--ease)}
+.list li:hover h3,.list li:hover h3 a{color:var(--c)}
 </style>
 </head>
 <body>
@@ -239,7 +271,6 @@ section{position:relative}
     <nav class="nav" aria-label="Principale">
       <a href="#ecouter" data-en="Listen">Écouter</a>
       <a href="#situations" data-en="Occasions">Situations</a>
-      <a href="#repertoire" data-en="Repertoire">Répertoire</a>
       <a href="#apropos" data-en="About">À propos</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer"><i></i><span data-en="Menu">Menu</span></button>
@@ -265,7 +296,6 @@ section{position:relative}
   <nav aria-label="Menu mobile">
     <a href="#ecouter" data-en="Listen">Écouter</a>
     <a href="#situations" data-en="Occasions">Situations</a>
-    <a href="#repertoire" data-en="Repertoire">Répertoire</a>
     <a href="#apropos" data-en="About">À propos</a>
     <a href="#contact" data-en="Contact">Contact</a>
   </nav>
@@ -284,26 +314,16 @@ section{position:relative}
       <img src="assets/images/octave/salon.jpg" alt="Octave au piano à queue, dans un salon parisien" data-en-alt="Octave at a grand piano in a Paris salon" fetchpriority="high">
     </picture>
     <div class="hero-text">
-      <span class="eyebrow" data-en="Pianist · Paris">Pianiste · Paris</span>
-      <h1 class="display" data-en="The piano,<br>in tune with the room.">Le piano,<br>à la mesure du lieu.</h1>
-      <p data-en="Palaces, hotels and private receptions. French chanson, British and American pop.">Palaces, hôtels et réceptions privées. Chanson française, pop anglaise et américaine.</p>
+      <h1 class="hero-name"><span class="octave" aria-hidden="true"><span>O</span><span>C</span><span>T</span><span>A</span><span>V</span><span>E</span></span><span class="sr">Octave</span></h1>
+      <p class="hero-role" data-en="Pianist · Composer">Pianiste · Compositeur</p>
       <div class="hero-cta">
         <a class="btn" href="#ecouter"><span data-en="Listen">Écouter</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
-        <a class="link" href="#contact" data-en="Get in touch">Me contacter</a>
       </div>
     </div>
     <div class="scroll" aria-hidden="true"><i></i><span data-en="Scroll">Défiler</span></div>
   </section>
 
-  <!-- Intention -->
-  <section class="intro">
-    <div class="wrap">
-      <span class="rule rv" aria-hidden="true"></span>
-      <h2 class="h2 rv" data-en="Discreet when it should be, unforgettable when it’s expected.">Discret quand il le faut, inoubliable quand on l’attend.</h2>
-      <p class="lead rv" data-en="Pianist and composer trained between France and the United States, Octave plays in lounges, bars and receptions. His playing follows the room: in the background during a conversation, centre stage when the guests want to sing.">Pianiste et compositeur formé entre la France et les États-Unis, Octave joue dans les salons, les bars et les réceptions. Son jeu suit la salle&nbsp;: en retrait pendant une conversation, au premier plan quand les invités veulent chanter.</p>
-    </div>
-  </section>
-
+  
   <!-- Écouter -->
   <section class="film" id="ecouter" aria-label="Écouter">
     <img src="assets/images/octave/profil.jpg" alt="Octave au clavier, de profil" data-en-alt="Octave at the keyboard, in profile" loading="lazy">
@@ -319,8 +339,8 @@ section{position:relative}
 
   <!-- Situations -->
   <section class="situ" id="situations">
+    <img class="situ-light" src="assets/images/octave/lumiere.jpg" alt="" aria-hidden="true" loading="lazy">
     <div class="wrap situ-grid">
-      <figure class="situ-img rv"><img src="assets/images/octave/voix.jpg" alt="Octave au piano, accompagnant une chanteuse" data-en-alt="Octave at the piano, accompanying a singer" loading="lazy"></figure>
       <div>
         <div class="situ-head rv">
           <span class="eyebrow" data-en="Occasions">Situations</span>
@@ -332,55 +352,13 @@ section{position:relative}
           <li class="rv"><span class="n">III</span><h3 data-en="Private events">Événement privé</h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p></li>
           <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><span class="ref">Silencio</span></li>
         </ol>
+        <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span data-en="French chanson · British pop · American songbook">Chanson française · Pop anglaise · Variété américaine</span></p>
       </div>
     </div>
   </section>
 
-  <!-- Répertoire -->
-  <section class="rep" id="repertoire">
-    <div class="wrap">
-      <div class="rep-head">
-        <div class="rv">
-          <span class="eyebrow" data-en="Repertoire">Répertoire</span>
-          <h2 class="h2" data-en="What the room<br>wants to hear.">Ce que la salle<br>a envie d’entendre.</h2>
-        </div>
-        <p class="lead rv" data-en="Three repertoires, played at request, from the great classics to today’s songs.">Trois répertoires, joués à la demande, des grands classiques aux chansons d’aujourd’hui.</p>
-      </div>
-      <div class="cols">
-        <div class="col rv"><span>I</span><h3 data-en="French chanson">Chanson française</h3><p data-en="The great French songs, yesterday’s and today’s.">Les grandes chansons françaises, d’hier et d’aujourd’hui.</p></div>
-        <div class="col rv"><span>II</span><h3 data-en="British pop">Pop anglaise</h3><p data-en="The British songs everyone knows by heart.">Les chansons britanniques que tout le monde connaît par cœur.</p></div>
-        <div class="col rv"><span>III</span><h3 data-en="American songbook">Variété américaine</h3><p data-en="American hits, from the classics to current pop.">Les tubes américains, des classiques à la pop actuelle.</p></div>
-      </div>
-      <div class="rep-foot rv">
-        <span data-en="Full repertoire and special requests on request.">Répertoire complet et demandes particulières sur simple message.</span>
-        <a class="link" href="#contact" data-en="Ask for the list">Demander la liste</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Atouts -->
-  <section class="assets" aria-label="Atouts">
-    <div class="wrap assets-grid">
-      <div class="asset rv">
-        <h3 data-en="Four languages">Quatre langues</h3>
-        <span class="langs">Français · English · Русский · Español</span>
-        <p data-en="To welcome every guest in their own language.">Pour accueillir chaque invité dans sa langue.</p>
-      </div>
-      <div class="asset rv">
-        <h3 data-en="Listening to the room">À l’écoute de la salle</h3>
-        <p data-en="Volume, tempo and repertoire adjust as the evening goes on.">Volume, tempo et répertoire s’ajustent au fil de la soirée.</p>
-      </div>
-      <div class="asset rv">
-        <h3 data-en="On request">Sur demande</h3>
-        <p data-en="Guests ask, the piano answers.">Les invités demandent, le piano répond.</p>
-      </div>
-      <div class="asset rv">
-        <h3 data-en="Composer">Compositeur</h3>
-        <p data-en="Arrangements and original pieces, made to measure.">Arrangements et morceaux originaux, sur mesure.</p>
-      </div>
-    </div>
-  </section>
-
+  
+  
   <!-- Références -->
   <section class="refs" aria-label="Références">
     <div class="wrap">
@@ -402,6 +380,7 @@ section{position:relative}
         <span class="eyebrow" data-en="About">À propos</span>
         <h2 class="h2">Octave</h2>
         <p class="lead" data-en="Pianist and composer based in Paris, trained between France and the United States. He plays for private receptions, galleries and festivals, and writes music for film.">Pianiste et compositeur installé à Paris, formé entre la France et les États-Unis. Il joue pour des réceptions privées, des galeries et des festivals, et compose pour le cinéma.</p>
+        <p class="langs-line">Français · English · Русский · Español</p>
         <a class="link" href="compositeur.html" data-en="Composer for film →">Compositeur pour l’image →</a>
       </div>
     </div>
@@ -429,7 +408,6 @@ section{position:relative}
     <nav aria-label="Pied de page">
       <a href="#ecouter" data-en="Listen">Écouter</a>
       <a href="#situations" data-en="Occasions">Situations</a>
-      <a href="#repertoire" data-en="Repertoire">Répertoire</a>
       <a href="compositeur.html" data-en="Composer for film">Compositeur pour l’image</a>
     </nav>
     <span class="copy">© 2026 Octave · Paris</span>
