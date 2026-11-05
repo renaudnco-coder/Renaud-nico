@@ -177,9 +177,9 @@ section{position:relative}
 .refs{padding:clamp(100px,12vw,150px) 0}
 .refs .eyebrow{text-align:center;margin-bottom:48px}
 .logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:40px clamp(44px,7vw,100px)}
-.lg{display:block;position:relative;background:var(--fg);opacity:.72;cursor:default;transition:opacity .35s var(--ease);
+.lg{display:block;position:relative;background:var(--fg);opacity:.72;cursor:default;transition:opacity .35s var(--ease),background-color .35s var(--ease);
   -webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
-.lg:hover{opacity:1}
+.lg:hover{opacity:1;background:var(--brand,var(--fg))}
 /* Logos en couleur : gris au repos, leurs vraies couleurs au survol */
 .lgc{width:80px;height:80px;filter:grayscale(1) brightness(.8);opacity:.7;transition:filter .4s var(--ease),opacity .4s var(--ease)}
 .lgc:hover{filter:none;opacity:1}
@@ -397,8 +397,8 @@ section{position:relative}
       <span class="eyebrow rv" data-en="They trusted me">Ils m’ont fait confiance</span>
       <div class="logos rv">
         <span class="lg" role="img" aria-label="JPC Events" style="--m:url(assets/images/octave/logo-jpc.png);width:104px;height:52px"></span>
-        <img class="lgc" src="assets/images/octave/logo-bexpo-couleur.png" alt="B Expo" width="80" height="80" loading="lazy">
-        <img class="lgc" src="assets/images/octave/logo-bfest-couleur.png" alt="B Fest" width="80" height="80" loading="lazy">
+        <span class="lg" role="img" aria-label="B Expo" style="--m:url(assets/images/octave/logo-bexpo.png);--brand:#F4B031;width:47px;height:78px"></span>
+        <span class="lg" role="img" aria-label="B Fest" style="--m:url(assets/images/octave/logo-bfest.png);--brand:#EC6126;width:48px;height:78px"></span>
         <img class="lgc" src="assets/images/octave/logo-bon-couleur.png" alt="Le Salon du Bon" width="80" height="80" loading="lazy">
         <span class="lg" role="img" aria-label="Galerie Florence de Voldère" style="--m:url(assets/images/octave/logo-galerie.svg);width:188px;height:52px"></span>
       </div>
