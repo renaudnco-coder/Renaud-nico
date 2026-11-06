@@ -399,7 +399,7 @@ section{position:relative}
    Règle d'or : tout ce qui suit ne vit que sous 700px.
    Les éléments propres au téléphone sont cachés sur ordinateur.
    ================================================================ */
-.btn .pi,.pts,.ask,.orn,.logos-m{display:none}
+.btn .pi,.pts,.ask,.orn,.logos-m,.list>li.m-li{display:none}
 @keyframes onde{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.6);opacity:0}}
 @keyframes monte{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:700px){
@@ -492,7 +492,24 @@ section{position:relative}
   .lgc{filter:none;opacity:1}
   /* « Ils m'ont fait confiance » passe sous « Salons » : la section séparée disparaît */
   .refs{display:none}
-  .logos-m{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px 30px;margin:22px auto 6px;zoom:.7}
+  .logos-m{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 21px;margin:16px auto 4px}
+  .logos-m>img,.logos-m>span{zoom:.7}
+  /* logos qui défilent lentement, d'un bord à l'autre de l'écran, fondus aux extrémités */
+  .situ-grid{grid-template-columns:minmax(0,1fr)} /* la colonne ne s'élargit pas pour la bande qui défile */
+  .logos-m.defile{display:block;overflow:hidden;margin:18px calc(-1 * var(--pad)) 6px;
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent)}
+  .defile .run-track{display:flex;width:max-content;animation:run var(--dur,40s) linear infinite}
+  .defile .run-list{display:flex;align-items:center;flex:none}
+  .defile .run-list>*{zoom:.7;flex:none;margin:0 22px}
+  /* 5ᵉ situation (téléphone) : Événements religieux, en rose */
+  :root{--c5:#D873B0}
+  .list>li.m-li{display:block}
+  .list li:nth-child(5){--c:var(--c5)}
+  .orn i:nth-child(5){background:var(--c5)}
+  /* titres plus présents */
+  .situ-head .h2{font-size:54px;font-weight:500}
+  .list h3{font-size:34px;font-weight:500;line-height:1.15}
+  .list .n{font-size:15px;font-weight:600}
   /* références : en italique, séparées par un petit point à la couleur de la situation (plus de puces) */
   .pts{display:flex;flex-wrap:wrap;justify-content:center;gap:0 26px;margin-top:12px}
   .pts span{position:relative;display:inline-block;white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.8;color:#B6B8BD}
@@ -584,13 +601,15 @@ section{position:relative}
         <div class="situ-head rv">
           <span class="eyebrow d-only" data-en="Occasions">Situations</span>
           <h2 class="h2"><span class="d-only" data-en="On every occasion.">En toute circonstance.</span><span class="m-only" data-en="Occasions">Situations</span></h2>
-          <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+          <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
         </div>
         <ol class="list">
-          <li class="rv" data-logos><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" data-speed="30" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span data-logo>Art Basel</span><span data-logo>Salon du Bon</span><span data-logo>B Expo</span><span data-logo>Barbecue Fest</span><span data-logo>Galerie Florence de Voldère</span><span data-logo>Ambassade de France en Russie</span></span></div></div><div class="logos-m"><img src="assets/images/octave/logo-artbasel.png" alt="Art Basel" width="140" height="49" loading="lazy"><img src="assets/images/octave/logo-ambassade.png" alt="Ambassade de France en Russie" width="81" height="84" loading="lazy"></div></li>
-          <li class="rv"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" data-speed="52" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span data-logo>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span data-logo>Coco &amp; Co Prod</span></span></div></div><div class="logos-m"><img src="assets/images/octave/logo-soeurs.png" alt="Festival des Sœurs Jumelles" width="150" height="63" loading="lazy"><img src="assets/images/octave/logo-coco.png" alt="Coco &amp; Co Prod" width="210" height="86" loading="lazy"></div></li>
+          <li class="rv" data-logos data-vitesse="15"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" data-speed="30" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span data-logo>Art Basel</span><span data-logo>Salon du Bon</span><span data-logo>B Expo</span><span data-logo>Barbecue Fest</span><span data-logo>Galerie Florence de Voldère</span><span data-logo>Ambassade de France en Russie</span></span></div></div><div class="logos-m"><img src="assets/images/octave/logo-artbasel.png" alt="Art Basel" width="140" height="49" loading="lazy"><img src="assets/images/octave/logo-ambassade.png" alt="Ambassade de France en Russie" width="81" height="84" loading="lazy"></div></li>
+          <li class="rv" data-vitesse="9"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" data-speed="52" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span data-logo>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span data-logo>Coco &amp; Co Prod</span></span></div></div><div class="logos-m"><img src="assets/images/octave/logo-soeurs.png" alt="Festival des Sœurs Jumelles" width="150" height="63" loading="lazy"><img src="assets/images/octave/logo-coco.png" alt="Coco &amp; Co Prod" width="210" height="86" loading="lazy"></div></li>
           <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p><div class="pts"><span>Bar</span><span>Restaurant</span><span data-en="Hotel">Hôtel</span><span data-en="Private reception">Réception privée</span></div></li>
           <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" data-speed="22" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span data-logo>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div><div class="logos-m"><img src="assets/images/octave/logo-castel.png" alt="Castel" width="99" height="80" loading="lazy"></div></li>
+          <!-- Téléphone seulement pour l'instant -->
+          <li class="rv m-li"><span class="n">V</span><h3 data-en="Religious ceremonies">Événements religieux</h3><div class="pts"><span data-en="Weddings">Mariages</span><span data-en="Christenings">Baptêmes</span><span>Communions</span></div></li>
         </ol>
         <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span class="rep-items"><span data-en="French chanson">Chanson française</span><span data-en="British pop">Pop anglaise</span><span data-en="American songbook">Variété américaine</span></span></p>
         <!-- Téléphone : « Est-ce que je joue ce morceau ? » -->
@@ -733,6 +752,12 @@ section{position:relative}
     var pts=document.createElement('div');pts.className='pts';
     li.querySelectorAll('.run-list>span').forEach(function(s){if(lm&&s.hasAttribute('data-logo'))return;var b=document.createElement('span');b.textContent=s.textContent;pts.appendChild(b)});
     if(pts.children.length)(lm||run).parentNode.insertBefore(pts,(lm||run).nextSibling);
+    // dès qu'il y a au moins deux logos, ils défilent lentement, à la vitesse propre à la situation (data-vitesse, px/s)
+    if(lm&&lm.children.length>1){
+      var tr=document.createElement('div');tr.className='run-track';var ls=document.createElement('div');ls.className='run-list';
+      while(lm.firstChild)ls.appendChild(lm.firstChild);tr.appendChild(ls);lm.appendChild(tr);
+      lm.classList.add('defile');lm.dataset.speed=li.dataset.vitesse||12;
+    }
   });
   // pas de point séparateur en fin de ligne
   function finsDeLigne(){document.querySelectorAll('.pts').forEach(function(p){var s=[].slice.call(p.children);s.forEach(function(e,i){var n=s[i+1];e.classList.toggle('fin',!!n&&n.offsetTop!==e.offsetTop)})})}
@@ -740,10 +765,10 @@ section{position:relative}
 
   // Bandeaux de références : on duplique la liste pour un défilement sans couture
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.run').forEach(function(run){
-    if(reduce||!run.clientWidth)return; // bandeau caché (téléphone) : on n'anime rien
+  document.querySelectorAll('.run, .defile').forEach(function(run){
+    if(reduce||!run.clientWidth)return; // bandeau caché (téléphone ou ordinateur) : on n'anime rien
     var track=run.querySelector('.run-track'),list=track.querySelector('.run-list'),items=[].slice.call(list.children);
-    while(list.scrollWidth<run.clientWidth+40){items.forEach(function(it){var c=it.cloneNode(true);c.setAttribute('aria-hidden','true');list.appendChild(c)})}
+    for(var k=0;k<24&&list.scrollWidth<run.clientWidth+40;k++){items.forEach(function(it){var c=it.cloneNode(true);c.setAttribute('aria-hidden','true');list.appendChild(c)})}
     var copy=list.cloneNode(true);copy.setAttribute('aria-hidden','true');track.appendChild(copy);
     track.style.setProperty('--dur',(list.scrollWidth/(+run.dataset.speed||38))+'s');
   });
