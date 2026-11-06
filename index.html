@@ -366,6 +366,92 @@ section{position:relative}
   .rep-items>span:last-child{border-bottom:1px solid var(--line)}
   .rep-items>span+span::before{content:none}
 }
+
+/* ===== Téléphone : passe du 6/11 (rythme, menu, pied de page) ===== */
+@media (max-width:700px){
+  a,button{-webkit-tap-highlight-color:transparent}
+  /* plus de trou noir entre la vidéo et les logos */
+  .listen{padding-bottom:20px}
+  .refs{padding-top:52px}
+  /* sans survol, on montre quels titres s'ouvrent : un filet à la couleur de la situation */
+  .list h3 a{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;text-decoration-color:var(--c);text-decoration-color:color-mix(in srgb,var(--c) 60%,transparent)}
+  /* pied de page centré */
+  .foot{padding:44px 0 32px}
+  .foot-in{justify-items:center;text-align:center;gap:20px}
+  .foot nav{justify-content:center;gap:0 22px}
+}
+/* Menu du téléphone : le logo en haut, la page compositeur, l'adresse en bas */
+.drawer-top{display:grid;grid-template-columns:1fr auto 1fr}
+.drawer-top .menu-btn{justify-self:end}
+.drawer .logo .octave{font-size:20px}
+.drawer-sub{display:inline-flex;align-items:center;align-self:flex-start;min-height:48px;margin-top:26px;font-size:12px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--fg-2)}
+.drawer-foot{margin-top:auto;display:flex;flex-direction:column;gap:6px}
+.drawer-foot .mail{margin:0;padding:10px 0}
+.drawer .lang{margin-top:0}
+.drawer .lang button:first-child{padding-left:0}
+/* au doigt, un lien touché ne reste pas doré */
+@media (max-width:960px) and (hover:none){.nav a:hover,.tools a:hover,.tools button:hover{opacity:.86;color:var(--fg)}}
+
+/* ================================================================
+   TÉLÉPHONE — version « appli » (6/11)
+   Règle d'or : tout ce qui suit ne vit que sous 700px.
+   Les éléments propres au téléphone sont cachés sur ordinateur.
+   ================================================================ */
+.btn .pi,.pts,.ask{display:none}
+@keyframes onde{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.6);opacity:0}}
+@keyframes monte{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:700px){
+  /* Ouverture : le nom, le métier et le bouton au centre */
+  .hero-text{left:0;right:0;bottom:96px;padding:0 var(--pad);align-items:center;text-align:center}
+  .hero-name .octave{font-size:clamp(60px,18vw,84px)}
+  .hero-role{margin:18px -.3em 38px 0!important;font-size:14px!important;letter-spacing:.3em;opacity:.95}
+  .hero-cta{justify-content:center}
+  .hero .btn{min-height:60px;padding:0 30px 0 9px;gap:16px;background:rgba(10,12,16,.55);color:var(--fg);border:1px solid rgba(241,238,231,.42);-webkit-backdrop-filter:blur(14px) saturate(1.3);backdrop-filter:blur(14px) saturate(1.3);font-size:12px;letter-spacing:.3em}
+  .hero .btn:hover{background:rgba(10,12,16,.55);color:var(--fg)}
+  .hero .btn:active{background:rgba(241,238,231,.14)}
+  .hero .btn .arr{display:none}
+  .hero .btn .pi{position:relative;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--fg)}
+  .hero .btn .pi svg,.hero .btn:hover .pi svg{width:14px;height:14px;margin-left:2px;fill:var(--bg);transform:none}
+  .hero .btn .pi::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid rgba(241,238,231,.7);animation:onde 2.8s var(--ease) infinite}
+  /* le faisceau passe derrière le bouton */
+  .hero .hero-light{bottom:-96px;height:330px;object-position:0% 60%;opacity:.9;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 34%,#000 70%,transparent 100%),linear-gradient(to right,#000 40%,transparent 100%);
+    mask-image:linear-gradient(to bottom,transparent 0,#000 34%,#000 70%,transparent 100%),linear-gradient(to right,#000 40%,transparent 100%)}
+
+  /* Situations : plus de rubans, des puces en dessous */
+  .run{display:none}
+  .pts{grid-column:2;display:flex;flex-wrap:wrap;gap:7px 18px;margin-top:10px}
+  .pts span{display:inline-flex;align-items:center;gap:9px;font-size:14px;line-height:1.35;color:#C4C6CA}
+  .pts span::before{content:"";flex:none;width:5px;height:5px;background:var(--c);transform:rotate(45deg)}
+  .list li{padding:20px 0 22px}
+
+  /* Répertoire : « Un morceau en tête ? » */
+  .ask{display:block;margin-top:40px;padding:26px 20px 20px;background:var(--bg-2);border:1px solid var(--line)}
+  .ask-q{display:block;font-family:var(--serif);font-size:27px;line-height:1.15;margin-bottom:12px}
+  .ask-field{display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(241,238,231,.38);transition:border-color .25s var(--ease)}
+  .ask-field:focus-within{border-color:var(--gold)}
+  .ask-field>svg{flex:none;width:19px;height:19px;color:var(--fg-2)}
+  .ask input{flex:1;min-width:0;height:56px;background:none;border:0;border-radius:0;outline:0;color:var(--fg);font:inherit;font-size:17px;-webkit-appearance:none;appearance:none}
+  .ask input::placeholder{color:var(--fg-3)}
+  .ask input::-webkit-search-cancel-button{-webkit-appearance:none}
+  .ask-go{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--fg);color:var(--bg);transition:background .2s}
+  .ask-go:active{background:var(--gold)}
+  .ask-go svg{width:16px;height:16px}
+  .ask-sugg{list-style:none}
+  .ask-sugg button{display:flex;align-items:baseline;justify-content:space-between;gap:14px;width:100%;min-height:52px;padding:12px 0;border-bottom:1px solid var(--line);text-align:left;animation:monte .3s var(--ease) both}
+  .ask-sugg .t{font-family:var(--serif);font-size:20px;line-height:1.2}
+  .ask-sugg .a{flex:none;max-width:44%;font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--fg-2);text-align:right}
+  .ask-res:empty{display:none}
+  .ask-res{display:flex;gap:14px;align-items:flex-start;margin-top:20px;animation:monte .45s var(--ease) both}
+  .ask-res .ic{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:rgba(111,203,98,.14);color:#7FD872}
+  .ask-res.non .ic{background:rgba(142,120,230,.16);color:#A897F0}
+  .ask-res .ic svg{width:18px;height:18px}
+  .ask-res strong{display:block;font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.15}
+  .ask-res.oui strong{color:#8FDB83}
+  .ask-res small{display:block;margin-top:5px;font-size:14px;line-height:1.45;color:var(--fg-2)}
+  .ask-hint{margin-top:16px;font-size:12px;letter-spacing:.06em;color:var(--fg-3)}
+}
+@media (max-width:700px) and (prefers-reduced-motion:reduce){.hero .btn .pi::after{animation:none;opacity:0}.ask-res,.ask-sugg button{animation:none}}
 </style>
 </head>
 <body>
@@ -396,6 +482,7 @@ section{position:relative}
 <div class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-top">
     <span class="eyebrow" style="margin:0" data-en="Menu">Menu</span>
+    <span class="logo" aria-hidden="true"><span class="octave"><span>O</span><span>C</span><span>T</span><span>A</span><span>V</span><span>E</span></span><small data-en="Pianist">Pianiste</small></span>
     <button class="menu-btn" id="closeBtn" style="display:inline-flex"><span data-en="Close">Fermer</span></button>
   </div>
   <nav aria-label="Menu mobile">
@@ -404,9 +491,13 @@ section{position:relative}
     <a href="#apropos" data-en="About">À propos</a>
     <a href="#contact" data-en="Contact">Contact</a>
   </nav>
-  <div class="lang" role="group" aria-label="Langue">
-    <button data-lang="fr" aria-pressed="true">FRANÇAIS</button>
-    <button data-lang="en" aria-pressed="false">ENGLISH</button>
+  <a class="drawer-sub" href="compositeur.html" data-en="Composer for film">Compositeur pour l’image</a>
+  <div class="drawer-foot">
+    <a class="mail" href="mailto:renaudnco@gmail.com">renaudnco@gmail.com</a>
+    <div class="lang" role="group" aria-label="Langue">
+      <button data-lang="fr" aria-pressed="true">FRANÇAIS</button>
+      <button data-lang="en" aria-pressed="false">ENGLISH</button>
+    </div>
   </div>
 </div>
 
@@ -422,7 +513,7 @@ section{position:relative}
       <h1 class="hero-name"><span class="octave" aria-hidden="true"><span>O</span><span>C</span><span>T</span><span>A</span><span>V</span><span>E</span></span><span class="sr">Octave</span></h1>
       <p class="hero-role" data-en="Pianist · Composer">Pianiste · Compositeur</p>
       <div class="hero-cta">
-        <a class="btn" href="#ecouter"><span data-en="Listen">Écouter</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
+        <a class="btn" href="#ecouter"><span class="pi" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z"/></svg></span><span data-en="Listen">Écouter</span><svg class="arr" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></a>
       </div>
     </div>
     <div class="scroll" aria-hidden="true"><i></i><span data-en="Scroll">Défiler</span></div>
@@ -441,10 +532,22 @@ section{position:relative}
         <ol class="list">
           <li class="rv"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" data-speed="30" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span>Art Basel</span><span>Salon du Bon</span><span>B Expo</span><span>Barbecue Fest</span><span>Galerie Florence de Voldère</span><span>Ambassade de France</span></span></div></div></li>
           <li class="rv"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" data-speed="52" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span>Coco Productions</span></span></div></div></li>
-          <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p></li>
+          <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p><div class="pts"><span>Bar</span><span>Restaurant</span><span data-en="Hotel">Hôtel</span><span data-en="Private reception">Réception privée</span></div></li>
           <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" data-speed="22" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div></li>
         </ol>
         <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span class="rep-items"><span data-en="French chanson">Chanson française</span><span data-en="British pop">Pop anglaise</span><span data-en="American songbook">Variété américaine</span></span></p>
+        <!-- Téléphone : « Est-ce que je joue ce morceau ? » -->
+        <form class="ask" id="ask" role="search" autocomplete="off" novalidate>
+          <label class="ask-q" for="askInput" data-en="A song in mind?">Un morceau en tête&nbsp;?</label>
+          <div class="ask-field">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+            <input id="askInput" type="search" enterkeyhint="search" spellcheck="false" placeholder="Un titre, un artiste…" data-en-ph="A title, an artist…" aria-controls="askSugg">
+            <button class="ask-go" type="submit" aria-label="Vérifier" data-en-label="Check"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 8h13M9 3l5 5-5 5"/></svg></button>
+          </div>
+          <ul class="ask-sugg" id="askSugg"></ul>
+          <div class="ask-res" id="askRes" role="status" aria-live="polite"></div>
+          <p class="ask-hint" id="askHint" data-en="151 songs in the repertoire">151 chansons au répertoire</p>
+        </form>
       </div>
     </div>
   </section>
@@ -559,26 +662,129 @@ section{position:relative}
     film.appendChild(f);film.classList.add('playing');
   });
 
+  // Téléphone : les références de chaque situation, en puces (tirées des bandeaux, une seule liste à tenir)
+  document.querySelectorAll('.list>li').forEach(function(li){
+    var run=li.querySelector('.run');if(!run||li.querySelector('.pts'))return;
+    var pts=document.createElement('div');pts.className='pts';
+    run.querySelectorAll('.run-list>span').forEach(function(s){var b=document.createElement('span');b.textContent=s.textContent;pts.appendChild(b)});
+    run.parentNode.insertBefore(pts,run.nextSibling);
+  });
+
   // Bandeaux de références : on duplique la liste pour un défilement sans couture
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll('.run').forEach(function(run){
-    if(reduce)return;
+    if(reduce||!run.clientWidth)return; // bandeau caché (téléphone) : on n'anime rien
     var track=run.querySelector('.run-track'),list=track.querySelector('.run-list'),items=[].slice.call(list.children);
     while(list.scrollWidth<run.clientWidth+40){items.forEach(function(it){var c=it.cloneNode(true);c.setAttribute('aria-hidden','true');list.appendChild(c)})}
     var copy=list.cloneNode(true);copy.setAttribute('aria-hidden','true');track.appendChild(copy);
     track.style.setProperty('--dur',(list.scrollWidth/(+run.dataset.speed||38))+'s');
   });
 
+  // Téléphone : « Est-ce que je joue ce morceau ? »
+  var ask=document.getElementById('ask');
+  if(ask)(function(){
+    // Formulaire Google relié à la feuille « Octave — morceaux demandés ».
+    // url vide = rien n'est envoyé. Les entry.xxx sont les champs du formulaire.
+    var FORM={url:'https://docs.google.com/forms/d/e/1FAIpQLScKOSm0vtjNINv0q6QkPS5J-z-H8XT6HQXC4h_G2PEx7rISYw/formResponse',
+      demande:'entry.220457534',resultat:'entry.142436428',titre:'entry.1228881087',langue:'entry.1294993301'};
+    var inp=document.getElementById('askInput'),sugg=document.getElementById('askSugg'),res=document.getElementById('askRes'),hint=document.getElementById('askHint');
+    var songs=null,pending=false,attente=false,dejaNote={};
+    var T={
+      fr:{oui:'Oui, je la joue.',art:function(n,a){return 'Oui, '+n+(n>1?' chansons':' chanson')+(/^The /.test(a)?' des '+a.slice(4):/^[AEIOUYHÉÈÊÀÂÎÔÛ]/i.test(a)?' d’'+a:' de '+a)+'.'},non:'Pas encore… je vais l’apprendre.',note:'C’est noté, merci.',vide:'Tapez un titre ou un artiste.'},
+      en:{oui:'Yes, I play it.',art:function(n,a){return 'Yes, '+n+(n>1?' songs':' song')+' by '+a+'.'},non:'Not yet… I’ll learn it.',note:'Noted, thank you.',vide:'Type a title or an artist.'}
+    };
+    function L(){return T[root.lang==='en'?'en':'fr']}
+    function base(s){return s.toLowerCase().replace(/œ/g,'oe').replace(/æ/g,'ae').replace(/&/g,' and ').normalize('NFD').replace(/[̀-ͯ]/g,'')}
+    function norm(s){return base(s).replace(/[^a-z0-9]+/g,' ').trim()}
+    function soude(s){return base(s).replace(/['’]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+    function lev(a,b){var m=a.length,n=b.length,d=[],i,j;for(i=0;i<=m;i++)d[i]=[i];for(j=1;j<=n;j++)d[0][j]=j;
+      for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n]}
+    function tous(q,mots){return q.split(' ').every(function(k){return mots.some(function(w){return w.indexOf(k)===0})})}
+    function score(q,s){
+      if(s.nt===q||s.st===q)return 100;
+      if(s.nt.indexOf(q)===0||s.st.indexOf(q)===0)return 90;
+      if(q.length>=6&&s.nt.length>=4&&(q.indexOf(s.nt)>-1||q.indexOf(s.st)>-1))return 85;
+      if(tous(q,s.mt))return 80;
+      if(tous(q,s.mots))return 70;
+      if(q.length>=4&&lev(q,s.nt.slice(0,q.length+2))<=Math.max(1,Math.floor(q.length/5)))return 60;
+      return 0;
+    }
+    function charger(){
+      if(songs||pending)return;pending=true;
+      fetch('assets/repertoire.json').then(function(r){return r.json()}).then(function(data){
+        songs=[];Object.keys(data).forEach(function(a){data[a].forEach(function(t){
+          var nt=norm(t),st=soude(t),na=norm(a);
+          songs.push({t:t,a:a,nt:nt,st:st,na:na,mt:(nt+' '+st).split(' '),ma:(na+' '+soude(a)).split(' '),mots:(nt+' '+st+' '+na).split(' ')});
+        })});
+        if(hint.dataset.fr)hint.dataset.fr=hint.dataset.fr.replace(/\d+/,songs.length);
+        hint.dataset.en=hint.dataset.en.replace(/\d+/,songs.length);
+        hint.innerHTML=hint.innerHTML.replace(/\d+/,songs.length);
+        if(attente){attente=false;verifier()}else if(inp.value)proposer();
+      }).catch(function(){pending=false});
+    }
+    function classer(q){
+      return songs.map(function(s){return {s:s,n:score(q,s)}}).filter(function(x){return x.n>0})
+        .sort(function(a,b){return b.n-a.n||a.s.t.length-b.s.t.length});
+    }
+    function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+    function proposer(){
+      res.innerHTML='';res.className='ask-res';
+      var q=norm(inp.value);sugg.innerHTML='';
+      if(!songs||q.length<2)return;
+      classer(q).slice(0,4).forEach(function(x){
+        var li=document.createElement('li'),b=document.createElement('button');b.type='button';
+        b.innerHTML='<span class="t">'+esc(x.s.t)+'</span><span class="a">'+esc(x.s.a)+'</span>';
+        b.addEventListener('click',function(){inp.value=x.s.t;sugg.innerHTML='';montrer('oui',L().oui,x.s.t+' — '+x.s.a);noter(x.s.t,true,x.s.t+' — '+x.s.a)});
+        li.appendChild(b);sugg.appendChild(li);
+      });
+    }
+    var ICON={oui:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+      non:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V6l10-2v12"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="16.5" cy="16" r="2.5"/></svg>'};
+    function montrer(k,titre,detail){
+      res.className='ask-res '+k;
+      res.innerHTML='<span class="ic" aria-hidden="true">'+ICON[k]+'</span><div><strong>'+esc(titre)+'</strong>'+(detail?'<small>'+esc(detail)+'</small>':'')+'</div>';
+    }
+    function noter(q,joue,titre){
+      var cle=norm(q);if(!FORM.url||!cle||dejaNote[cle])return;dejaNote[cle]=1;
+      var p=new URLSearchParams();
+      p.append(FORM.demande,q);
+      p.append(FORM.resultat,joue?'Je la joue':'À apprendre');
+      p.append(FORM.titre,titre||'');
+      p.append(FORM.langue,root.lang==='en'?'EN':'FR');
+      fetch(FORM.url,{method:'POST',mode:'no-cors',body:p})
+        .then(function(){if(!joue){var s=res.querySelector('small');if(s)s.textContent=L().note}})
+        .catch(function(){});
+    }
+    function verifier(){
+      var brut=inp.value.trim(),q=norm(brut);sugg.innerHTML='';
+      if(!q){montrer('non',L().vide,'');return}
+      if(!songs){attente=true;charger();return}
+      var r=classer(q),best=r[0];
+      if(best&&best.n>=80){inp.value=best.s.t;montrer('oui',L().oui,best.s.t+' — '+best.s.a);noter(brut,true,best.s.t+' — '+best.s.a);return}
+      var duo=q.length>=3&&songs.filter(function(s){return tous(q,s.ma)});
+      if(duo&&duo.length){var a=duo[0].a;montrer('oui',L().art(duo.length,a),duo.slice(0,3).map(function(s){return s.t}).join(' · ')+(duo.length>3?'…':''));noter(brut,true,a);return}
+      if(best&&best.n>=60){inp.value=best.s.t;montrer('oui',L().oui,best.s.t+' — '+best.s.a);noter(brut,true,best.s.t+' — '+best.s.a);return}
+      montrer('non',L().non,brut);noter(brut,false,'');
+    }
+    // la liste se charge quand on approche du bloc (jamais sur ordinateur : le bloc y est caché)
+    if('IntersectionObserver' in window){var pres=new IntersectionObserver(function(es){if(es[0].isIntersecting){charger();pres.disconnect()}},{rootMargin:'400px 0px'});pres.observe(ask)}
+    inp.addEventListener('focus',charger);
+    inp.addEventListener('input',function(){charger();proposer()});
+    ask.addEventListener('submit',function(e){e.preventDefault();inp.blur();verifier()});
+  })();
+
   // FR / EN
   var nodes=document.querySelectorAll('[data-en]'),alts=document.querySelectorAll('[data-en-alt]');
-  var labels=document.querySelectorAll('[data-en-label]');
+  var labels=document.querySelectorAll('[data-en-label]'),phs=document.querySelectorAll('[data-en-ph]');
   labels.forEach(function(n){n.dataset.frLabel=n.getAttribute('aria-label')});
   nodes.forEach(function(n){n.dataset.fr=n.innerHTML});
   alts.forEach(function(n){n.dataset.frAlt=n.alt});
+  phs.forEach(function(n){n.dataset.frPh=n.placeholder});
   function setLang(l){
     nodes.forEach(function(n){n.innerHTML=l==='en'?n.dataset.en:n.dataset.fr});
     alts.forEach(function(n){n.alt=l==='en'?n.dataset.enAlt:n.dataset.frAlt});
     labels.forEach(function(n){n.setAttribute('aria-label',l==='en'?n.dataset.enLabel:n.dataset.frLabel)});
+    phs.forEach(function(n){n.placeholder=l==='en'?n.dataset.enPh:n.dataset.frPh});
     root.lang=l;
     document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.lang===l)});
     try{localStorage.setItem('octave-lang',l)}catch(e){}
