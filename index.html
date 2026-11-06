@@ -189,6 +189,7 @@ section{position:relative}
 .about-grid{display:grid;grid-template-columns:1fr;gap:48px;align-items:center}
 .about-img{aspect-ratio:3/4;overflow:hidden;max-width:520px}
 .about-img img{width:100%;height:100%;object-fit:cover;object-position:58% 30%}
+.about-img>picture{display:contents}
 .about .h2{margin-bottom:28px}
 .about .lead{margin-bottom:22px}
 @media (min-width:960px){.about-grid{grid-template-columns:5fr 6fr;gap:clamp(56px,7vw,120px)}}
@@ -265,7 +266,8 @@ section{position:relative}
 .listen-main{width:100%}
 @media (min-width:960px){.listen-main{width:66.667%}}
 .video{position:relative;aspect-ratio:16/9;overflow:hidden;background:#05070A}
-.video>img{width:100%;height:100%;object-fit:cover}
+.video>img,.video>picture>img{width:100%;height:100%;object-fit:cover}
+.video>picture{display:contents}
 .video::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,12,16,.35),transparent 40%);pointer-events:none}
 .video .play{position:absolute;z-index:2;left:50%;top:73%;width:76px;height:76px;transform:translate(-50%,-50%)}
 .video iframe{position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;background:#000}
@@ -397,7 +399,7 @@ section{position:relative}
    Règle d'or : tout ce qui suit ne vit que sous 700px.
    Les éléments propres au téléphone sont cachés sur ordinateur.
    ================================================================ */
-.btn .pi,.pts,.ask,.orn{display:none}
+.btn .pi,.pts,.ask,.orn,.logos-m{display:none}
 @keyframes onde{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.6);opacity:0}}
 @keyframes monte{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:700px){
@@ -483,6 +485,27 @@ section{position:relative}
   .rep-items>span{padding:7px 0;border:0;text-align:center}
   .rep-items>span:last-child{border:0}
   .ask-q{text-align:center}
+
+  /* De la couleur, là où il faut (le reste du site reste sombre) */
+  /* logos : leurs vraies couleurs d'emblée, puisqu'au doigt il n'y a pas de survol */
+  .lg{opacity:.92;background:var(--brand,var(--fg))}
+  .lgc{filter:none;opacity:1}
+  /* « Ils m'ont fait confiance » passe sous « Salons » : la section séparée disparaît */
+  .refs{display:none}
+  .logos-m{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:20px 30px;margin:22px auto 6px;zoom:.7}
+  /* références : en italique, séparées par un petit point à la couleur de la situation (plus de puces) */
+  .pts{display:flex;flex-wrap:wrap;justify-content:center;gap:0 26px;margin-top:12px}
+  .pts span{position:relative;display:inline-block;white-space:nowrap;font-family:var(--serif);font-style:italic;font-size:17px;line-height:1.8;color:#B6B8BD}
+  .pts span::before{display:none}
+  /* le point vit dans l'espace entre deux noms, et disparaît en fin de ligne (classe .fin posée par le script) */
+  .pts span::after{content:"";position:absolute;right:-14.5px;top:50%;width:3px;height:3px;margin-top:-1px;border-radius:50%;background:var(--c);opacity:.9}
+  .pts span:last-child::after,.pts span.fin::after{display:none}
+  /* à propos : la photo prend toute la largeur et se fond dans le noir, plus de cadre */
+  .about-img{max-width:none;margin:0 calc(-1 * var(--pad));aspect-ratio:1/1;
+    -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 24%,#000 66%,transparent 100%),linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%);-webkit-mask-composite:source-in;
+    mask-image:linear-gradient(to bottom,transparent 0,#000 24%,#000 66%,transparent 100%),linear-gradient(to right,transparent 0,#000 20%,#000 80%,transparent 100%);mask-composite:intersect}
+  .about-grid{gap:8px}
+  .about{border-top:0;padding-top:40px}
 }
 @media (max-width:700px) and (prefers-reduced-motion:reduce){.hero .btn .pi::after{animation:none;opacity:0}.ask-res,.ask-sugg button{animation:none}}
 </style>
@@ -564,7 +587,7 @@ section{position:relative}
           <span class="orn" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
         </div>
         <ol class="list">
-          <li class="rv"><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" data-speed="30" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span>Art Basel</span><span>Salon du Bon</span><span>B Expo</span><span>Barbecue Fest</span><span>Galerie Florence de Voldère</span><span>Ambassade de France</span></span></div></div></li>
+          <li class="rv" data-logos><span class="n">I</span><h3 data-en="Fairs">Salons</h3><p data-en="Art fairs, trade shows and openings.">Foires d’art, salons et vernissages.</p><div class="run" data-speed="30" role="group" aria-label="Références salons" data-en-label="Fair references"><div class="run-track"><span class="run-list"><span>Art Basel</span><span data-logo>Salon du Bon</span><span data-logo>B Expo</span><span data-logo>Barbecue Fest</span><span data-logo>Galerie Florence de Voldère</span><span>Ambassade de France</span></span></div></div></li>
           <li class="rv"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" data-speed="52" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span>Coco Productions</span></span></div></div></li>
           <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p><div class="pts"><span>Bar</span><span>Restaurant</span><span data-en="Hotel">Hôtel</span><span data-en="Private reception">Réception privée</span></div></li>
           <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" data-speed="22" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div></li>
@@ -596,7 +619,7 @@ section{position:relative}
         <span class="eyebrow rv" data-en="Listen">Écouter</span>
         <h2 class="sr" id="listenTitle" data-en="Something (The Beatles), covered by Octave">Something (The Beatles), reprise par Octave</h2>
         <div class="video rv">
-          <img src="assets/images/octave/something.jpg" alt="Octave au piano à queue, reprise de Something des Beatles" data-en-alt="Octave at a grand piano, covering Something by the Beatles" loading="lazy">
+          <picture><source media="(max-width:700px)" srcset="assets/images/octave/something-couleur.jpg"><img src="assets/images/octave/something.jpg" alt="Octave au piano à queue, reprise de Something des Beatles" data-en-alt="Octave at a grand piano, covering Something by the Beatles" loading="lazy"></picture>
           <button class="play" id="playBtn" data-yt="b0J1dGOX4QU" aria-label="Lire la vidéo : Something (The Beatles), reprise par Octave" data-en-label="Play the video: Something (The Beatles), covered by Octave"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l16 9-16 9z"/></svg></button>
         </div>
       </div>
@@ -621,7 +644,7 @@ section{position:relative}
   <section class="about" id="apropos">
     <img class="fish" src="assets/images/octave/poisson.jpg" alt="" aria-hidden="true" loading="lazy">
     <div class="wrap about-grid">
-      <figure class="about-img rv"><img src="assets/images/octave/live.jpg" alt="Octave au clavier, devant la Seine" data-en-alt="Octave at the keyboard, by the Seine" loading="lazy"></figure>
+      <figure class="about-img rv"><picture><source media="(max-width:700px)" srcset="assets/images/octave/live-couleur.jpg"><img src="assets/images/octave/live.jpg" alt="Octave au clavier, devant la Seine" data-en-alt="Octave at the keyboard, by the Seine" loading="lazy"></picture></figure>
       <div class="rv">
         <span class="eyebrow" data-en="About">À propos</span>
         <h2 class="h2">Octave</h2>
@@ -697,12 +720,19 @@ section{position:relative}
   });
 
   // Téléphone : les références de chaque situation, en puces (tirées des bandeaux, une seule liste à tenir)
+  // Sous « Salons », les logos de « Ils m'ont fait confiance » remplacent les noms qui ont un logo
+  var logosSrc=document.querySelector('.refs .logos');
   document.querySelectorAll('.list>li').forEach(function(li){
     var run=li.querySelector('.run');if(!run||li.querySelector('.pts'))return;
+    var avecLogos=li.hasAttribute('data-logos')&&logosSrc;
+    if(avecLogos){var lm=logosSrc.cloneNode(true);lm.className='logos-m';run.parentNode.insertBefore(lm,run.nextSibling);run=lm}
     var pts=document.createElement('div');pts.className='pts';
-    run.querySelectorAll('.run-list>span').forEach(function(s){var b=document.createElement('span');b.textContent=s.textContent;pts.appendChild(b)});
+    li.querySelectorAll('.run-list>span').forEach(function(s){if(avecLogos&&s.hasAttribute('data-logo'))return;var b=document.createElement('span');b.textContent=s.textContent;pts.appendChild(b)});
     run.parentNode.insertBefore(pts,run.nextSibling);
   });
+  // pas de point séparateur en fin de ligne
+  function finsDeLigne(){document.querySelectorAll('.pts').forEach(function(p){var s=[].slice.call(p.children);s.forEach(function(e,i){var n=s[i+1];e.classList.toggle('fin',!!n&&n.offsetTop!==e.offsetTop)})})}
+  finsDeLigne();window.addEventListener('resize',finsDeLigne);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(finsDeLigne);
 
   // Bandeaux de références : on duplique la liste pour un défilement sans couture
   var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
