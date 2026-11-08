@@ -240,7 +240,7 @@ section{position:relative}
 .langs-line{font-family:var(--serif);font-size:19px;color:var(--fg);margin:-6px 0 26px}
 
 /* Twist coloré : un faisceau de lumière collé au bord gauche */
-:root{--c1:#E0603A;--c2:#D8CC4A;--c3:#6FCB62;--c4:#8E78E6}
+:root{--c1:#E0603A;--c2:#D8CC4A;--c3:#6FCB62;--c4:#8E78E6;--c5:#D873B0}
 .situ{overflow:hidden;isolation:isolate;background:var(--bg)}
 .situ .wrap{position:relative;z-index:1}
 .situ-light{position:absolute;left:0;top:0;height:100%;width:auto;max-width:none;z-index:0;pointer-events:none;mix-blend-mode:screen;filter:saturate(1.25) brightness(1.15);
@@ -254,6 +254,7 @@ section{position:relative}
 .list li:nth-child(2){--c:var(--c2)}
 .list li:nth-child(3){--c:var(--c3)}
 .list li:nth-child(4){--c:var(--c4)}
+.list li:nth-child(5){--c:var(--c5)}
 .list .n{color:var(--c)}
 .list h3{transition:color .25s var(--ease)}
 .list li:hover h3,.list li:hover h3 a{color:var(--c)}
@@ -399,7 +400,7 @@ section{position:relative}
    Règle d'or : tout ce qui suit ne vit que sous 700px.
    Les éléments propres au téléphone sont cachés sur ordinateur.
    ================================================================ */
-.btn .pi,.pts,.ask,.orn,.logos-m,.list>li.m-li{display:none}
+.btn .pi,.pts,.ask,.orn,.logos-m{display:none}
 @keyframes onde{0%{transform:scale(1);opacity:.75}70%,100%{transform:scale(1.6);opacity:0}}
 @keyframes monte{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (max-width:700px){
@@ -463,7 +464,6 @@ section{position:relative}
   .ask-res strong{display:block;font-family:var(--serif);font-weight:400;font-size:25px;line-height:1.15}
   .ask-res.oui strong{color:#8FDB83}
   .ask-res small{display:block;margin-top:5px;font-size:14px;line-height:1.45;color:var(--fg-2)}
-  .ask-hint{margin-top:16px;font-size:12px;letter-spacing:.06em;color:var(--fg-3)}
 
   /* Situations façon « carte » : tout au centre, un filet doré qui descend, le titre en italique,
      quatre losanges aux couleurs des situations, de courts traits au lieu des lignes pleine largeur */
@@ -501,10 +501,6 @@ section{position:relative}
   .defile .run-track{display:flex;width:max-content;animation:run var(--dur,40s) linear infinite}
   .defile .run-list{display:flex;align-items:center;flex:none}
   .defile .run-list>*{zoom:.7;flex:none;margin:0 22px}
-  /* 5ᵉ situation (téléphone) : Événements religieux, en rose */
-  :root{--c5:#D873B0}
-  .list>li.m-li{display:block}
-  .list li:nth-child(5){--c:var(--c5)}
   .orn i:nth-child(5){background:var(--c5)}
   /* titres plus présents */
   .situ-head .h2{font-size:54px;font-weight:500}
@@ -608,8 +604,7 @@ section{position:relative}
           <li class="rv" data-vitesse="9"><span class="n">II</span><h3><a href="compositeur.html"><span data-en="Film music">Musique à l’image</span></a></h3><p data-en="Composing for film, theatre and brands.">Composition pour le cinéma, le théâtre et les marques.</p><div class="run" data-speed="52" role="group" aria-label="Références musique à l’image" data-en-label="Film music references"><div class="run-track"><span class="run-list"><span data-logo>Festival des Sœurs Jumelles</span><span>Ville de Paris</span><span data-logo>Coco &amp; Co Prod</span></span></div></div><div class="logos-m"><img src="assets/images/octave/logo-soeurs.png" alt="Festival des Sœurs Jumelles" width="150" height="63" loading="lazy"><img src="assets/images/octave/logo-coco.png" alt="Coco &amp; Co Prod" width="210" height="86" loading="lazy"></div></li>
           <li class="rv"><span class="n">III</span><h3><a href="https://youtube.com/shorts/DJQ2eL_IiIg" target="_blank" rel="noopener"><span data-en="Private events">Événement privé</span><span class="sr" data-en="(video on YouTube, opens in a new tab)">(vidéo sur YouTube, nouvel onglet)</span></a></h3><p data-en="Bar, restaurant, hotel: the music follows the evening.">Bar, restaurant, hôtel&nbsp;: la musique suit le déroulé de la soirée.</p><div class="pts"><span>Bar</span><span>Restaurant</span><span data-en="Hotel">Hôtel</span><span data-en="Private reception">Réception privée</span></div></li>
           <li class="rv"><span class="n">IV</span><h3 data-en="Concerts and party clubs">Concerts et clubs festifs</h3><p data-en="On stage or in a club, when the room wants to sing and dance.">Sur scène ou en club, quand la salle veut chanter et danser.</p><div class="run" data-speed="22" role="group" aria-label="Références concerts et clubs" data-en-label="Concert and club references"><div class="run-track"><span class="run-list"><span>Silencio</span><span data-logo>Castel</span><span>Le Piano Vache</span><span>Maxim’s</span><span>Madame Simone</span><span>Gainsbarre</span><span>Mistinguett</span></span></div></div><div class="logos-m"><img src="assets/images/octave/logo-castel.png" alt="Castel" width="99" height="80" loading="lazy"></div></li>
-          <!-- Téléphone seulement pour l'instant -->
-          <li class="rv m-li"><span class="n">V</span><h3 data-en="Religious ceremonies">Événements religieux</h3><div class="pts"><span data-en="Weddings">Mariages</span><span data-en="Christenings">Baptêmes</span><span>Communions</span></div></li>
+          <li class="rv"><span class="n">V</span><h3 data-en="Religious ceremonies">Événements religieux</h3><p data-en="Weddings, christenings, communions: the music accompanies the ceremony.">Mariages, baptêmes, communions&nbsp;: la musique accompagne la cérémonie.</p><div class="pts"><span data-en="Weddings">Mariages</span><span data-en="Christenings">Baptêmes</span><span>Communions</span></div></li>
         </ol>
         <p class="rep-line rv"><span data-en="Repertoire">Répertoire</span> <span class="rep-items"><span data-en="French chanson">Chanson française</span><span data-en="British pop">Pop anglaise</span><span data-en="American songbook">Variété américaine</span></span></p>
         <!-- Téléphone : « Est-ce que je joue ce morceau ? » -->
@@ -622,7 +617,6 @@ section{position:relative}
           </div>
           <ul class="ask-sugg" id="askSugg"></ul>
           <div class="ask-res" id="askRes" role="status" aria-live="polite"></div>
-          <p class="ask-hint" id="askHint" data-en="151 songs in the repertoire">151 chansons au répertoire</p>
         </form>
       </div>
     </div>
@@ -780,11 +774,11 @@ section{position:relative}
     // url vide = rien n'est envoyé. Les entry.xxx sont les champs du formulaire.
     var FORM={url:'https://docs.google.com/forms/d/e/1FAIpQLScKOSm0vtjNINv0q6QkPS5J-z-H8XT6HQXC4h_G2PEx7rISYw/formResponse',
       demande:'entry.220457534',resultat:'entry.142436428',titre:'entry.1228881087',langue:'entry.1294993301'};
-    var inp=document.getElementById('askInput'),sugg=document.getElementById('askSugg'),res=document.getElementById('askRes'),hint=document.getElementById('askHint');
+    var inp=document.getElementById('askInput'),sugg=document.getElementById('askSugg'),res=document.getElementById('askRes');
     var songs=null,pending=false,attente=false,dejaNote={};
     var T={
-      fr:{oui:'Oui, je la joue.',art:function(n,a){return 'Oui, '+n+(n>1?' chansons':' chanson')+(/^The /.test(a)?' des '+a.slice(4):/^[AEIOUYHÉÈÊÀÂÎÔÛ]/i.test(a)?' d’'+a:' de '+a)+'.'},non:'Pas encore… je vais l’apprendre.',note:'C’est noté, merci.',vide:'Tapez un titre ou un artiste.'},
-      en:{oui:'Yes, I play it.',art:function(n,a){return 'Yes, '+n+(n>1?' songs':' song')+' by '+a+'.'},non:'Not yet… I’ll learn it.',note:'Noted, thank you.',vide:'Type a title or an artist.'}
+      fr:{oui:'Oui, je la joue.',art:function(a){return 'Oui, je joue '+(/^The /.test(a)?'les '+a.slice(4):a)+'.'},non:'Pas encore… je vais l’apprendre.',note:'C’est noté, merci.',vide:'Tapez un titre ou un artiste.'},
+      en:{oui:'Yes, I play it.',art:function(a){return 'Yes, I play '+a+'.'},non:'Not yet… I’ll learn it.',note:'Noted, thank you.',vide:'Type a title or an artist.'}
     };
     function L(){return T[root.lang==='en'?'en':'fr']}
     function base(s){return s.toLowerCase().replace(/œ/g,'oe').replace(/æ/g,'ae').replace(/&/g,' and ').normalize('NFD').replace(/[̀-ͯ]/g,'')}
@@ -809,9 +803,6 @@ section{position:relative}
           var nt=norm(t),st=soude(t),na=norm(a);
           songs.push({t:t,a:a,nt:nt,st:st,na:na,mt:(nt+' '+st).split(' '),ma:(na+' '+soude(a)).split(' '),mots:(nt+' '+st+' '+na).split(' ')});
         })});
-        if(hint.dataset.fr)hint.dataset.fr=hint.dataset.fr.replace(/\d+/,songs.length);
-        hint.dataset.en=hint.dataset.en.replace(/\d+/,songs.length);
-        hint.innerHTML=hint.innerHTML.replace(/\d+/,songs.length);
         if(attente){attente=false;verifier()}else if(inp.value)proposer();
       }).catch(function(){pending=false});
     }
@@ -855,7 +846,7 @@ section{position:relative}
       var r=classer(q),best=r[0];
       if(best&&best.n>=80){inp.value=best.s.t;montrer('oui',L().oui,best.s.t+' — '+best.s.a);noter(brut,true,best.s.t+' — '+best.s.a);return}
       var duo=q.length>=3&&songs.filter(function(s){return tous(q,s.ma)});
-      if(duo&&duo.length){var a=duo[0].a;montrer('oui',L().art(duo.length,a),duo.slice(0,3).map(function(s){return s.t}).join(' · ')+(duo.length>3?'…':''));noter(brut,true,a);return}
+      if(duo&&duo.length){var a=duo[0].a;montrer('oui',L().art(a),duo.slice(0,3).map(function(s){return s.t}).join(' · ')+(duo.length>3?'…':''));noter(brut,true,a);return}
       if(best&&best.n>=60){inp.value=best.s.t;montrer('oui',L().oui,best.s.t+' — '+best.s.a);noter(brut,true,best.s.t+' — '+best.s.a);return}
       montrer('non',L().non,brut);noter(brut,false,'');
     }
